@@ -1,0 +1,92 @@
+#+title: Project Schedule
+
+* PROJ Schedule [0/6]
+
+** TODO Set Up Development Environment
+DEADLINE: <2023-05-23 Tue>
+- [ ] Install necessary IDE and software
+- [ ] Setup GitHub repository
+
+** TODO Develop Initial Understanding
+DEADLINE: <2023-05-26 Fri>
+- [ ] Understand the physics involved in the simulation
+- [ ] Research on best practices for implementing physics in Java
+- [ ] Research on best practices for java testing frameworks with Java
+
+** TODO Design [0/3]
+
+*** TODO Initial Design
+DEADLINE: <2023-05-27 Sat>
+- [ ] Understand the problem domain
+- [ ] Research on Howitzers, their operation and factors affecting their projectiles
+- [ ] Understand the physics formulas provided and how they apply to the problem
+
+*** TODO Define system specifications
+DEADLINE: <2023-05-28 Sun>
+- [ ] Define the required inputs and expected outputs of the simulator
+- [ ] Identify key variables of the system: barrel pose, projectile radius and mass, drag coefficient, initial speed, force, and gravity
+- [ ] Discuss and agree on how these variables will be represented and manipulated in the simulator
+
+*** TODO Design the software architecture
+DEADLINE: <2023-05-30 Tue>
+- [ ] Identify key components/modules of the simulator
+- [ ] Establish interfaces and interactions between the components
+- [ ] Choose suitable data structures and algorithms for implementing the simulation
+- [ ] Sketch out a flowchart or UML diagram of the proposed system for visualization
+
+** TODO Development [0/3]
+*** TODO Development
+DEADLINE: <2023-06-04 Sun>
+- [ ] Set up the basic structure of the simulator
+- [ ] Create the basic classes and functions as per the software architecture
+- [ ] Set up a basic UI if necessary, depending on how you plan to represent the simulator
+
+*** TODO Implement the physics simulation
+DEADLINE: <2023-06-07 Wed>
+- [ ] Translate the physics formulas into Java code
+- [ ] Implement the logic for simulating the Howitzer firing and projectile movement
+- [ ] Ensure that all key variables incorporated into the simulation correctly
+
+*** TODO Implement the input and output handling
+DEADLINE: <2023-06-10 Sat>
+- [ ] Develop the logic for users to input the variables for the simulation
+- [ ] Implement the logic for displaying the output of the simulation
+- [ ] Ensure that errors in inputs handled gracefully
+
+** TODO Testing [0/3]
+
+*** TODO Unit Testing
+DEADLINE: <2023-06-25 Sun>
+- [ ] Identify functions for testing
+- [ ] Develop boundary value tests
+- [ ] Develop equivalence class tests
+- [ ] Develop decision table-based tests
+- [ ] Develop path tests
+- [ ] Develop data flow tests
+- [ ] Develop slice tests
+
+*** TODO Integration Testing
+DEADLINE: <2023-07-02 Sun>
+- [ ] Identify subset of units for integration testing
+- [ ] Develop and execute integration tests
+
+*** TODO System Testing
+DEADLINE: <2023-07-09 Sun>
+- [ ] Identify subset of use cases for system testing
+- [ ] Develop and execute system tests
+
+** TODO Docs & Submission [0/3]
+
+*** TODO Documentation
+DEADLINE: <2023-07-20 Thu>
+- [ ] Create README.md file
+- [ ] Create TESTING.md file
+- [ ] Ensure code is commented
+
+*** TODO Review and Final Adjustments
+DEADLINE: <2023-07-25 Tue>
+- [ ] Review entire simulator and tests
+- [ ] Make necessary adjustments
+
+*** TODO Final Submission
+DEADLINE: <2023-08-02 Wed>
