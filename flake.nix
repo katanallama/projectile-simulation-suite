@@ -22,6 +22,7 @@
         name = "java";
         buildInputs = [
           legacyPackages.jdk
+          legacyPackages.maven
           legacyPackages.jdt-language-server
           packages.projectile-simulation-suite
         ];
