@@ -18,5 +18,13 @@
         inherit (legacyPackages) projectile-simulation-suite;
       };
       defaultPackage = legacyPackages.projectile-simulation-suite;
+      devShell = legacyPackages.mkShellNoCC {
+        name = "java";
+        buildInputs = [
+          legacyPackages.jdk
+          legacyPackages.jdt-language-server
+          packages.projectile-simulation-suite
+        ];
+      };
     });
 }
