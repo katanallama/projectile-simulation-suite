@@ -2,6 +2,10 @@
 .direnv
 result
 
+# Emacs, provides project specific jdtls settings when using devShells
+config-linux
+java-workspace
+
 ### Java ###
 # Compiled class file
 *.class
