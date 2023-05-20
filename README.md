@@ -1,10 +1,25 @@
 # README
 
+## Build with Nix/Maven
+
+This project utilizes a Nix flake to build the project and provide a development shell with the build dependencies, `jdt-language-server`, and `maven` using `direnv`.
+
+To build the project from the flake:
+
 `nix build` to build the `.jar`
 
 `nix develop` then `mvn clean test` to run tests
 
+## Build with Maven
+
+- Install [Maven](https://maven.apache.org/)
+- `mvn compile` to compile the project
+- `mvn clean test` to run tests
+
+## Tests Output
+
 Should look something like this:
+
 ``` sh
 ~/projects/projectile-simulation-suite $ mvn clean test
 [INFO] Scanning for projects...

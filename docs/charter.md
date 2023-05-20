@@ -1,15 +1,15 @@
 
 # Table of Contents
 
-1.  [Howitzer Firing Simulator](#orgc97bcf4)
-    1.  [Rigid Body Kinematics and Dynamics](#org9416813)
-    2.  [Design](#orgb28ec05)
-    3.  [Requirements](#orgcea8ea5)
-        1.  [Presentation](#org18fe968)
+1.  [Howitzer Firing Simulator](#org9d76456)
+    1.  [Rigid Body Kinematics and Dynamics](#org03ff297)
+    2.  [Design](#orge43b0ae)
+    3.  [Requirements](#org70c642c)
+        1.  [Presentation](#orgaf79771)
 
 
 
-<a id="orgc97bcf4"></a>
+<a id="org9d76456"></a>
 
 # Howitzer Firing Simulator
 
@@ -20,7 +20,7 @@ A Howitzer company is asking for a simulator to teach the soldiers about kinemat
 Some possible variables to the simulator are the barrel pose (position and orientation), radius and mass of the projectile, drag coefficient, initial speed, force applied to the projectile, and gravity.
 
 
-<a id="org9416813"></a>
+<a id="org03ff297"></a>
 
 ## Rigid Body Kinematics and Dynamics
 
@@ -30,23 +30,23 @@ $$p(t) = v(t)$$
 
 $$m\dot{v}(t) = f(t) + f_{d}(t) + mg$$
 
-Where, $p \in \mathbb{R}^{3}$ is the position of the projectile, $v \in \mathbb{R}^{3}$ is the linear velocity of the projectile, $m \in \mathbb{R}^{3}$ is the mass of the projectile, $g \in \mathbb{R}^{3}$ is the acceleration due to gravity, $f \in \mathbb{R}^{3}$ is the external force acting on the object, and $f_{d} \in \mathbb{R}^{n}$ is the drag force acting on the object.
+Where, $p \in \mathbb{R}^{3}$ is the position of the projectile, $v \in \mathbb{R}^{3}$ is the linear velocity of the projectile, $m \in \mathbb{R}$ is the mass of the projectile, $g \in \mathbb{R}^{3}$ is the acceleration due to gravity, $f \in \mathbb{R}^{3}$ is the external force acting on the object, and $f_{d} \in \mathbb{R}^{n}$ is the drag force acting on the object.
 
 In fluid dynamics, the drag force is:
 
 $$f_{d} = -\frac{1}{2} CpAu(t)^{2} $$
 
-Where, $C \in \mathbb{R}^{}$ is the drag coefficient, $\rho \in \mathbb{R}^{}$ is the density of the fluid, $A \in \mathbb{R}^{}$ is the area of the projectile facing the fluid, and $u \in \mathbb{R}^{}$ is the flow velocity relative to the projectile.
+Where, $C \in \mathbb{R}^{}$ is the drag coefficient, $\rho \in \mathbb{R}^{}$ is the density of the fluid, $A \in \mathbb{R}^{}$ is the area of the projectile facing the fluid, and $u \in \mathbb{R}^{3}$ is the flow velocity relative to the projectile.
 
 
-<a id="orgb28ec05"></a>
+<a id="orge43b0ae"></a>
 
 ## Design
 
 You need to go through the structured design process (Figure 2) while considering different factors that can impact the final position of the projectile.
 
 
-<a id="orgcea8ea5"></a>
+<a id="org70c642c"></a>
 
 ## Requirements
 
@@ -67,7 +67,7 @@ The projects objective is not to implement a complete working simulator but to d
 A separate written report is NOT required, but the entire GitHub project should be ‘self-documenting’
 
 
-<a id="org18fe968"></a>
+<a id="orgaf79771"></a>
 
 ### Presentation
 

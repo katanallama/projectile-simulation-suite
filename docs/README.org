@@ -1,0 +1,8 @@
+#+title: Documentation
+
+This directory is the home of the project documentation, including:
+
+- [[./charter.org][Simple project charter]]
+- [[./schedule.org][Project schedule]]
+
+All are living documents and are expected to change, feel free to contribute to them.
