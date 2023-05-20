@@ -6,18 +6,24 @@
 
   outputs = { nixpkgs, mvn2nix, utils, ... }:
     let
+      overlay = final: prev: {
+        projectile-simulation-suite = final.callPackage ./default.nix { };
+      };
+
       pkgsForSystem = system:
         import nixpkgs {
-          # ./overlay.nix contains the logic to package local repository
-          overlays = [ mvn2nix.overlay (import ./overlay.nix) ];
+          overlays = [ mvn2nix.overlay overlay ];
           inherit system;
         };
+
     in utils.lib.eachSystem utils.lib.defaultSystems (system: rec {
       legacyPackages = pkgsForSystem system;
       packages = utils.lib.flattenTree {
         inherit (legacyPackages) projectile-simulation-suite;
       };
+
       defaultPackage = legacyPackages.projectile-simulation-suite;
+
       devShell = legacyPackages.mkShellNoCC {
         name = "java";
         buildInputs = [
