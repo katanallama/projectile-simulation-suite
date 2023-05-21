@@ -2,7 +2,7 @@
 
 ## Build with Nix/Maven
 
-This project utilizes a Nix flake to build the project and provide a development shell with the build dependencies, `jdt-language-server`, and `maven` using `direnv`.
+This project utilizes a Nix flake to build the project and provide a development shell with the build dependencies, `jdt-language-server`, and `maven` using `direnv`
 
 To build the project from the flake:
 
@@ -10,13 +10,16 @@ To build the project from the flake:
 
 `nix develop` then `mvn clean test` to run tests
 
+`nix run` will run the project
+
 ## Build with Maven
 
 - Install [Maven](https://maven.apache.org/)
 - `mvn compile` to compile the project
 - `mvn clean test` to run tests
+- `mvn exec:java` to run the main class
 
-## Tests Output
+## Outputs
 
 Should look something like this:
 
@@ -67,3 +70,27 @@ Should look something like this:
 [INFO] Finished at: 2023-05-19T14:46:20-06:00
 [INFO] ------------------------------------------------------------------------
 ```
+
+
+``` sh
+~/projects/projectile-simulation-suite $ mvn exec:java
+[INFO] Scanning for projects...
+[INFO]
+[INFO] --------------< com.example:projectile-simulation-suite >---------------
+[INFO] Building projectile-simulation-suite 0.1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- exec-maven-plugin:3.1.0:java (default-cli) @ projectile-simulation-suite ---
+Result: 8
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.079 s
+[INFO] Finished at: 2023-05-21T07:05:51-06:00
+[INFO] ------------------------------------------------------------------------
+```
+
+## TODO
+- Once we start actual development the `mainClass` attributes in `pom.xml` will need to be updated with the new `mainClass` name for any of the above commands to work
+
+- the project currently uses jdk11 and jdk17, jdk11 is used to build the application itself while jdk17 is used in the development shell as for some reason new language servers are not backwards compatible with jdk11, do we want to keep using a mix or just move to jdk17?
