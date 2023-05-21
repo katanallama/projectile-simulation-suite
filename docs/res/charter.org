@@ -1,4 +1,5 @@
 #+title: Howitzer Firing Simulator
+#+OPTIONS: p:t
 
 * Howitzer Firing Simulator
 A Howitzer company is asking for a simulator to teach the soldiers about kinematics and dynamics. They would like to simulate the howitzer shooting a projectile across an empty field (Figure 1).

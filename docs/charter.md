@@ -1,15 +1,15 @@
 
 # Table of Contents
 
-1.  [Howitzer Firing Simulator](#org9d76456)
-    1.  [Rigid Body Kinematics and Dynamics](#org03ff297)
-    2.  [Design](#orge43b0ae)
-    3.  [Requirements](#org70c642c)
-        1.  [Presentation](#orgaf79771)
+1.  [Howitzer Firing Simulator](#orge270158)
+    1.  [Rigid Body Kinematics and Dynamics](#org13757cd)
+    2.  [Design](#org02f2ab2)
+    3.  [Requirements](#orge15820b)
+        1.  [Presentation](#org30c9c85)
 
 
 
-<a id="org9d76456"></a>
+<a id="orge270158"></a>
 
 # Howitzer Firing Simulator
 
@@ -20,7 +20,7 @@ A Howitzer company is asking for a simulator to teach the soldiers about kinemat
 Some possible variables to the simulator are the barrel pose (position and orientation), radius and mass of the projectile, drag coefficient, initial speed, force applied to the projectile, and gravity.
 
 
-<a id="org03ff297"></a>
+<a id="org13757cd"></a>
 
 ## Rigid Body Kinematics and Dynamics
 
@@ -39,14 +39,14 @@ $$f_{d} = -\frac{1}{2} CpAu(t)^{2} $$
 Where, $C \in \mathbb{R}^{}$ is the drag coefficient, $\rho \in \mathbb{R}^{}$ is the density of the fluid, $A \in \mathbb{R}^{}$ is the area of the projectile facing the fluid, and $u \in \mathbb{R}^{3}$ is the flow velocity relative to the projectile.
 
 
-<a id="orge43b0ae"></a>
+<a id="org02f2ab2"></a>
 
 ## Design
 
-You need to go through the structured design process (Figure 2) while considering different factors that can impact the final position of the projectile.
+You need to go through the engineering design process (Figure 2) while considering different factors that can impact the final position of the projectile.
 
 
-<a id="org70c642c"></a>
+<a id="orge15820b"></a>
 
 ## Requirements
 
@@ -67,11 +67,11 @@ The projects objective is not to implement a complete working simulator but to d
 A separate written report is NOT required, but the entire GitHub project should be ‘self-documenting’
 
 
-<a id="orgaf79771"></a>
+<a id="org30c9c85"></a>
 
 ### Presentation
 
--   The project should include a READEME.md file that describes the simulator (not the testing), installation instructions (if necessary), and use instructions.
+-   The project should include a README.md file that describes the simulator (not the testing), installation instructions (if necessary), and use instructions.
 -   The project should include a TESTING.md that describes the test plan. It should include any necessary information to understand the test cases. For example, in equivalence class testing it should state what the equivalence classes are and for system testing it should contain the use cases being tested. This should not be a long document, but should contain a minimum information about all the technical requirements.
 -   All the code should be well commented.
 

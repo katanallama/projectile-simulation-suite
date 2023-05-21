@@ -1,4 +1,5 @@
 #+title: Project Schedule
+#+OPTIONS: p:t
 
 * PROJ Schedule [0/6]
 
