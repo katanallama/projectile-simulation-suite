@@ -1,35 +1,41 @@
 #+title: Project Schedule
 #+OPTIONS: p:t
 
-* PROJ Schedule [0/6]
+* PROJ Schedule [1/6]
 
-** TODO Set Up Development Environment
+** DONE Set Up Development Environment
 DEADLINE: <2023-05-23 Tue>
-- [ ] Install necessary IDE and software
-- [ ] Setup GitHub repository
+- [X] Install necessary software
+- [X] Setup GitHub repository
 
 ** TODO Develop Initial Understanding
-DEADLINE: <2023-05-26 Fri>
+DEADLINE: <2023-06-02 Fri>
 - [ ] Understand the physics involved in the simulation
 - [ ] Research on best practices for implementing physics in Java
-- [ ] Research on best practices for java testing frameworks with Java
+- [ ] Research on best practices for java testing frameworks
+
+*** TODO Project readme
+DEADLINE: <2023-06-02 Fri>
+**** TODO Objectives
+**** TODO Functions
+**** TODO Requirements
 
 ** TODO Design [0/3]
 
 *** TODO Initial Design
-DEADLINE: <2023-05-27 Sat>
+DEADLINE: <2023-06-01 Thu>
 - [ ] Understand the problem domain
 - [ ] Research on Howitzers, their operation and factors affecting their projectiles
 - [ ] Understand the physics formulas provided and how they apply to the problem
 
 *** TODO Define system specifications
-DEADLINE: <2023-05-28 Sun>
+DEADLINE: <2023-06-06 Tue>
 - [ ] Define the required inputs and expected outputs of the simulator
 - [ ] Identify key variables of the system: barrel pose, projectile radius and mass, drag coefficient, initial speed, force, and gravity
 - [ ] Discuss and agree on how these variables will be represented and manipulated in the simulator
 
 *** TODO Design the software architecture
-DEADLINE: <2023-05-30 Tue>
+DEADLINE: <2023-06-11 Sun>
 - [ ] Identify key components/modules of the simulator
 - [ ] Establish interfaces and interactions between the components
 - [ ] Choose suitable data structures and algorithms for implementing the simulation
@@ -37,19 +43,19 @@ DEADLINE: <2023-05-30 Tue>
 
 ** TODO Development [0/3]
 *** TODO Development
-DEADLINE: <2023-06-04 Sun>
+DEADLINE: <2023-06-11 Sun>
 - [ ] Set up the basic structure of the simulator
 - [ ] Create the basic classes and functions as per the software architecture
-- [ ] Set up a basic UI if necessary, depending on how you plan to represent the simulator
+- [ ] Set up a basic UI if necessary, depending on plan to represent the simulator
 
 *** TODO Implement the physics simulation
-DEADLINE: <2023-06-07 Wed>
+DEADLINE: <2023-06-13 Tue>
 - [ ] Translate the physics formulas into Java code
 - [ ] Implement the logic for simulating the Howitzer firing and projectile movement
 - [ ] Ensure that all key variables incorporated into the simulation correctly
 
 *** TODO Implement the input and output handling
-DEADLINE: <2023-06-10 Sat>
+DEADLINE: <2023-06-15 Thu>
 - [ ] Develop the logic for users to input the variables for the simulation
 - [ ] Implement the logic for displaying the output of the simulation
 - [ ] Ensure that errors in inputs handled gracefully
@@ -91,3 +97,19 @@ DEADLINE: <2023-07-25 Tue>
 
 *** TODO Final Submission
 DEADLINE: <2023-08-02 Wed>
+
+
+* Update 1
+#+begin_quote
+Please update your GitLab .md files with 'Problem Specification and Design Requirements'. Create a separate section for each.
+
+In 'Design Requirements' section, you need to specify 'Objectives, Functions and Constraints' each in a separate sub-section. You should consider at least four constraints overarching your design. Following is the list of some constraints (you can also come up your with your own constraints).
+
+Economic Factors
+Regulatory Compliance (Security and Access)
+Reliability
+Sustainability and Environmental Factors
+Ethics
+Societal Impacts
+The deadline to finish the work is Friday June 02, 23:59:59.
+#+end_quote
