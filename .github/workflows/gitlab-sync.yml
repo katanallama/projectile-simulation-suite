@@ -1,0 +1,19 @@
+name: Gitlab Sync
+
+on:
+  push:
+  - *
+
+jobs:
+  sync:
+    name: Gitlab Sync
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+     - uses: action-pack/gitlab-sync@v3
+      with:
+        username: ${{ github.actor }}
+        url: ${{ secrets.GITLAB_URL }}
+        token: ${{ secrets.GITLAB_TOKEN }}:
