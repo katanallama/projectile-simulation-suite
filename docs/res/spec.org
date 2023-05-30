@@ -1,0 +1,25 @@
+#+title: Problem Specification and Design Requirements
+#+OPTIONS: p:t
+
+* Problem Specification
+
+
+* Design Requirements
+
+** Objectives
+
+
+** Functions
+
+
+** Constraints
+#+begin_quote
+Consider at least four constraints overarching your design
+
+Economic Factors
+Regulatory Compliance (Security and Access)
+Reliability
+Sustainability and Environmental Factors
+Ethics
+Societal Impacts
+#+end_quote
