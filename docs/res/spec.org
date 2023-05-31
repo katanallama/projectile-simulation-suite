@@ -2,14 +2,19 @@
 #+OPTIONS: p:t
 
 * Problem Specification
-
+We must simulate a howitzer shooting a projectile across an empty field. The simulation must accurately account for real physical variables
+such as drag force and gravity.
 
 * Design Requirements
 
 ** Objectives
+1. Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile
+2. Display the results of each simulation "run" in a way anybody could understand and repeat
 
 
 ** Functions
+- Initialize (or re-initialize) the simulation, including variables such as the howitzer position and orientation, the projectile mass and size, and the air density.
+- "Fire" the projectile and record it's final position relative to the howitzer
 
 
 ** Constraints
@@ -23,3 +28,14 @@ Sustainability and Environmental Factors
 Ethics
 Societal Impacts
 #+end_quote
+
+
+*** Ethics
+This simulator is to be created for the supposed purpose of educating soldiers for combat, which includes the potential destruction of lives and infrastructure. Our hope as a development team is that the education from our simulator is used to strengthen a strategy of combat deterrence and de-escalation, but we clearly and plainly recognize the likelihood of said education to be used towards actual combat. Good thing it's a just school project :P
+
+*** Accuracy
+This simulator is a simplified model of actions in the world, and we cannot guarantee that it precisely replicates the real world equivalent actions.
+
+*** Reliability
+As a simulator, we expect this to be perfectly reliable such that if one or more simulations run with exact same initial conditions, the exact same output will occur.
+
