@@ -8,8 +8,16 @@ such as drag force and gravity.
 * Design Requirements
 
 ** Objectives
-1. Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile
-2. Display the results of each simulation "run" in a way anybody could understand and repeat
+1. Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile and display the results of each simulation "run" in a way anybody can understand.
+**2. Create a robust test suite for parts of the simulator to demonstrate complete knowledge of standard test procedures**, including but not limited to:
+    a. Boundary Value Testing
+    b. Equivalence Class Testing
+    c. Decision Table-Based Testing
+    d. Path Testing
+    e. Dataflow Testing
+    f. Slice Testing
+    g. Integration Testing on a subset of units
+    h. System Testing on a subset of use cases
 
 
 ** Functions
