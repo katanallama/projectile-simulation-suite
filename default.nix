@@ -1,9 +1,15 @@
-{ lib, stdenv, buildMavenRepositoryFromLockFile, makeWrapper, maven
-, jdk11_headless, nix-gitignore }:
+{ lib,
+  stdenv,
+  buildMavenRepositoryFromLockFile,
+  makeWrapper,
+  maven,
+  jdk11_headless,
+  nix-gitignore }:
 
 let
   mavenRepository =
     buildMavenRepositoryFromLockFile { file = ./mvn2nix-lock.json; };
+
 in stdenv.mkDerivation rec {
   pname = "projectile-simulation-suite";
   version = "0.1";
@@ -11,6 +17,7 @@ in stdenv.mkDerivation rec {
   src = nix-gitignore.gitignoreSource [ "*.nix" ] ./.;
 
   nativeBuildInputs = [ jdk11_headless maven makeWrapper ];
+
   buildPhase = ''
     echo "Building with maven repository ${mavenRepository}"
     mvn package --offline -Dmaven.repo.local=${mavenRepository}
