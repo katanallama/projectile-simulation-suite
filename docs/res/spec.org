@@ -47,5 +47,10 @@ This simulator is a simplified model of actions in the world, and we cannot guar
 *** Reliability
 As a simulator, we expect this to be perfectly reliable such that if one or more simulations run with exact same initial conditions, the exact same output will occur.
 
-*** Information Management and Display
-Simulation results will be displayed through console text or saved to a file. It is entirely up to whoever manages the use of the simulation to decide what to do with the files produced by this simulation.
+*** User Control and Display
+The simulation will run without a GUI; inputs and outputs are to be managed through external files according to the Information Management constraint. At most, the user input will be a one-time prompt at the program startup. At most, the simulation output may be displayed through the console, but will also be recorded seperately.
+
+*** Information Management
+The simulation will be initialized and run according to a config and/or read-in file storing the relevant information. Simulation results will be saved to a write-out file that includes but is not limited to: date & time of the simulation run, the input variables, and the projectile final position. 
+
+It is entirely up to whoever manages the use of the simulation to decide what to do with the files produced by this simulation.
