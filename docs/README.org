@@ -3,11 +3,15 @@
 This directory is the home of the project documentation, including:
 
 - [[./charter.md][Simple project charter]]
+
 - [[./schedule.md][Project schedule]]
+
+- [[./spec.md][Problem specification and design requirements]]
+
 - [[./res][Project working files]]
 
 All are living documents and are expected to change, feel free to contribute to them.
 
-** Note
+** Contribution Notes
 - ~.org~ are working files and exported to ~.md~ as GitHub does not parse org-mode files well
 - If using VSCode or another editor that does not respect ~.editorconfig~ files, please install a [[https://editorconfig.org/][plugin]]

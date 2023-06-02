@@ -1,56 +1,109 @@
 #+title: Problem Specification and Design Requirements
 #+OPTIONS: p:t
 
-* Problem Specification
-We must simulate a howitzer shooting a projectile across an empty field. The simulation must accurately account for real physical variables
-such as drag force and gravity.
+** Problem Specification
 
-* Design Requirements
+This project involves the development of a simulator to teach soldiers about kinematics and dynamics in relation to a Howitzer shooting a projectile across an empty field. The goal is to accurately simulate the physics of a fired projectile, considering variables that could affect its trajectory, providing a realistic and educational simulator that helps soldiers understand and predict the effects of different variables on the trajectory and final position of a howitzer-fired projectile.
 
-** Objectives
-1. Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile and display the results of each simulation "run" in a way anybody can understand.
-**2. Create a robust test suite for parts of the simulator to demonstrate complete knowledge of standard test procedures**, including but not limited to:
-    a. Boundary Value Testing
-    b. Equivalence Class Testing
-    c. Decision Table-Based Testing
-    d. Path Testing
-    e. Dataflow Testing
-    f. Slice Testing
-    g. Integration Testing on a subset of units
-    h. System Testing on a subset of use cases
+*** Inputs
 
+**** Simulation parameters:
 
-** Functions
-- Initialize (or re-initialize) the simulation, including variables such as the howitzer position and orientation, the projectile mass and size, and the air density
-- "Fire" the projectile and record it's final position relative to the howitzer
+/Barrel Pose (Position and Orientation)/: determines the initial firing direction and location of the projectile
 
+/Mass of the Projectile/: influences the flight characteristics of the projectile, including the effect of the force of gravity on the projectile
 
-** Constraints
-#+begin_quote
-Consider at least four constraints overarching your design
+/Drag Coefficient/: describes how 'aerodynamic' an object is. A higher drag coefficient means more resistance to the projectile's motion through the air
 
-Economic Factors
-Regulatory Compliance (Security and Access)
-Reliability
-Sustainability and Environmental Factors
-Ethics
-Societal Impacts
-#+end_quote
+/Radius of the Projectile/: influences the flight characteristics of the projectile, including the effect of air resistance (drag)
 
+/Initial Speed/: initial velocity of the projectile at the moment it leaves the howitzer
 
-*** Ethics
-This simulator is to be created for the supposed purpose of educating soldiers for combat, which includes the potential destruction of lives and infrastructure. Our hope as a development team is that the education from our simulator is used to strengthen a strategy of combat deterrence and de-escalation, but we clearly and plainly recognize the likelihood of said education to be used towards actual combat. Good thing it's a just school project :P
+/Force Applied to the Projectile/: initial force applied by the propellant inside the Howitzer
 
-*** Accuracy
-This simulator is a simplified model of actions in the world, and we cannot guarantee that it precisely replicates the real-world-equivalent actions.
+/Acceleration due to Gravity/: a constant, allowing it as a variable input could be useful for hypothetical scenarios
 
-*** Reliability
-As a simulator, we expect this to be perfectly reliable such that if one or more simulations run with exact same initial conditions, the exact same output will occur.
+/Density of the Fluid/: changes with changes in the environment elevation
 
-*** User Control and Display
-The simulation will run without a GUI; inputs and outputs are to be managed through external files according to the Information Management constraint. At most, the user input will be a one-time prompt at the program startup. At most, the simulation output may be displayed through the console, but will also be recorded seperately.
+**** IO Configuration parameters:
 
-*** Information Management
-The simulation will be initialized and run according to a config and/or read-in file storing the relevant information. Simulation results will be saved to a write-out file that includes but is not limited to: date & time of the simulation run, the input variables, and the projectile final position. 
+/input directory/ (string): a directory holding the specific run configuration or previous run results
 
-It is entirely up to whoever manages the use of the simulation to decide what to do with the files produced by this simulation.
+/output directory/ (string): a directory to write the results
+
+/seed value/ (integer): a seed for a random number generator for deterministic results
+
+/delta/ (boolean): whether or not current run will be compared with previous run
+
+*** Outputs
+
+- representation of 3D projectile trajectory
+
+- representation of the forces acting on the projectile during its flight
+
+- final position of the projectile
+
+- real-time kinematic and dynamic statistics (position, velocity, acceleration, forces) for deeper understanding and analysis
+
+** Design Requirements
+
+Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile and display the results of each simulation "run" in a way anybody can understand.
+
+Create a robust test suite for parts of the simulator to demonstrate complete knowledge of standard test procedures.
+
+*** Objectives
+
+The simulator should be designed with the following requirements:
+
+/User Interface/: The simulator should have an intuitive user interface that allows users to easily input variables and understand the output.
+
+/Realism/: The simulator should realistically model the physics of a fired projectile, including the effects of gravity and drag.
+
+/Performance/: The simulator should be able to run the simulation smoothly and handle calculations quickly, even for complex trajectories.
+
+/Flexibility/: The simulator should allow for the adjustment of a wide range of variables, allowing for a variety of simulations.
+
+/Education/: The simulator should have educational value, helping soldiers understand the factors that affect the trajectory and final position of a projectile.
+
+*** Testing Requirements
+
+For effective testing of the simulator, ensuring the robustness and reliability of the simulator the following test methods are used.
+
+/Unit Testing/: Test individual functions and components separately. For instance, testing the function calculating the projectile trajectory with a variety of inputs, including boundary values, equivalence classes, decision tables, paths, data flows, and slices.
+
+/Integration Testing/: Select a subset to combine and test together. For instance, testing the function for trajectory calculation together with the drag calculation function and gravity effects to ensure they work correctly in tandem.
+
+/System Testing/: Select a subset of use cases for system testing, to evaluate the system's overall functionality in scenarios that resemble real-world usage.
+
+*** Constraints
+
+**** Ethics
+
+The purpose of the simulator is to educate soldiers for combat, which includes the potential destruction of lives and infrastructure, while the team does not condone this, our hope as a development team is that the education from our simulator is used to strengthen a strategy of combat deterrence and de-escalation, but we recognize the likelihood of said education to be used towards actual combat.
+
+**** Accuracy
+
+This simulator is a simplified model of a non-deterministic environment, we cannot guarantee that it precisely replicates the real-world-equivalent actions.
+
+**** Reproducible Results
+
+This is an important factor in not only simulation, but development as well. The team strives to produce a project and results that are highly reproducible. From the use of [[https://nixos.org/guides/nix-pills/][Nix]] as a build tool, to the development of the project. By ensuring that the project build is reproducible across multiple systems, this helps to ensure that the simulation results are also reproducible as the back-end will be consistent from machine to machine.
+
+Any random number generation will have a user exposed and logged ~seed~ value.
+
+**** Reliability
+
+The results of the simulator will be deterministic of the given configuration, resulting in expected outputs for a given input.
+
+**** User Control and Display
+
+The simulation will run without a GUI; inputs and outputs are to be managed through external files according to the Information Management constraint. At most, the user input will be a one-time prompt at the program startup. At most, the simulation output either displayed through the console and/or recorded separately.
+
+**** Information Management
+
+The simulation is initialized and run according to a configuration ~.json~ file with the relevant information. Simulation results saved to the user specified ~outdir/~  that includes but is not limited to:
+ - simulator configuration
+ - simulator results
+ - run timestamp
+
+Results logged in ~json~ format that is easily interpreted by common analysis and visualization tools such as ~matplotlib~ and ~seaborn~.
