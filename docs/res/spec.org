@@ -97,7 +97,7 @@ The results of the simulator will be deterministic of the given configuration, r
 
 **** User Control and Display
 
-The simulation will run without a GUI; inputs and outputs are to be managed through external files according to the Information Management constraint. At most, the user input will be a one-time prompt at the program startup. At most, the simulation output either displayed through the console and/or recorded separately.
+The simulation will run without a GUI; inputs and outputs are to be managed through external files according to the Information Management constraint. At most, the user input will be a one-time prompt at the program startup. At most, the simulation output either displayed through the console and/or recorded separately. The results should be able to be imported into other visualization tools easily.
 
 **** Information Management
 
