@@ -101,9 +101,18 @@ The simulation will run without a GUI; inputs and outputs are to be managed thro
 
 **** Information Management
 
-The simulation is initialized and run according to a configuration ~.json~ file with the relevant information. Simulation results saved to the user specified ~outdir/~  that includes but is not limited to:
+The simulation is initialized and run according to a configuration ~.json~ file with the relevant information which can be overriden with supplied commands. Simulation results saved to the user specified ~outdir/~  that includes but is not limited to:
  - simulator configuration
+ -- mass : the mass of the projectile (kg)
+ -- drag_coeffient : how aerodynamic the projectile is (number)
+ -- initial_force : the force vector applied by the cannon (N)
+ -- gravity_strength : the strengh of gravity (m/s^2)
+ -- wind_vector : the constant wind vector (N)
+ -- object_area : the surface area of the projectile (m^2)
+ -- object_force_mode : the type of external force exerted by the projectile (enum)
+ -- wind_vector_field_mode : the type of vector field that the project will travel through (enum)
  - simulator results
- - run timestamp
+ -- csv file with two columns: Time and postion 
+ -- run timestamp
 
-Results logged in ~json~ format that is easily interpreted by common analysis and visualization tools such as ~matplotlib~ and ~seaborn~.
+Results logged in ~csv~ format that is easily interpreted by common analysis and visualization tools such as ~matplotlib~ and ~seaborn~.
