@@ -69,7 +69,7 @@ stdenv.mkDerivation rec {
       # The caller must specify the following:
       #
       #   -data:
-      #     The application stores runtime data here. We set this to <cache-dir>/$PWD
+      #     The application stores runtime data here. We set this to ./config_linux
       #     so that projects don't collide with each other.
       #     This can be overidden by specifying -configuration to the wrapper.
       #
@@ -86,6 +86,7 @@ stdenv.mkDerivation rec {
         --add-flags "-Dlog.level=ALL" \
         --add-flags "\$JAVA_OPTS" \
         --add-flags "-jar $launcher" \
+        --add-flags "-configuration ./config_linux" \
         --add-flags "--add-modules=ALL-SYSTEM" \
         --add-flags "--add-opens java.base/java.util=ALL-UNNAMED" \
         --add-flags "--add-opens java.base/java.lang=ALL-UNNAMED"
