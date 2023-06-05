@@ -86,7 +86,7 @@ stdenv.mkDerivation rec {
         --add-flags "-Dlog.level=ALL" \
         --add-flags "\$JAVA_OPTS" \
         --add-flags "-jar $launcher" \
-        --add-flags "-configuration ./config_linux" \
+        --add-flags "-configuration ../config_linux" \
         --add-flags "--add-modules=ALL-SYSTEM" \
         --add-flags "--add-opens java.base/java.util=ALL-UNNAMED" \
         --add-flags "--add-opens java.base/java.lang=ALL-UNNAMED"
