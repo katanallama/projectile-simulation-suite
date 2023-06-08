@@ -9,7 +9,7 @@ public class GetProjectileGravity implements IGetProjectileGravity{
     }
 
     public Vector3d getProjectileGravity() {
-        var down = new Vector3d(0, 0, -1);
+        Vector3d down = new Vector3d(0, 0, -1);
 
         down.scale((double)(_configurationHandler.getSetting("gravity")) * _projectileHandler.getProjectile().getWeight());
         
