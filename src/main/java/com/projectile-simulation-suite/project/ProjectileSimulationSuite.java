@@ -24,7 +24,7 @@ public class ProjectileSimulationSuite {
 
         _results = new Vector3d[maxSimulationTime];
         _resultsOutputers = getOutputers();
-        //_configHandler = new GetConfiguration()
+        _configHandler = new StubGetConfiguration();
 
         _simulator = new MakeProjectileSimulator().createProjectileSimulator(_configHandler);
     };
