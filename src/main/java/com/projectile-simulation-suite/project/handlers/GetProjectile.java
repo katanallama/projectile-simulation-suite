@@ -17,6 +17,10 @@ public class GetProjectile implements IGetProjectile {
 
     private Projectile createProjectile() {
         // Todo make this set initial settings via configs
-        return new Projectile();
+        var projectile = new Projectile();
+        
+        projectile.setWeight(_configurationHandler.getSetting("weight"));
+
+        return projectile;
     }
 }
