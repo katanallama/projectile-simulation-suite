@@ -1,6 +1,8 @@
 package com.example.project;
+import java.util.Vector;
 
 public class Calculator {
+  private Vector test;
 
   public int add(int a, int b) {
     return a + b;
