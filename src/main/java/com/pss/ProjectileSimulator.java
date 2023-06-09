@@ -1,6 +1,7 @@
 package com.pss;
 
 import com.pss.interfaces.*;
+import com.pss.models.*;
 import javax.vecmath.Vector3d;
 
 public class ProjectileSimulator {
@@ -15,6 +16,10 @@ public class ProjectileSimulator {
         _projectileForceHandler = projectileForceHandler;
         _projectileGravityHandler = projectileGravityHandler;
         _projectileDragHandler = projectileDragHandler;
+    }
+
+    public Projectile getProjectile() {
+        return _projectileHandler.getProjectile();
     }
 
     public Vector3d updatePosition() {
