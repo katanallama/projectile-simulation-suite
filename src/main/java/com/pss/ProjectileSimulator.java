@@ -30,20 +30,20 @@ public class ProjectileSimulator {
     private Vector3d getNewVelocity() {
         Vector3d currentVelocity = _projectileHandler.getProjectile().getVelocity();
         if (currentVelocity == null) {
-            currentVelocity = new Vector3d();
+            currentVelocity = new Vector3d(0, 0, 0);
         }
 
         currentVelocity.add(_projectileForceHandler.getProjectileForce());
         currentVelocity.add(_projectileGravityHandler.getProjectileGravity());
         currentVelocity.add(_projectileDragHandler.getProjectileDrag());
-
+        
         return currentVelocity;
     }
 
     private Vector3d getNewPosition() {
         Vector3d currentPosition = _projectileHandler.getProjectile().getPosition();
         if (currentPosition == null) {
-            currentPosition = new Vector3d();
+            currentPosition = new Vector3d(0, 0, 0);
         }
 
         currentPosition.add(_projectileHandler.getProjectile().getVelocity());
