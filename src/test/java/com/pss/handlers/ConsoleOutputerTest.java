@@ -24,4 +24,6 @@ class ConsoleOutputerTest {
         String expectedOutput = "(1.0, 2.0, 3.0)\n";
         assertEquals(expectedOutput, outputStream.toString(), "Incorrect output");
     }
+
+    // TODO add more tests
 }

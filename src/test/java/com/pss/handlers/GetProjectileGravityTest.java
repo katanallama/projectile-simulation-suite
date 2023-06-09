@@ -19,4 +19,6 @@ class GetProjectileGravityTest {
         assertEquals(0, gravity.getY());
         assertEquals(-98.10000000000001, gravity.getZ());
     }
+
+    // TODO add more tests
 }

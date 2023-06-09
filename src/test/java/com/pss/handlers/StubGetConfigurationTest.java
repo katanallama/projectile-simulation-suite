@@ -17,4 +17,6 @@ class StubGetConfigurationTest {
         assertEquals(10.0d, configHandler.getSetting("weight"));
         assertNull(configHandler.getSetting("unknown"));
     }
+
+    // TODO add more tests
 }

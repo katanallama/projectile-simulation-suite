@@ -17,4 +17,6 @@ class GetProjectileTest {
         assertNotNull(projectile);
         assertEquals(10.0, projectile.getWeight());
     }
+
+    // TODO add more tests
 }
