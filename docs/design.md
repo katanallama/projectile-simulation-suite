@@ -1,9 +1,9 @@
 
 # Table of Contents
 
-    1.  [Design Choices](#org4540916)
-        1.  [Benefits](#org69827a2)
-        2.  [Basic Classes](#orgc799de0)
+1.  [Design Choices](#org4540916)
+    1.  [Benefits](#org69827a2)
+    2.  [Basic Classes](#orgc799de0)
 1.  [Overall Class Diagram](#orga050aab)
 
 
