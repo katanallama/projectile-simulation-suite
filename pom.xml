@@ -85,6 +85,8 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <classpathLayoutType>repository</classpathLayoutType>
                             <mainClass>com.pss.ProjectileSimulationSuite</mainClass>
                         </manifest>
                     </archive>
