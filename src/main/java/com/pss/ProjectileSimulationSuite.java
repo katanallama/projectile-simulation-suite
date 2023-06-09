@@ -1,13 +1,20 @@
+package com.pss;
+
+import com.pss.factories.*;
+import com.pss.interfaces.*;
+import com.pss.handlers.*;
+
 import javax.vecmath.Vector3d;
 
 public class ProjectileSimulationSuite {
     private static Vector3d[] _results;
     private static IOutputResults[] _resultsOutputers;
-    private static final int MAX_OUTPUTERS = 0; 
+    private static final int MAX_OUTPUTERS = 0;
     private static IGetConfiguration _configHandler;
     private static ProjectileSimulator _simulator;
 
     public static void main(String[] args) {
+        System.out.println("Can you see this? Ok good.");
         initSimulation();
 
         int maxTime = 1000; // todo get from config
@@ -31,10 +38,10 @@ public class ProjectileSimulationSuite {
 
     private static IOutputResults[] getOutputers() {
         IOutputResults[] availableOutputers = new IOutputResults[MAX_OUTPUTERS];
-        
+
         // TODO Get this via config
         IOutputResults[] outputers = new IOutputResults[getOuputerAmount()];
-        
+
         return outputers;
     }
 

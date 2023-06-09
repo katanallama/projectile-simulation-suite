@@ -1,7 +1,16 @@
+package com.pss.models;
+
 import javax.vecmath.Vector3d;
 
 public class Projectile {
     private Vector3d Position;
+    private Vector3d Velocity;
+    private double Weight;
+
+    public Projectile() {
+        Position = new Vector3d();
+        Velocity = new Vector3d();
+    }
 
     public Vector3d getPosition() {
         return Position;
@@ -17,8 +26,6 @@ public class Projectile {
         Position = position;
     }
 
-    private Vector3d Velocity;
-
     public Vector3d getVelocity() {
         return Velocity;
     }
@@ -32,8 +39,6 @@ public class Projectile {
     public void setVelocity(Vector3d velocity) {
         Velocity = velocity;
     }
-
-    private double Weight;
 
     public double getWeight() {
         return Weight;

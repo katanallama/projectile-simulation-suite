@@ -1,3 +1,6 @@
+package com.pss.handlers;
+import com.pss.interfaces.*;
+
 import javax.vecmath.Vector3d;
 
 public class StubGetProjectileForce implements IGetProjectileForce{

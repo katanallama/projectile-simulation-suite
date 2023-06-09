@@ -1,3 +1,6 @@
+package com.pss;
+
+import com.pss.interfaces.*;
 import javax.vecmath.Vector3d;
 
 public class ProjectileSimulator {
@@ -6,7 +9,8 @@ public class ProjectileSimulator {
     private IGetProjectileForce _projectileForceHandler;
     private IGetProjectileGravity _projectileGravityHandler;
 
-    public ProjectileSimulator(IGetProjectile projectileHandler, IGetProjectileDrag projectileDragHandler, IGetProjectileForce projectileForceHandler, IGetProjectileGravity projectileGravityHandler) {
+    public ProjectileSimulator(IGetProjectile projectileHandler, IGetProjectileDrag projectileDragHandler,
+            IGetProjectileForce projectileForceHandler, IGetProjectileGravity projectileGravityHandler) {
         _projectileHandler = projectileHandler;
         _projectileForceHandler = projectileForceHandler;
         _projectileGravityHandler = projectileGravityHandler;
@@ -19,12 +23,15 @@ public class ProjectileSimulator {
 
         _projectileHandler.getProjectile().setVelocity(newVelocity);
         _projectileHandler.getProjectile().setPosition(newPosition);
-        
+
         return newPosition;
     }
 
     private Vector3d getNewVelocity() {
         Vector3d currentVelocity = _projectileHandler.getProjectile().getVelocity();
+        if (currentVelocity == null) {
+            currentVelocity = new Vector3d();
+        }
 
         currentVelocity.add(_projectileForceHandler.getProjectileForce());
         currentVelocity.add(_projectileGravityHandler.getProjectileGravity());
@@ -35,7 +42,10 @@ public class ProjectileSimulator {
 
     private Vector3d getNewPosition() {
         Vector3d currentPosition = _projectileHandler.getProjectile().getPosition();
-        
+        if (currentPosition == null) {
+            currentPosition = new Vector3d();
+        }
+
         currentPosition.add(_projectileHandler.getProjectile().getVelocity());
 
         return currentPosition;

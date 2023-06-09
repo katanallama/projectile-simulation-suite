@@ -1,3 +1,8 @@
+package com.pss.handlers;
+
+import com.pss.interfaces.*;
+import com.pss.models.*;
+
 public class GetProjectile implements IGetProjectile {
     public GetProjectile(IGetConfiguration configurationHandler) {
         _configurationHandler = configurationHandler;
@@ -13,7 +18,7 @@ public class GetProjectile implements IGetProjectile {
         }
 
         return _instance;
-    };
+    }
 
     private Projectile createProjectile() {
         // Todo make this set initial settings via configs

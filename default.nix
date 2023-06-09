@@ -11,7 +11,7 @@ let
     buildMavenRepositoryFromLockFile { file = ./mvn2nix-lock.json; };
 
 in stdenv.mkDerivation rec {
-  pname = "projectile-simulation-suite";
+  pname = "pss";
   version = "0.1";
   name = "${pname}-${version}";
   src = nix-gitignore.gitignoreSource [ "*.nix" ] ./.;
