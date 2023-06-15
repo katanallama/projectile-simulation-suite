@@ -1,0 +1,363 @@
+#+title: Design Documentation
+
+** Design Choices
+
+Taking into account the modularity, extensibility, and testability required for this simulation program, the strategy design pattern is best suited.
+
+The strategy design pattern allows us to select an algorithm's behavior at runtime. It defines a family of algorithms, encapsulates each one, and makes them interchangeable. In this case, there are multiple methods (strategies) for simulating the physics of a projectile, accounting for different factors such as wind resistance, gravity, barrel pose, etc. These strategies could then be hot swapped at runtime.
+
+This allows for adding new - or removing, variables without affecting the overall structure of the simulation, and without having to change the main simulation code. This separation of concerns makes it easier to write tests for each strategy.
+
+*** Benefits
+
+- /Flexibility/: It allows us to dynamically choose between different behaviors.
+
+- /Extensibility/: We can add new behaviors without affecting existing code.
+
+- /Testability/: We can test behaviors individually, isolated from the rest of the system.
+
+*** Basic Classes
+The individual Classes and basic relationships are as follows:
+**** Simulation Suite
+
+#+begin_src plantuml :file pss.png
+@startuml
+title PSS Diagram
+
+class "ProjectileSimulationSuite" as ProjectileSimulationSuite {
+    -_results: Vector3d[]
+    -_resultsOutputers: IOutputResults[]
+    -MAX_OUTPUTERS: int = 1
+    -_configHandler: IGetConfiguration
+    -_simulator: ProjectileSimulator
+    +main(args: String[]): void
+    -initSimulation(): void
+    -getOutputers(): IOutputResults[]
+    -getOuputerAmount(): int
+    -outputResults(): void
+}
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:pss.png]]
+
+**** Simulator
+
+#+begin_src plantuml :file simulator.png
+@startuml
+title Simulator Diagram
+
+class "ProjectileSimulator" as ProjectileSimulator {
+    -_projectileHandler: IGetProjectile
+    -_projectileDragHandler: IGetProjectileDrag
+    -_projectileForceHandler: IGetProjectileForce
+    -_projectileGravityHandler: IGetProjectileGravity
+    +ProjectileSimulator(projectileHandler: IGetProjectile, projectileDragHandler: IGetProjectileDrag, projectileForceHandler: IGetProjectileForce, projectileGravityHandler: IGetProjectileGravity)
+    +updatePosition(): Vector3d
+    -getNewVelocity(): Vector3d
+    -getNewPosition(): Vector3d
+}
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:simulator.png]]
+
+**** Projectile
+
+#+begin_src plantuml :file projectile.png
+@startuml
+title Models Diagram
+
+class "Projectile" as Projectile {
+    -Position: Vector3d
+    -Velocity: Vector3d
+    -Weight: double
+    +Projectile()
+    +getPosition(): Vector3d
+    +setPosition(x: double, y: double, z: double): void
+    +setPosition(position: Vector3d): void
+    +getVelocity(): Vector3d
+    +setVelocity(x: double, y: double, z: double): void
+    +setVelocity(velocity: Vector3d): void
+    +getWeight(): double
+    +setWeight(weight: double): void
+}
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:projectile.png]]
+
+**** Handlers
+
+#+begin_src plantuml :file handlers.png
+@startuml
+title Handlers Diagram
+
+class "ConsoleOutputer" as ConsoleOutputer {
+    +outputResults(results: Vector3d[]): void
+}
+ConsoleOutputer ..|> IOutputResults
+
+class "GetProjectileGravity" as GetProjectileGravity {
+    -_configurationHandler: IGetConfiguration
+    -_projectileHandler: IGetProjectile
+    +GetProjectileGravity(configurationHandler: IGetConfiguration, projectileHander: IGetProjectile)
+    +getProjectileGravity(): Vector3d
+}
+GetProjectileGravity ..|> IGetProjectileGravity
+
+class "GetProjectile" as GetProjectile {
+    -_configurationHandler: IGetConfiguration
+    -_instance: Projectile
+    +GetProjectile(configurationHandler: IGetConfiguration)
+    +getProjectile(): Projectile
+    -createProjectile(): Projectile
+}
+GetProjectile ..|> IGetProjectile
+
+class "StubGetConfiguration" as StubGetConfiguration {
+    -_settings: HashMap<String, Object>
+    +StubGetConfiguration()
+    +StubGetConfiguration(settings: HashMap<String, Object>)
+    +getSetting(settingName: String): T
+    -initializeSettings(): void
+}
+StubGetConfiguration ..|> IGetConfiguration
+
+class "StubGetProjectileDrag" as StubGetProjectileDrag {
+    +getProjectileDrag(): Vector3d
+}
+StubGetProjectileDrag ..|> IGetProjectileDrag
+
+class "StubGetProjectileForce" as StubGetProjectileForce {
+    +getProjectileForce(): Vector3d
+}
+StubGetProjectileForce ..|> IGetProjectileForce
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:handlers.png]]
+
+**** Interfaces
+
+#+begin_src plantuml :file interfaces.png
+@startuml
+title Interfaces Diagram
+
+interface "IGetConfiguration" as IGetConfiguration {
+    +getSetting(settingName: String): T
+}
+
+interface "IGetProjectileDrag" as IGetProjectileDrag {
+    +getProjectileDrag(): Vector3d
+}
+
+interface "IGetProjectileForce" as IGetProjectileForce {
+    +getProjectileForce(): Vector3d
+}
+
+interface "IGetProjectileGravity" as IGetProjectileGravity {
+    +getProjectileGravity(): Vector3d
+}
+
+interface "IGetProjectile" as IGetProjectile {
+    +getProjectile(): Projectile
+}
+
+interface "IOutputResults" as IOutputResults {
+    +outputResults(results: Vector3d[]): void
+}
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:interfaces.png]]
+
+**** Factories
+
+#+begin_src plantuml :file factories.png
+@startuml
+title Factories Diagram
+
+class "MakeProjectileSimulator" as MakeProjectileSimulator {
+  +createProjectileSimulator(configurationHandler: IGetConfiguration): ProjectileSimulator
+  -getProjectileGravityHandler(configurationHandler: IGetConfiguration, projectileHandler: IGetProjectile): IGetProjectileGravity
+  -getProjectileDragHandler(configurationHandler: IGetConfiguration, projectileHandler: IGetProjectile): IGetProjectileDrag
+  -getProjectileForceyHandler(configurationHandler: IGetConfiguration, projectileHandler: IGetProjectile): IGetProjectileForce
+}
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:factories.png]]
+
+
+* Overall Class Diagram
+
+#+begin_src plantuml :file suite.png
+@startuml
+title Projectile Simulation Suite (PSS) Class Diagram
+
+package pss.interfaces {
+    interface "IGetConfiguration" {
+        +getSetting(settingName: String): <T> T
+    }
+
+    interface "IGetProjectile" {
+        +getProjectile(): Projectile
+    }
+
+    interface "IGetProjectileDrag" {
+        +getProjectileDrag(): Vector3d
+    }
+
+    interface "IGetProjectileForce" {
+        +getProjectileForce(): Vector3d
+    }
+
+    interface "IGetProjectileGravity" {
+        +getProjectileGravity(): Vector3d
+    }
+
+    interface "IOutputResults" {
+        +outputResults(results: Vector3d[]): void
+    }
+}
+
+package pss.models {
+    class "Projectile" as Projectile {
+        -Position: Vector3d
+        -Velocity: Vector3d
+        -Weight: double
+        +Projectile()
+        +getPosition(): Vector3d
+        +setPosition(x: double, y: double, z: double): void
+        +setPosition(position: Vector3d): void
+        +getVelocity(): Vector3d
+        +setVelocity(x: double, y: double, z: double): void
+        +setVelocity(velocity: Vector3d): void
+        +getWeight(): double
+        +setWeight(weight: double): void
+    }
+}
+
+together {
+    package pss.factories {
+        class "MakeProjectileSimulator" as MakeProjectileSimulator {
+            +createProjectileSimulator(configurationHandler: IGetConfiguration): ProjectileSimulator
+            -getProjectileGravityHandler(configurationHandler: IGetConfiguration, projectileHandler: IGetProjectile): IGetProjectileGravity
+            -getProjectileDragHandler(configurationHandler: IGetConfiguration, projectileHandler: IGetProjectile): IGetProjectileDrag
+            -getProjectileForceyHandler(configurationHandler: IGetConfiguration, projectileHandler: IGetProjectile): IGetProjectileForce
+        }
+    }
+
+    package pss {
+        class "ProjectileSimulator" as ProjectileSimulator {
+            -_projectileHandler: IGetProjectile
+            -_projectileDragHandler: IGetProjectileDrag
+            -_projectileForceHandler: IGetProjectileForce
+            -_projectileGravityHandler: IGetProjectileGravity
+            +ProjectileSimulator(projectileHandler: IGetProjectile, projectileDragHandler: IGetProjectileDrag, projectileForceHandler: IGetProjectileForce, projectileGravityHandler: IGetProjectileGravity)
+            +updatePosition(): Vector3d
+            -getNewVelocity(): Vector3d
+            -getNewPosition(): Vector3d
+        }
+
+        class "ProjectileSimulationSuite" as ProjectileSimulationSuite {
+            -_results: Vector3d[]
+            -_resultsOutputers: IOutputResults[]
+            -MAX_OUTPUTERS: int = 1
+            -_configHandler: IGetConfiguration
+            -_simulator: ProjectileSimulator
+            +main(args: String[]): void
+            -initSimulation(): void
+            -getOutputers(): IOutputResults[]
+            -getOuputerAmount(): int
+            -outputResults(): void
+        }
+    }
+}
+
+package pss.handlers {
+    class "GetProjectileGravity" as GetProjectileGravity {
+        -_configurationHandler: IGetConfiguration
+        -_projectileHandler: IGetProjectile
+        +GetProjectileGravity(configurationHandler: IGetConfiguration, projectileHander: IGetProjectile)
+        +getProjectileGravity(): Vector3d
+    }
+
+    class "GetProjectile" as GetProjectile {
+        -_configurationHandler: IGetConfiguration
+        -_instance: Projectile
+        +GetProjectile(configurationHandler: IGetConfiguration)
+        +getProjectile(): Projectile
+        -createProjectile(): Projectile
+    }
+
+    class "StubGetConfiguration" as StubGetConfiguration {
+        -_settings: HashMap<String, Object>
+        +StubGetConfiguration()
+        +StubGetConfiguration(settings: HashMap<String, Object>)
+        +getSetting(settingName: String): T
+        -initializeSettings(): void
+    }
+    class "StubGetProjectileDrag" {
+        +getProjectileDrag(): Vector3d
+    }
+    class "StubGetProjectileForce" {
+        +getProjectileForce(): Vector3d
+    }
+    class "ConsoleOutputer" {
+        +outputResults(results: Vector3d[]): void
+    }
+}
+
+
+IGetProjectileDrag <.up. StubGetProjectileDrag: implements
+IGetProjectileForce <.up. StubGetProjectileForce: implements
+IGetConfiguration <.up. StubGetConfiguration: implements
+IGetProjectile <.up. GetProjectile: implements
+IGetProjectileGravity <.up. GetProjectileGravity: implements
+IOutputResults <.up. ConsoleOutputer: implements
+
+ProjectileSimulator --> GetProjectile: uses
+ProjectileSimulator --> GetProjectileGravity: uses
+ProjectileSimulator --> StubGetProjectileForce: uses
+ProjectileSimulator --> StubGetProjectileDrag: uses
+
+GetProjectileGravity ..> StubGetConfiguration: uses
+GetProjectileGravity ..> GetProjectile: uses
+GetProjectile ..> StubGetConfiguration: uses
+
+MakeProjectileSimulator ..> ProjectileSimulator: creates
+MakeProjectileSimulator ..> StubGetConfiguration: uses
+MakeProjectileSimulator ..> GetProjectile: creates
+MakeProjectileSimulator ..> GetProjectileGravity: creates
+MakeProjectileSimulator ..> StubGetProjectileDrag: creates
+MakeProjectileSimulator .up.> StubGetProjectileForce: creates
+
+/'
+ ' ProjectileSimulationSuite -- MakeProjectileSimulator: uses
+ '/
+MakeProjectileSimulator <-left- ProjectileSimulationSuite: uses
+ProjectileSimulationSuite --> ProjectileSimulator: uses
+ProjectileSimulationSuite --> ConsoleOutputer: uses
+
+Projectile -up-> GetProjectile: is created by
+Projectile -right-> ProjectileSimulator: is manipulated by
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:suite.png]]

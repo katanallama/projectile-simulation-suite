@@ -8,6 +8,8 @@ This directory is the home of the project documentation, including:
 
 - [[./spec.md][Problem specification and design requirements]]
 
+- [[./design.md][Design Documentation]]
+
 - [[./res][Project working files]]
 
 All are living documents and are expected to change, feel free to contribute to them.

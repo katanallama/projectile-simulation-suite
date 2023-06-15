@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.example</groupId>
-    <artifactId>projectile-simulation-suite</artifactId>
+    <groupId>com</groupId>
+    <artifactId>pss</artifactId>
     <version>0.1</version>
 
     <properties>
@@ -40,22 +40,32 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- Vectors -->
+            <dependency>
+                <groupId>javax.vecmath</groupId>
+                <artifactId>vecmath</artifactId>
+                <version>1.5.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
         </dependencies>
 
 
     </dependencyManagement>
 
     <dependencies>
+
+        <dependency>
+            <groupId>javax.vecmath</groupId>
+            <artifactId>vecmath</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-              <groupId>com.google.code.gson</groupId>
-              <artifactId>gson</artifactId>
-              <version>2.10.1</version>
         </dependency>
 
         <dependency>
@@ -75,7 +85,9 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.example.project.Calculator</mainClass>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <classpathLayoutType>repository</classpathLayoutType>
+                            <mainClass>com.pss.ProjectileSimulationSuite</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -90,7 +102,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>com.example.project.Calculator</mainClass>
+                    <mainClass>com.pss.ProjectileSimulationSuite</mainClass>
                 </configuration>
             </plugin>
         </plugins>

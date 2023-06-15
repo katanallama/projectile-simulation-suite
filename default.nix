@@ -1,26 +1,18 @@
-{ lib,
-  stdenv,
-  buildMavenRepositoryFromLockFile,
-  makeWrapper,
-  maven,
-  jdk11_headless,
-  nix-gitignore }:
+{ lib, stdenv, callPackage, makeWrapper, maven, jdk17_headless, nix-gitignore }:
 
-let
-  mavenRepository =
-    buildMavenRepositoryFromLockFile { file = ./mvn2nix-lock.json; };
+let repository = callPackage ./.build-maven-repo.nix { };
 
 in stdenv.mkDerivation rec {
-  pname = "projectile-simulation-suite";
+  pname = "pss";
   version = "0.1";
   name = "${pname}-${version}";
   src = nix-gitignore.gitignoreSource [ "*.nix" ] ./.;
 
-  nativeBuildInputs = [ jdk11_headless maven makeWrapper ];
+  nativeBuildInputs = [ jdk17_headless maven makeWrapper ];
 
   buildPhase = ''
-    echo "Building with maven repository ${mavenRepository}"
-    mvn package --offline -Dmaven.repo.local=${mavenRepository}
+    echo "Building with maven repository ${repository}"
+    mvn package --offline -Dmaven.repo.local=${repository}
   '';
 
   installPhase = ''
@@ -28,7 +20,7 @@ in stdenv.mkDerivation rec {
     mkdir -p $out/bin
 
     # create a symbolic link for the lib directory
-    ln -s ${mavenRepository} $out/lib
+    ln -s ${repository} $out/lib
 
     # copy out the JAR
     # Maven already setup the classpath to use m2 repository layout
@@ -37,7 +29,7 @@ in stdenv.mkDerivation rec {
 
     # create a wrapper that will automatically set the classpath
     # this should be the paths from the dependency derivation
-    makeWrapper ${jdk11_headless}/bin/java $out/bin/${pname} \
+    makeWrapper ${jdk17_headless}/bin/java $out/bin/${pname} \
           --add-flags "-jar $out/${name}.jar"
   '';
 }
