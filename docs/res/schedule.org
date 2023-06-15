@@ -1,37 +1,38 @@
 #+title: Project Schedule
 #+OPTIONS: p:t
 
-* PROJ Schedule [1/6]
+* PROJ Schedule [2/6]
 
 ** DONE Set Up Development Environment
 DEADLINE: <2023-05-23 Tue>
 - [X] Install necessary software
 - [X] Setup GitHub repository
 
-** TODO Develop Initial Understanding
+** DONE Develop Initial Understanding
 DEADLINE: <2023-06-02 Fri>
-- [ ] Understand the physics involved in the simulation
-- [ ] Research on best practices for implementing physics in Java
-- [ ] Research on best practices for java testing frameworks
+- [X] Understand the physics involved in the simulation
+- [X] Research on best practices for implementing physics in Java
+- [X] Research on best practices for java testing frameworks
 
-*** TODO Project readme
+*** DONE Problem Spec readme
 DEADLINE: <2023-06-02 Fri>
-**** TODO Objectives
-**** TODO Functions
-**** TODO Requirements
+**** DONE Objectives
+**** DONE Functions
+**** DONE Requirements
+
 
 ** TODO Design [0/3]
 
 *** TODO Initial Design
 DEADLINE: <2023-06-01 Thu>
-- [ ] Understand the problem domain
-- [ ] Research on Howitzers, their operation and factors affecting their projectiles
-- [ ] Understand the physics formulas provided and how they apply to the problem
+- [X] Understand the problem domain
+- [X] Research on Howitzers, their operation and factors affecting their projectiles
+- [X] Understand the physics formulas provided and how they apply to the problem
 
 *** TODO Define system specifications
 DEADLINE: <2023-06-06 Tue>
-- [ ] Define the required inputs and expected outputs of the simulator
-- [ ] Identify key variables of the system: barrel pose, projectile radius and mass, drag coefficient, initial speed, force, and gravity
+- [X] Define the required inputs and expected outputs of the simulator
+- [X] Identify key variables of the system: barrel pose, projectile radius and mass, drag coefficient, initial speed, force, and gravity
 - [ ] Discuss and agree on how these variables will be represented and manipulated in the simulator
 
 *** TODO Design the software architecture
@@ -42,23 +43,27 @@ DEADLINE: <2023-06-11 Sun>
 - [ ] Sketch out a flowchart or UML diagram of the proposed system for visualization
 
 ** TODO Development [0/3]
-*** TODO Development
+*** Misc
+- [X] Set up action to run tests on github
+- [X] Set up action to mirror repo to gitlab
+
+*** TODO Implement the input and output handling
 DEADLINE: <2023-06-11 Sun>
+- [-] Develop the logic for users to input the variables for the simulation (picocli)
+- [ ] Implement the logic for displaying the output of the simulation
+- [ ] Ensure that errors in inputs handled gracefully
+
+*** TODO Development
+DEADLINE: <2023-06-18 Sun>
 - [ ] Set up the basic structure of the simulator
 - [ ] Create the basic classes and functions as per the software architecture
 - [ ] Set up a basic UI if necessary, depending on plan to represent the simulator
 
 *** TODO Implement the physics simulation
-DEADLINE: <2023-06-13 Tue>
+DEADLINE: <2023-06-18 Sun>
 - [ ] Translate the physics formulas into Java code
 - [ ] Implement the logic for simulating the Howitzer firing and projectile movement
 - [ ] Ensure that all key variables incorporated into the simulation correctly
-
-*** TODO Implement the input and output handling
-DEADLINE: <2023-06-15 Thu>
-- [ ] Develop the logic for users to input the variables for the simulation
-- [ ] Implement the logic for displaying the output of the simulation
-- [ ] Ensure that errors in inputs handled gracefully
 
 ** TODO Testing [0/3]
 
