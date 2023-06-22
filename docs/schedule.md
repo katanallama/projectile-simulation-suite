@@ -1,37 +1,181 @@
 
 # Table of Contents
 
-1.  [Schedule <code>[2/6]</code>](#org328f707)
-    1.  [Set Up Development Environment](#orgeb02497)
-    2.  [Develop Initial Understanding](#orge772aa0)
-        1.  [Problem Spec readme](#org58d5fee)
-    3.  [Design <code>[0/3]</code>](#orgd4db505)
-        1.  [Initial Design](#org942c326)
-        2.  [Define system specifications](#org767d44b)
-        3.  [Design the software architecture](#org6714092)
-    4.  [Development <code>[0/3]</code>](#org06cf307)
-        1.  [Misc](#orgb1d1170)
-        2.  [Implement the input and output handling](#org3ed7803)
-        3.  [Development](#orgf8860b8)
-        4.  [Implement the physics simulation](#orge71a122)
-    5.  [Testing <code>[0/3]</code>](#orgadaeecf)
-        1.  [Unit Testing](#org35ad9d0)
-        2.  [Integration Testing](#orgcda002d)
-        3.  [System Testing](#org08b4b53)
-    6.  [Docs & Submission <code>[0/3]</code>](#orge3ee796)
-        1.  [Documentation](#org8bf45af)
-        2.  [Review and Final Adjustments](#orgd9772f1)
-        3.  [Final Submission](#orgc70ba3b)
-2.  [Update 1](#org9e5d75d)
+1.  [Schedule <code>[1/4]</code>](#org249871a)
+    1.  [Development <code>[1/3]</code>](#orgd027a10)
+        1.  [Development](#org2fbdcc5)
+        2.  [Implement the input and output handling](#org56000d3)
+        3.  [Physics simulation Itr 1](#org712b4ba)
+        4.  [Physics simulation Itr 2](#org055e0d4)
+    2.  [Testing <code>[0/3]</code>](#org7c5dbb7)
+        1.  [Unit Testing](#org200a99c)
+        2.  [Integration Testing](#orgb507af1)
+        3.  [System Testing](#org7def42b)
+    3.  [Docs & Submission <code>[0/3]</code>](#org0b7c9ce)
+        1.  [Documentation](#orgcf92ffe)
+        2.  [Review and Final Adjustments](#org22d0c18)
+        3.  [Final Submission](#org7ac8627)
+2.  [Completed](#org59972b3)
+    1.  [Set Up Development Environment](#org21ebf59)
+    2.  [Develop Initial Understanding](#org6b327fc)
+        1.  [Problem Spec readme](#orgae4074f)
+    3.  [Design <code>[0/0]</code>](#orgb250fcf)
+        1.  [Initial Design](#org2270545)
+        2.  [Define system specifications](#org1267fd6)
+        3.  [Design the software architecture](#org4529c12)
+    4.  [Development](#org4dca766)
+        1.  [Misc](#org683b406)
 
 
 
-<a id="org328f707"></a>
+<a id="org249871a"></a>
 
-# PROJ Schedule <code>[2/6]</code>
+# PROJ Schedule <code>[1/4]</code>
 
 
-<a id="orgeb02497"></a>
+<a id="orgd027a10"></a>
+
+## TODO Development <code>[1/3]</code>
+
+
+<a id="org2fbdcc5"></a>
+
+### DONE Development
+
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-18 Sun&gt;</span></span></p>
+
+-   [X] Set up the basic structure of the simulator
+-   [X] Create the basic classes and functions as per the software architecture
+-   [X] Set up a basic UI if necessary, depending on plan to represent the simulator
+
+
+<a id="org56000d3"></a>
+
+### TODO Implement the input and output handling
+
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-27 Tue&gt;</span></span></p>
+
+-   [ ] Develop the logic for users to input the variables for the simulation
+    -   [ ] json file parsing (gson)
+    -   [ ] cli arguments (picocli)
+-   [ ] Implement the logic for displaying the output of the simulation
+    -   Currently prints a tuple(x, y, z) coordinates of the projectile in the vector space
+
+
+<a id="org712b4ba"></a>
+
+### TODO Physics simulation Itr 1
+
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-27 Tue&gt;</span></span></p>
+
+First iteration will include external force and drag in a unidirectional, time invariant vector space
+
+-   [ ] Translate the physics formulas into Java code, options:
+    -   [ ] hard coded kinematics
+    -   [ ] parse equations to function
+-   [ ] Implement the logic for simulating projectile movement
+    -   [ ] external force applied
+    -   [ ] drag force applied
+
+1.  TODO Review Itr 1
+
+    <p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-27 Tue&gt;</span></span></p>
+    
+    -   [ ] Ensure that all key variables incorporated into the simulation correctly
+    -   [ ] Ensure that errors in inputs handled gracefully
+    -   [ ] Align on path forward for next iteration
+
+
+<a id="org055e0d4"></a>
+
+### TODO Physics simulation Itr 2
+
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-04 Tue&gt;</span></span></p>
+
+1.  TODO Review Itr 2
+
+    <p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-04 Tue&gt;</span></span></p>
+
+
+<a id="org7c5dbb7"></a>
+
+## TODO Testing <code>[0/3]</code>
+
+
+<a id="org200a99c"></a>
+
+### TODO Unit Testing
+
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-09 Sun&gt;</span></span></p>
+
+-   [ ] Identify functions for testing
+-   [ ] Develop boundary value tests
+-   [ ] Develop equivalence class tests
+-   [ ] Develop decision table-based tests
+-   [ ] Develop path tests
+-   [ ] Develop data flow tests
+-   [ ] Develop slice tests
+
+
+<a id="orgb507af1"></a>
+
+### TODO Integration Testing
+
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-09 Sun&gt;</span></span></p>
+
+-   [ ] Identify subset of units for integration testing
+-   [ ] Develop and execute integration tests
+
+
+<a id="org7def42b"></a>
+
+### TODO System Testing
+
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-09 Sun&gt;</span></span></p>
+
+-   [ ] Identify subset of use cases for system testing
+-   [ ] Develop and execute system tests
+
+
+<a id="org0b7c9ce"></a>
+
+## TODO Docs & Submission <code>[0/3]</code>
+
+
+<a id="orgcf92ffe"></a>
+
+### TODO Documentation
+
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-20 Thu&gt;</span></span></p>
+
+-   [ ] Create README.md file
+-   [ ] Create TESTING.md file
+-   [ ] Ensure code is commented
+
+
+<a id="org22d0c18"></a>
+
+### TODO Review and Final Adjustments
+
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-25 Tue&gt;</span></span></p>
+
+-   [ ] Review entire simulator and tests
+-   [ ] Make necessary adjustments
+
+
+<a id="org7ac8627"></a>
+
+### TODO Final Submission
+
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-08-02 Wed&gt;</span></span></p>
+
+
+<a id="org59972b3"></a>
+
+# Completed
+
+
+<a id="org21ebf59"></a>
 
 ## DONE Set Up Development Environment
 
@@ -41,7 +185,7 @@
 -   [X] Setup GitHub repository
 
 
-<a id="orge772aa0"></a>
+<a id="org6b327fc"></a>
 
 ## DONE Develop Initial Understanding
 
@@ -52,7 +196,7 @@
 -   [X] Research on best practices for java testing frameworks
 
 
-<a id="org58d5fee"></a>
+<a id="orgae4074f"></a>
 
 ### DONE Problem Spec readme
 
@@ -65,14 +209,14 @@
 3.  DONE Requirements
 
 
-<a id="orgd4db505"></a>
+<a id="orgb250fcf"></a>
 
-## TODO Design <code>[0/3]</code>
+## DONE Design <code>[0/0]</code>
 
 
-<a id="org942c326"></a>
+<a id="org2270545"></a>
 
-### TODO Initial Design
+### DONE Initial Design
 
 <p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-01 Thu&gt;</span></span></p>
 
@@ -81,161 +225,38 @@
 -   [X] Understand the physics formulas provided and how they apply to the problem
 
 
-<a id="org767d44b"></a>
+<a id="org1267fd6"></a>
 
-### TODO Define system specifications
+### DONE Define system specifications
 
 <p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-06 Tue&gt;</span></span></p>
 
 -   [X] Define the required inputs and expected outputs of the simulator
 -   [X] Identify key variables of the system: barrel pose, projectile radius and mass, drag coefficient, initial speed, force, and gravity
--   [ ] Discuss and agree on how these variables will be represented and manipulated in the simulator
+-   [X] Discuss and agree on how these variables will be represented and manipulated in the simulator
 
 
-<a id="org6714092"></a>
+<a id="org4529c12"></a>
 
-### TODO Design the software architecture
+### DONE Design the software architecture
 
 <p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-11 Sun&gt;</span></span></p>
 
--   [ ] Identify key components/modules of the simulator
--   [ ] Establish interfaces and interactions between the components
--   [ ] Choose suitable data structures and algorithms for implementing the simulation
--   [ ] Sketch out a flowchart or UML diagram of the proposed system for visualization
+-   [X] Identify key components/modules of the simulator
+-   [X] Establish interfaces and interactions between the components
+-   [X] Choose suitable data structures and algorithms for implementing the simulation
+-   [X] Sketch out a flowchart or UML diagram of the proposed system for visualization
 
 
-<a id="org06cf307"></a>
+<a id="org4dca766"></a>
 
-## TODO Development <code>[0/3]</code>
+## DONE Development
 
 
-<a id="orgb1d1170"></a>
+<a id="org683b406"></a>
 
 ### Misc
 
 -   [X] Set up action to run tests on github
 -   [X] Set up action to mirror repo to gitlab
-
-
-<a id="org3ed7803"></a>
-
-### TODO Implement the input and output handling
-
-<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-11 Sun&gt;</span></span></p>
-
--   [-] Develop the logic for users to input the variables for the simulation (picocli)
--   [ ] Implement the logic for displaying the output of the simulation
--   [ ] Ensure that errors in inputs handled gracefully
-
-
-<a id="orgf8860b8"></a>
-
-### TODO Development
-
-<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-18 Sun&gt;</span></span></p>
-
--   [ ] Set up the basic structure of the simulator
--   [ ] Create the basic classes and functions as per the software architecture
--   [ ] Set up a basic UI if necessary, depending on plan to represent the simulator
-
-
-<a id="orge71a122"></a>
-
-### TODO Implement the physics simulation
-
-<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-18 Sun&gt;</span></span></p>
-
--   [ ] Translate the physics formulas into Java code
--   [ ] Implement the logic for simulating the Howitzer firing and projectile movement
--   [ ] Ensure that all key variables incorporated into the simulation correctly
-
-
-<a id="orgadaeecf"></a>
-
-## TODO Testing <code>[0/3]</code>
-
-
-<a id="org35ad9d0"></a>
-
-### TODO Unit Testing
-
-<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-25 Sun&gt;</span></span></p>
-
--   [ ] Identify functions for testing
--   [ ] Develop boundary value tests
--   [ ] Develop equivalence class tests
--   [ ] Develop decision table-based tests
--   [ ] Develop path tests
--   [ ] Develop data flow tests
--   [ ] Develop slice tests
-
-
-<a id="orgcda002d"></a>
-
-### TODO Integration Testing
-
-<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-02 Sun&gt;</span></span></p>
-
--   [ ] Identify subset of units for integration testing
--   [ ] Develop and execute integration tests
-
-
-<a id="org08b4b53"></a>
-
-### TODO System Testing
-
-<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-09 Sun&gt;</span></span></p>
-
--   [ ] Identify subset of use cases for system testing
--   [ ] Develop and execute system tests
-
-
-<a id="orge3ee796"></a>
-
-## TODO Docs & Submission <code>[0/3]</code>
-
-
-<a id="org8bf45af"></a>
-
-### TODO Documentation
-
-<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-20 Thu&gt;</span></span></p>
-
--   [ ] Create README.md file
--   [ ] Create TESTING.md file
--   [ ] Ensure code is commented
-
-
-<a id="orgd9772f1"></a>
-
-### TODO Review and Final Adjustments
-
-<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-25 Tue&gt;</span></span></p>
-
--   [ ] Review entire simulator and tests
--   [ ] Make necessary adjustments
-
-
-<a id="orgc70ba3b"></a>
-
-### TODO Final Submission
-
-<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-08-02 Wed&gt;</span></span></p>
-
-
-<a id="org9e5d75d"></a>
-
-# Update 1
-
-> Please update your GitLab .md files with &rsquo;Problem Specification and Design Requirements&rsquo;. Create a separate section for each.
-> 
-> In &rsquo;Design Requirements&rsquo; section, you need to specify &rsquo;Objectives, Functions and Constraints&rsquo; each in a separate sub-section. You should consider at least four constraints overarching your design. Following is the list of some constraints (you can also come up your with your own constraints).
-> 
-> Economic Factors
-> Regulatory Compliance (Security and Access)
-> Reliability
-> Sustainability and Environmental Factors
-> Ethics
-> Societal Impacts
-> The deadline to finish the work is Friday June 02, 23:59:59.
 
