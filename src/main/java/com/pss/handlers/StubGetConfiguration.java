@@ -3,6 +3,7 @@ import com.pss.interfaces.*;
 
 import java.lang.Object;
 import java.util.HashMap;
+import javax.vecmath.Vector3d;
 
 public class StubGetConfiguration implements IGetConfiguration {
     public StubGetConfiguration() {
@@ -21,6 +22,7 @@ public class StubGetConfiguration implements IGetConfiguration {
         _settings.put("gravity", 9.81d);
         _settings.put("weight", 10.0d);
         _settings.put("initial force", 100.0d);
+        _settings.put("initial direction", new Vector3d(10, 10, 10));
         _settings.put("continual force", 20.0d);
     }
     
