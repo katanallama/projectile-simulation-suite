@@ -20,8 +20,8 @@ public class StubGetConfiguration implements IGetConfiguration {
     private void initializeSettings() {
         _settings.put("gravity", 9.81d);
         _settings.put("weight", 10.0d);
-        _settings.put("initial propulsion", 100.0d);
-        _settings.put("continual propulsion", 20.0d);
+        _settings.put("initial force", 100.0d);
+        _settings.put("continual force", 20.0d);
     }
     
     private HashMap<String, Object> _settings;
