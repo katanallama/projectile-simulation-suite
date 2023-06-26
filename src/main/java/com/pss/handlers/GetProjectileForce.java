@@ -22,7 +22,7 @@ public class GetProjectileForce implements IGetProjectileForce{
             return ZeroVector;
         
         additionalForce.normalize(); // has issues if additionalForce is a zero-vector
-        additionalForce.scale((double)(_configurationHandler.getSetting("continual force")));
+        additionalForce.scale((double)(_configurationHandler.getSetting("continualForce")));
 
         return additionalForce;
         
