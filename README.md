@@ -20,9 +20,25 @@ If using `direnv` run `direnv allow` in project root
 
 #### Adding new dependencies
 
-To update the dependencies, update `pom.xml` and run:
+To update the dependencies, update `pom.xml` and set the [output hash](./.build-maven-repo.nix) in `.build-maven-repo.nix` :
+
+`outputHash = "";` remove the old hash
 
 `direnv reload`, so long as you have `direnv` installed
+
+```
+warning: found empty hash, assuming 'sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='
+[1/0/3 built, 0.0 MiB DL] building maven-repository (buildPhase): Downloading from central: https://redirenv:
+error: hash mismatch in fixed-output derivation '/nix/store/p635baxv930v2bb4k527j6rk54a3nfpl-maven-repository.drv':
+         specified: sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+            got:    sha256-CrXCiJgU5kKywK7D01YrSk+teXkAMvrYmbNCh7lWX0I=
+```
+
+Update the hash in `.build-maven-repo.nix`:
+
+`outputHash = "sha256-CrXCiJgU5kKywK7D01YrSk+teXkAMvrYmbNCh7lWX0I=";`
+
+`direnv reload`
 
 The environment should reload on the next command as `direnv` is set to watch `*.*.nix` and `pom.xml`
 
