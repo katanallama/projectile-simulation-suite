@@ -41,12 +41,12 @@ public class ProjectileSimulationSuite {
         availableOutputers[0] = new ConsoleOutputer();
 
         // TODO Get this via config
-        IOutputResults[] outputers = new IOutputResults[getOuputerAmount()];
+        IOutputResults[] outputers = new IOutputResults[getOutputerAmount()];
         outputers[0] = availableOutputers[0];
         return outputers;
     }
 
-    private static int getOuputerAmount() {
+    private static int getOutputerAmount() {
         return 1;
     }
 
