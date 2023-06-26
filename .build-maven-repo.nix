@@ -1,8 +1,11 @@
-{ lib, stdenv, maven }:
-
+{
+  lib,
+  stdenv,
+  maven,
+}:
 stdenv.mkDerivation {
   name = "maven-repository";
-  nativeBuildInputs = [ maven ];
+  nativeBuildInputs = [maven];
   src = ./.; # or fetchFromGitHub, cleanSourceWith, etc
 
   buildPhase = ''

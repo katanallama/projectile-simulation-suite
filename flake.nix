@@ -31,5 +31,6 @@
           export JDTLS_PATH=${jdt-language-server}/share/java/
         '';
       };
+      formatter.${system} = pkgs.alejandra;
     };
 }
