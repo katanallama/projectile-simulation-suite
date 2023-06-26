@@ -2,12 +2,8 @@
 
 stdenv.mkDerivation {
   name = "maven-repository";
-  buildInputs = [ maven ];
+  nativeBuildInputs = [ maven ];
   src = ./.; # or fetchFromGitHub, cleanSourceWith, etc
-
-  preInstall = ''
-    mvn clean test
-  '';
 
   buildPhase = ''
     runHook preBuild
