@@ -16,4 +16,4 @@ jobs:
       with:
         nix_path: nixpkgs=channel:nixos-unstable
     - run: nix flake check
-    - run: nix build -L
+    - run: nix build -L .#packages.x86_64-linux.default
