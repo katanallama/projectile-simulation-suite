@@ -18,10 +18,10 @@ public class GetProjectileForce implements IGetProjectileForce{
 
         // TODO: possibly refactor this if-check to occur on initialization instead of every frame
         Vector3d ZeroVector = new Vector3d(0, 0, 0);
-        if (!additionalForce.equals(ZeroVector))
+        if (additionalForce.equals(ZeroVector))
             return ZeroVector;
         
-        additionalForce.normalize();
+        additionalForce.normalize(); // has issues if additionalForce is a zero-vector
         additionalForce.scale((double)(_configurationHandler.getSetting("continual force")));
 
         return additionalForce;
