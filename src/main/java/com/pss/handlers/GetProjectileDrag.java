@@ -13,6 +13,7 @@ public class GetProjectileDrag implements IGetProjectileDrag {
         _configurationHandler = configurationHandler;
         _projectileHandler = projectileHandler;
     }
+
     public double getProjectileDrag() {
         Vector3d velocity = new Vector3d(_projectileHandler.getProjectile().getVelocity());
         double speedSquared = velocity.lengthSquared();

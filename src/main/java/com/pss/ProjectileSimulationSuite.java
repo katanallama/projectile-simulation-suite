@@ -10,7 +10,7 @@ public class ProjectileSimulationSuite {
     private static Vector3d[] _results;
     private static IOutputResults[] _resultsOutputers;
     private static final int MAX_OUTPUTERS = 1;
-    private static final int MAX_SIMSTEPS = 25;
+    private static final int MAX_SIMSTEPS = 380;
     private static IGetConfiguration _configHandler;
     private static ProjectileSimulator _simulator;
 

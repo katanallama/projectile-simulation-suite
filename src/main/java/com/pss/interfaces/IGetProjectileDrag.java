@@ -3,5 +3,6 @@ package com.pss.interfaces;
 import javax.vecmath.Vector3d;
 
 public interface IGetProjectileDrag {
-    public Vector3d getProjectileDrag();
+    // public Vector3d getProjectileDrag();
+    public double getProjectileDrag();
 }
