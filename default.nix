@@ -4,7 +4,8 @@
   callPackage,
   makeWrapper,
   maven,
-  jdk17_headless,
+  # jdk17_headless,
+  jdk17,
   nix-gitignore,
 }: let
   repository = callPackage ./.build-maven-repo.nix {};
@@ -15,7 +16,8 @@ in
     name = "${pname}-${version}";
     src = nix-gitignore.gitignoreSource ["*.nix"] ./.;
 
-    nativeBuildInputs = [jdk17_headless maven makeWrapper];
+    # nativeBuildInputs = [jdk17_headless maven makeWrapper];
+    nativeBuildInputs = [jdk17 maven makeWrapper];
 
     buildPhase = ''
       echo "Building with maven repository ${repository}"
@@ -36,7 +38,7 @@ in
 
       # create a wrapper that will automatically set the classpath
       # this should be the paths from the dependency derivation
-      makeWrapper ${jdk17_headless}/bin/java $out/bin/${pname} \
+      makeWrapper ${jdk17}/bin/java $out/bin/${pname} \
             --add-flags "-jar $out/${name}.jar"
     '';
   }
