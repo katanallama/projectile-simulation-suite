@@ -3,6 +3,7 @@ import com.pss.interfaces.*;
 
 import java.lang.Object;
 import java.util.HashMap;
+import javax.vecmath.Vector3d;
 
 public class StubGetConfiguration implements IGetConfiguration {
     public StubGetConfiguration() {
@@ -19,7 +20,8 @@ public class StubGetConfiguration implements IGetConfiguration {
 
     private void initializeSettings() {
         _settings.put("gravity", 9.81d);
-        _settings.put("weight", 10.0d);
+        _settings.put("weight", 5.0d);
+        _settings.put("initialVelocity", new Vector3d (0,200,2000));
     }
     
     private HashMap<String, Object> _settings;

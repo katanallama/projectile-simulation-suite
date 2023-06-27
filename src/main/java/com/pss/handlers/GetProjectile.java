@@ -25,6 +25,7 @@ public class GetProjectile implements IGetProjectile {
         Projectile projectile = new Projectile();
         
         projectile.setWeight(_configurationHandler.getSetting("weight"));
+        projectile.setVelocity(_configurationHandler.getSetting("initialVelocity"));
 
         return projectile;
     }
