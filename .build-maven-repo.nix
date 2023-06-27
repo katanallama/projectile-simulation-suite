@@ -1,13 +1,12 @@
-{ lib, stdenv, maven }:
-
+{
+  lib,
+  stdenv,
+  maven,
+}:
 stdenv.mkDerivation {
   name = "maven-repository";
-  buildInputs = [ maven ];
+  nativeBuildInputs = [maven];
   src = ./.; # or fetchFromGitHub, cleanSourceWith, etc
-
-  preInstall = ''
-    mvn clean test
-  '';
 
   buildPhase = ''
     runHook preBuild
@@ -33,6 +32,6 @@ stdenv.mkDerivation {
   dontFixup = true; # don't do any fixup
   outputHashAlgo = "sha256";
   outputHashMode = "recursive";
-  # replace this with the correct SHA256
-  outputHash = "sha256-XauJ6Pox/e/Z8ZfCS8T1tCH2yx6dwEP++vw+NkTFP9k=";
+  # replace this with the correct SHA256, otherwise it will fail mysteriously
+  outputHash = "sha256-CrXCiJgU5kKywK7D01YrSk+teXkAMvrYmbNCh7lWX0I=";
 }

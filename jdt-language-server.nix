@@ -1,25 +1,32 @@
-{ lib, stdenv, fetchurl, makeWrapper, jdk17 }:
-
+{
+  lib,
+  stdenv,
+  fetchurl,
+  makeWrapper,
+  jdk17,
+}:
 stdenv.mkDerivation rec {
   pname = "jdt-language-server";
   version = "1.22.0";
   timestamp = "202304131553";
 
   src = fetchurl {
-    url =
-      "https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/${version}/jdt-language-server-${version}-${timestamp}.tar.gz";
+    url = "https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/${version}/jdt-language-server-${version}-${timestamp}.tar.gz";
     sha256 = "sha256-X+K5WVN5u0A1TJG5Ik6xcvK0186FXDKUq5LoTSwLv0E=";
   };
 
   sourceRoot = ".";
 
-  buildInputs = [ jdk17 ];
+  buildInputs = [jdk17];
 
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [makeWrapper];
 
   installPhase = let
     # The application ships with config directories for linux and mac
-    configDir = if stdenv.isDarwin then "config_mac" else "config_linux";
+    configDir =
+      if stdenv.isDarwin
+      then "config_mac"
+      else "config_linux";
   in ''
     # Copy jars
     install -D -t $out/share/java/plugins/ plugins/*.jar
@@ -85,8 +92,8 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     homepage = "https://github.com/eclipse/eclipse.jdt.ls";
     description = "Java language server";
-    sourceProvenance = with sourceTypes; [ binaryBytecode ];
+    sourceProvenance = with sourceTypes; [binaryBytecode];
     license = licenses.epl20;
-    maintainers = with maintainers; [ matt-snider ];
+    maintainers = with maintainers; [matt-snider];
   };
 }
