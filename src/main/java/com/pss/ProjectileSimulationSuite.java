@@ -9,7 +9,7 @@ import javax.vecmath.Vector3d;
 public class ProjectileSimulationSuite {
     private static Vector3d[] _results;
     private static IOutputResults[] _resultsOutputers;
-    private static final int MAX_OUTPUTERS = 1;
+    private static final int MAX_OUTPUTERS = 2;
     private static final int MAX_SIMSTEPS = 380;
     private static IGetConfiguration _configHandler;
     private static ProjectileSimulator _simulator;
@@ -36,15 +36,17 @@ public class ProjectileSimulationSuite {
     private static IOutputResults[] getOutputers() {
         IOutputResults[] availableOutputers = new IOutputResults[MAX_OUTPUTERS];
         availableOutputers[0] = new ConsoleOutputer();
+        availableOutputers[1] = new ChartOutputer();
 
         // TODO Get this via config
         IOutputResults[] outputers = new IOutputResults[getOuputerAmount()];
         outputers[0] = availableOutputers[0];
+        outputers[1] = availableOutputers[1];
         return outputers;
     }
 
     private static int getOuputerAmount() {
-        return 1;
+        return 2;
     }
 
     private static void outputResults() {
