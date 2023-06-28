@@ -39,7 +39,7 @@ public class ProjectileSimulationSuite {
         availableOutputers[1] = new ChartOutputer();
 
         // TODO Get this via config
-        IOutputResults[] outputers = new IOutputResults[getOuputerAmount()];
+        IOutputResults[] outputers = new IOutputResults[getOutputerAmount()];
         outputers[0] = availableOutputers[0];
         outputers[1] = availableOutputers[1];
         return outputers;

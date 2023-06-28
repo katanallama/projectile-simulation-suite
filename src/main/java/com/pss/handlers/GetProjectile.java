@@ -3,6 +3,8 @@ package com.pss.handlers;
 import com.pss.interfaces.*;
 import com.pss.models.*;
 
+import javax.vecmath.Vector3d;
+
 public class GetProjectile implements IGetProjectile {
     public GetProjectile(IGetConfiguration configurationHandler) {
         _configurationHandler = configurationHandler;
@@ -25,7 +27,10 @@ public class GetProjectile implements IGetProjectile {
         Projectile projectile = new Projectile();
         
         projectile.setWeight(_configurationHandler.getSetting("weight"));
-        projectile.setVelocity(_configurationHandler.getSetting("initialVelocity"));
+        Vector3d initialVelocity = _configurationHandler.getSetting("initialDirection");
+        initialVelocity.normalize();
+        initialVelocity.scale(_configurationHandler.getSetting("initialForce"));
+        projectile.setVelocity(initialVelocity);
 
         return projectile;
     }
