@@ -15,7 +15,6 @@ public class MakeProjectileSimulator {
         IGetProjectileForce projectileForceHandler = getProjectileForceHandler(configurationHandler,
                 projectileHandler);
 
-
         double timeStep = 1;
 
         return new ProjectileSimulator(projectileHandler, projectileDragHandler, projectileForceHandler,
@@ -32,7 +31,8 @@ public class MakeProjectileSimulator {
         return new GetProjectileDrag(configurationHandler, projectileHandler);
     }
 
-    private IGetProjectileForce getProjectileForceHandler(IGetConfiguration configurationHandler, IGetProjectile projectileHandler) {
+    private IGetProjectileForce getProjectileForceHandler(IGetConfiguration configurationHandler,
+            IGetProjectile projectileHandler) {
         return new GetProjectileConstantContinualForce(configurationHandler, projectileHandler);
     }
 }

@@ -22,14 +22,6 @@ public class ProjectileSimulator {
         this.timeStep = timeStep;
     }
 
-    private String formatVector(Vector3d vector) {
-        return "(" + formatDouble(vector.x) + ",\t" + formatDouble(vector.y) + ",\t" + formatDouble(vector.z) + ")";
-    }
-
-    private String formatDouble(double value) {
-        return String.format("%.1f", value);
-    }
-
     public Projectile getProjectile() {
         return _projectileHandler.getProjectile();
     }
@@ -50,10 +42,6 @@ public class ProjectileSimulator {
 
         totalForce.add(_projectileGravityHandler.getProjectileGravity());
         totalForce.add(_projectileDragHandler.getProjectileDrag());
-
-        // System.out.println(
-        // "velocity: \t" + formatVector(currentVelocity) + " total force: \t" +
-        // formatVector(totalForce));
 
         Vector3d acceleration = new Vector3d(totalForce);
         acceleration.scale(1 / _projectileHandler.getProjectile().getWeight()); // a = F/m
