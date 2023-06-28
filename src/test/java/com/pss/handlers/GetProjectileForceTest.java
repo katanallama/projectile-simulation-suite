@@ -14,11 +14,18 @@ class GetProjectileForceTest {
         GetProjectile projectileHandler = new GetProjectile(configHandler);
         GetProjectileConstantContinualForce forceHandler = new GetProjectileConstantContinualForce(configHandler, projectileHandler);
 
-        Vector3d force = forceHandler.getProjectileForce();
-
-        assertEquals(0, force.getX());
-        assertEquals(0, force.getY());
-        assertEquals(0, force.getZ());
+        Vector3d projectileVelocity = projectileHandler.getProjectile().getVelocity();
+        Vector3d additionalForce = forceHandler.getProjectileForce();
+        double roundingThreshold = 0.000001;
+        
+        // verify that each xyz component (if non-zero) of the additional force
+        // is increasing the magnitude of the projectile velocity
+        if (Math.abs(projectileVelocity.getX()) > roundingThreshold)
+            assertTrue(Math.abs(additionalForce.getX() + projectileVelocity.getX()) > Math.abs(projectileVelocity.getX()));
+        if (Math.abs(projectileVelocity.getY()) > roundingThreshold)
+            assertTrue(Math.abs(additionalForce.getY() + projectileVelocity.getY()) > Math.abs(projectileVelocity.getY()));
+        if (Math.abs(projectileVelocity.getZ()) > roundingThreshold)
+            assertTrue(Math.abs(additionalForce.getZ() + projectileVelocity.getZ()) > Math.abs(projectileVelocity.getZ()));
     }
 
     // TODO add more tests
