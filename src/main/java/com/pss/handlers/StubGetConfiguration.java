@@ -20,8 +20,8 @@ public class StubGetConfiguration implements IGetConfiguration {
 
     private void initializeSettings() {
         _settings.put("gravity", 9.81d);
-        _settings.put("weight", 5.0d);
-        _settings.put("initialVelocity", new Vector3d (0,200,2000));
+        _settings.put("weight", 25.0d);
+        _settings.put("initialVelocity", new Vector3d (200,1000,250));
     }
     
     private HashMap<String, Object> _settings;
