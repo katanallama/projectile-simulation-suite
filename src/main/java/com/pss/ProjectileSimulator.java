@@ -10,12 +10,16 @@ public class ProjectileSimulator {
     private IGetProjectileForce _projectileForceHandler;
     private IGetProjectileGravity _projectileGravityHandler;
 
+    private double timeStep; // Time step for simulation
+
     public ProjectileSimulator(IGetProjectile projectileHandler, IGetProjectileDrag projectileDragHandler,
-            IGetProjectileForce projectileForceHandler, IGetProjectileGravity projectileGravityHandler) {
+            IGetProjectileForce projectileForceHandler, IGetProjectileGravity projectileGravityHandler,
+            double timeStep) {
         _projectileHandler = projectileHandler;
         _projectileForceHandler = projectileForceHandler;
         _projectileGravityHandler = projectileGravityHandler;
         _projectileDragHandler = projectileDragHandler;
+        this.timeStep = timeStep;
     }
 
     public Projectile getProjectile() {
@@ -24,24 +28,28 @@ public class ProjectileSimulator {
 
     public Vector3d updatePosition() {
         Vector3d newVelocity = getNewVelocity();
-        Vector3d newPosition = getNewPosition();
-
         _projectileHandler.getProjectile().setVelocity(newVelocity);
+
+        Vector3d newPosition = getNewPosition();
         _projectileHandler.getProjectile().setPosition(newPosition);
 
         return newPosition;
     }
 
     private Vector3d getNewVelocity() {
-        Vector3d currentVelocity = _projectileHandler.getProjectile().getVelocity();
-        if (currentVelocity == null) {
-            currentVelocity = new Vector3d(0, 0, 0);
-        }
+        Vector3d currentVelocity = new Vector3d(_projectileHandler.getProjectile().getVelocity());
+        Vector3d totalForce = new Vector3d(_projectileForceHandler.getProjectileForce());
 
-        currentVelocity.add(_projectileForceHandler.getProjectileForce());
-        currentVelocity.add(_projectileGravityHandler.getProjectileGravity());
-        currentVelocity.add(_projectileDragHandler.getProjectileDrag());
-        
+        totalForce.add(_projectileGravityHandler.getProjectileGravity());
+        totalForce.add(_projectileDragHandler.getProjectileDrag());
+
+        Vector3d acceleration = new Vector3d(totalForce);
+        acceleration.scale(1 / _projectileHandler.getProjectile().getWeight()); // a = F/m
+
+        Vector3d deltaV = new Vector3d(acceleration);
+        deltaV.scale(timeStep); // deltaV = a*t
+        currentVelocity.add(deltaV);
+
         return currentVelocity;
     }
 
@@ -51,7 +59,10 @@ public class ProjectileSimulator {
             currentPosition = new Vector3d(0, 0, 0);
         }
 
-        currentPosition.add(_projectileHandler.getProjectile().getVelocity());
+        Vector3d velocity = new Vector3d(_projectileHandler.getProjectile().getVelocity());
+        velocity.scale(timeStep); // scale velocity by the timestep
+
+        currentPosition.add(velocity); // add the scaled velocity to the current position
 
         return currentPosition;
     }

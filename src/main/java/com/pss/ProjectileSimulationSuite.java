@@ -9,16 +9,15 @@ import javax.vecmath.Vector3d;
 public class ProjectileSimulationSuite {
     private static Vector3d[] _results;
     private static IOutputResults[] _resultsOutputers;
-    private static final int MAX_OUTPUTERS = 1;
+    private static final int MAX_OUTPUTERS = 2;
+    private static final int MAX_SIMSTEPS = 80;
     private static IGetConfiguration _configHandler;
     private static ProjectileSimulator _simulator;
 
     public static void main(String[] args) {
         initSimulation();
 
-        int maxTime = 1000; // todo get from config
-
-        for (int t = 0; t < maxTime; t++) {
+        for (int t = 0; t < MAX_SIMSTEPS; t++) {
             _results[t] = new Vector3d(0, 0, 0);
             _results[t].add(_simulator.updatePosition());
         }
@@ -27,9 +26,7 @@ public class ProjectileSimulationSuite {
     }
 
     private static void initSimulation() {
-        int maxSimulationTime = 1000; //Todo get this via config
-
-        _results = new Vector3d[maxSimulationTime];
+        _results = new Vector3d[MAX_SIMSTEPS];
         _resultsOutputers = getOutputers();
         _configHandler = new StubGetConfiguration();
 
@@ -39,15 +36,17 @@ public class ProjectileSimulationSuite {
     private static IOutputResults[] getOutputers() {
         IOutputResults[] availableOutputers = new IOutputResults[MAX_OUTPUTERS];
         availableOutputers[0] = new ConsoleOutputer();
+        availableOutputers[1] = new ChartOutputer();
 
         // TODO Get this via config
         IOutputResults[] outputers = new IOutputResults[getOutputerAmount()];
         outputers[0] = availableOutputers[0];
+        outputers[1] = availableOutputers[1];
         return outputers;
     }
 
     private static int getOutputerAmount() {
-        return 1;
+        return 2;
     }
 
     private static void outputResults() {

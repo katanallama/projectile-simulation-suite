@@ -21,8 +21,8 @@ class ConsoleOutputerTest {
         consoleOutputer.outputResults(testResults);
         System.setOut(System.out);
 
-        String expectedOutput = "(1.0, 2.0, 3.0)";
-        assertTrue(outputStream.toString().contains(expectedOutput), "Incorrect output");
+        String expectedOutput = "position: \t(1.0,\t2.0,\t3.0)\n";
+        assertEquals(expectedOutput, outputStream.toString(), "Incorrect output");
     }
 
     // TODO add more tests
