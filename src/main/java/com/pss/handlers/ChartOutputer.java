@@ -16,7 +16,7 @@ import java.io.IOException;
 public class ChartOutputer implements IOutputResults {
     public void outputResults(Vector3d[] results) {
         boolean isHeadless = GraphicsEnvironment.isHeadless();
-        boolean print = true;
+        boolean print = false;
 
             XYSeriesCollection dataset = new XYSeriesCollection();
             XYSeries positionSeries = new XYSeries("Position");

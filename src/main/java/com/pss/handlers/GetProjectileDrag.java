@@ -14,17 +14,24 @@ public class GetProjectileDrag implements IGetProjectileDrag {
         _projectileHandler = projectileHandler;
     }
 
-    public double getProjectileDrag() {
+    public Vector3d getProjectileDrag() {
         Vector3d velocity = new Vector3d(_projectileHandler.getProjectile().getVelocity());
         double speedSquared = velocity.lengthSquared();
+
+        if (velocity.equals(new Vector3d(0,0,0)))
+            return new Vector3d(0,0,0);
 
         // Calculate the drag force
         Vector3d dragForce = new Vector3d(velocity);
         dragForce.normalize();
-        // dragForce.scale(-0.5 * rho * A * Cd * speedSquared);
-        dragForce.scale(0.5 * speedSquared);
+        // TODO dragForce.scale(-0.5 * rho * A * Cd * speedSquared);
 
-        return dragForce.length();
+        dragForce.scale((double)0.5 * speedSquared);
+        dragForce.normalize();
+        // dragForce.negate();
+
+        return dragForce;
     }
 
 }
+

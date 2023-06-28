@@ -50,11 +50,8 @@ public class ProjectileSimulator {
         totalForce.add(_projectileGravityHandler.getProjectileGravity());
 
         Vector3d dragForce = new Vector3d(_projectileHandler.getProjectile().getVelocity());
-        dragForce.normalize();
-        dragForce.scale(_projectileDragHandler.getProjectileDrag());
-        // dragForce.negate();
+        dragForce.add(_projectileDragHandler.getProjectileDrag());
 
-        // totalForce.add(dragForce);
         totalForce.sub(dragForce);
 
         System.out.println("drag force: \t " + formatVector(dragForce));

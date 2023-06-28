@@ -4,10 +4,9 @@ import javax.vecmath.Vector3d;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class StubGetProjectileDragTest {
+class GetProjectileDragTest {
     @Test
     void getProjectileDrag() {
-        StubGetProjectileDrag dragHandler = new StubGetProjectileDrag();
 
         // Vector3d drag = dragHandler.getProjectileDrag();
 
