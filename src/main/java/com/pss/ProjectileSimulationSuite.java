@@ -45,7 +45,7 @@ public class ProjectileSimulationSuite {
         return outputers;
     }
 
-    private static int getOuputerAmount() {
+    private static int getOutputerAmount() {
         return 2;
     }
 
