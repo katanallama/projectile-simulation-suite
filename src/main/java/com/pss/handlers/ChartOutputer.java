@@ -19,14 +19,20 @@ public class ChartOutputer implements IOutputResults {
         boolean print = false;
 
             XYSeriesCollection dataset = new XYSeriesCollection();
-            XYSeries positionSeries = new XYSeries("Position");
+            XYSeries positionSeriesX = new XYSeries("Position X-axis");
+            XYSeries positionSeriesY = new XYSeries("Position Y-axis");
+            XYSeries positionSeriesZ = new XYSeries("Position Z-axis");
 
             for (int i = 0; i < results.length; i++) {
                 Vector3d vector = results[i];
-                positionSeries.add(i, vector.z);
+                positionSeriesX.add(i, vector.x);
+                positionSeriesY.add(i, vector.y);
+                positionSeriesZ.add(i, vector.z);
             }
 
-            dataset.addSeries(positionSeries);
+            dataset.addSeries(positionSeriesX);
+            dataset.addSeries(positionSeriesY);
+            dataset.addSeries(positionSeriesZ);
 
             JFreeChart chart = ChartFactory.createXYLineChart(
                     "Position vs Time",
