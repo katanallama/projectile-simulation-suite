@@ -27,7 +27,7 @@ public class MakeProjectileSimulator {
 
     private IGetProjectileDrag getProjectileDragHandler(IGetConfiguration configurationHandler,
             IGetProjectile projectileHandler) {
-        return new StubGetProjectileDrag();
+        return new GetProjectileDrag(configurationHandler, projectileHandler);
     }
 
     private IGetProjectileForce getProjectileForceHandler(IGetConfiguration configurationHandler,

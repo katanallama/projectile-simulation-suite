@@ -47,16 +47,13 @@ public class ProjectileSimulator {
     private Vector3d getNewVelocity() {
         Vector3d currentVelocity = new Vector3d(_projectileHandler.getProjectile().getVelocity());
         Vector3d totalForce = new Vector3d(_projectileForceHandler.getProjectileForce());
+
         totalForce.add(_projectileGravityHandler.getProjectileGravity());
+        totalForce.add(_projectileDragHandler.getProjectileDrag());
 
-        Vector3d dragForce = new Vector3d(_projectileHandler.getProjectile().getVelocity());
-        dragForce.add(_projectileDragHandler.getProjectileDrag());
-
-        totalForce.sub(dragForce);
-
-        System.out.println("drag force: \t " + formatVector(dragForce));
-        System.out.println("velocity: \t" + formatVector(currentVelocity));
-        System.out.println("total force: \t" + formatVector(totalForce));
+        // System.out.println(
+        // "velocity: \t" + formatVector(currentVelocity) + " total force: \t" +
+        // formatVector(totalForce));
 
         Vector3d acceleration = new Vector3d(totalForce);
         acceleration.scale(1 / _projectileHandler.getProjectile().getWeight()); // a = F/m
