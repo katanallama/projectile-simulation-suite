@@ -24,6 +24,6 @@ public class MakeProjectileSimulator {
     }
 
     private IGetProjectileForce getProjectileForceHandler(IGetConfiguration configurationHandler, IGetProjectile projectileHandler) {
-        return new GetProjectileForce(configurationHandler, projectileHandler);
+        return new GetProjectileConstantContinualForce(configurationHandler, projectileHandler);
     }
 }
