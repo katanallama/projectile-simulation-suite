@@ -23,12 +23,8 @@ public class GetProjectileDrag implements IGetProjectileDrag {
 
         // Calculate the drag force
         Vector3d dragForce = new Vector3d(velocity);
-        dragForce.normalize();
         // TODO dragForce.scale(-0.5 * rho * A * Cd * speedSquared);
-
         dragForce.scale((double)0.5 * speedSquared);
-        dragForce.normalize();
-        // dragForce.negate();
 
         return dragForce;
     }
