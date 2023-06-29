@@ -11,7 +11,7 @@ class MakeProjectileSimulatorTest {
     @Test
     void createProjectileSimulator() {
         MakeProjectileSimulator makeProjectileSimulator = new MakeProjectileSimulator();
-        IGetConfiguration stubConfig = new StubGetConfiguration();
+        IGetConfiguration stubConfig = new BaseGetConfiguration();
         ProjectileSimulator simulator = makeProjectileSimulator.createProjectileSimulator(stubConfig);
 
         assertNotNull(simulator, "Simulator should not be null");

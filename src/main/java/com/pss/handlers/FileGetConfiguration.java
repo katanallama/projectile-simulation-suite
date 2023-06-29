@@ -1,7 +1,7 @@
 package com.pss.handlers;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.pss.interfaces.*;
+import com.pss.enums.Settings;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,20 +11,45 @@ import java.lang.Object;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 
-public class FileGetConfiguration implements IGetConfiguration {
+import javax.naming.directory.InvalidAttributesException;
 
+public class FileGetConfiguration extends BaseGetConfiguration {
     private static final String FILE_PATH = "simulatorSettings.json";
 
     public static HashMap<String, Object> parseJsonFile(String filePath) {
         Gson gson = new Gson();
-        HashMap<String, Object> data = new HashMap<>();
+
+        HashMap<String, Object> jsonFileSettings = new HashMap<String, Object>();
 
         try (FileReader reader = new FileReader(filePath)) {
-            // Define the type of the HashMap using TypeToken
-            Type type = new TypeToken<HashMap<String, Object>>(){}.getType();
+            Type type = new TypeToken<HashMap<String, String>>(){}.getType();
 
-            // Parse the JSON file into a HashMap
-            data = gson.fromJson(reader, type);
+            HashMap<String, String> rawData  = gson.fromJson(reader, type);
+
+            for (Settings setting : Settings.values()) {
+                if (rawData.containsKey(setting.getName())) {
+                    Object value = null;
+                    
+                    try {
+                        switch (setting.getType()) {
+                            case Double:
+                                value = Settings.parseDouble(rawData.get(setting.getName()));
+                                break;
+                            case Vector:
+                                value = Settings.parseVector(rawData.get(setting.getName()));
+                                break;
+                            default:
+                                continue;
+                        }
+                    } catch (InvalidAttributesException ex ){
+                        System.out.println(ex.getMessage());
+                        continue;
+                    }
+
+                    jsonFileSettings.put(setting.getName(), value);
+                }
+            }
+
         } catch (FileNotFoundException e) {
             File settingsFile = new File(filePath);
             try {
@@ -36,34 +61,20 @@ public class FileGetConfiguration implements IGetConfiguration {
             e.printStackTrace();
         }
 
-        return data;
+        return jsonFileSettings;
     }
 
     public FileGetConfiguration() {
-        _settings = new HashMap<String, Object>();
-        
         initializeSettings();
     }
     
     public FileGetConfiguration(HashMap<String, Object> settings) {
-        _settings = settings;
-
         initializeSettings();
+    
+        overrideSettings(settings);
     }
 
     private void initializeSettings() {
-        _settings.put("gravity", 9.81d);
-        _settings.put("weight", 10.0d);
-
-        HashMap<String, Object> fileSettings = parseJsonFile(FILE_PATH);
-        if (fileSettings != null && fileSettings.size() > 0) {
-            _settings.putAll(fileSettings);
-        }
+        overrideSettings(parseJsonFile(FILE_PATH));
     }
-    
-    private HashMap<String, Object> _settings;
-    
-    public <T> T getSetting(String settingName) {
-        return (T)_settings.get(settingName);        
-    };
 }

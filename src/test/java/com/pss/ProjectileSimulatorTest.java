@@ -11,7 +11,7 @@ class ProjectileSimulatorTest {
 
     @Test
     void testUpdatePosition() {
-        IGetConfiguration stubConfig = new StubGetConfiguration();
+        IGetConfiguration stubConfig = new BaseGetConfiguration();
         MakeProjectileSimulator makeProjectileSimulator = new MakeProjectileSimulator();
         ProjectileSimulator simulator = makeProjectileSimulator.createProjectileSimulator(stubConfig);
 

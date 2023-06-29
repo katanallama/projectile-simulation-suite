@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class GetProjectileForceTest {
     @Test
     void getProjectileForce() {
-        IGetConfiguration configHandler = new StubGetConfiguration();
+        IGetConfiguration configHandler = new BaseGetConfiguration();
         GetProjectile projectileHandler = new GetProjectile(configHandler);
         GetProjectileConstantContinualForce forceHandler = new GetProjectileConstantContinualForce(configHandler, projectileHandler);
 

@@ -13,7 +13,7 @@ public class Projectile {
     }
 
     public Vector3d getPosition() {
-        return Position;
+        return new Vector3d(Position);
     }
 
     public void setPosition(double x, double y, double z) {
@@ -27,7 +27,7 @@ public class Projectile {
     }
 
     public Vector3d getVelocity() {
-        return Velocity;
+        return new Vector3d(Velocity);
     }
 
     public void setVelocity(double x, double y, double z) {
