@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class GetProjectileTest {
     @Test
     void getProjectile() {
-        IGetConfiguration configHandler = new StubGetConfiguration();
+        IGetConfiguration configHandler = new BaseGetConfiguration();
         GetProjectile projectileHandler = new GetProjectile(configHandler);
 
         Projectile projectile = projectileHandler.getProjectile();

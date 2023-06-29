@@ -1,4 +1,5 @@
 package com.pss.handlers;
+import com.pss.enums.Settings;
 import com.pss.interfaces.*;
 
 import javax.vecmath.Vector3d;
@@ -21,7 +22,7 @@ public class GetProjectileConstantContinualForce implements IGetProjectileForce{
             return zeroVector;
         
         additionalForce.normalize(); // has issues if additionalForce is a zero-vector
-        additionalForce.scale((double)(_configurationHandler.getSetting("continualForce")));
+        additionalForce.scale((double)(_configurationHandler.getSetting(Settings.ContinualForce)));
 
         return additionalForce;
         

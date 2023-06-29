@@ -21,7 +21,7 @@ public class ProjectileSimulationSuite {
             _results[t] = new Vector3d(0, 0, 0);
             _results[t].add(_simulator.updatePosition());
         }
-
+        
         outputResults();
     }
 
