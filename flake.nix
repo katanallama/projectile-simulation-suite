@@ -24,11 +24,12 @@
 
       devShells.${system}.default = mkShellNoCC {
         name = "java";
-        buildInputs = [jdk17 maven jdt-language-server];
+        buildInputs = [jdk17 maven jdt-language-server xorg.libXxf86vm];
 
         shellHook = ''
           export JAVA_HOME=${jdk17}
           export JDTLS_PATH=${jdt-language-server}/share/java/
+          export LD_LIBRARY_PATH=${xorg.libXxf86vm}/lib:$LD_LIBRARY_PATH
         '';
       };
       formatter.${system} = pkgs.alejandra;
