@@ -65,11 +65,25 @@
                 <scope>import</scope>
             </dependency>
 
-            <dependency>
-                <groupId>org.jzy3d</groupId>
-                <artifactId>jzy3d-emulgl-awt</artifactId>
-                <version>2.0.0</version>
-            </dependency>
+            <!-- <dependency> -->
+            <!--     <groupId>org.jzy3d</groupId> -->
+            <!--     <artifactId>jzy3d-everything</artifactId> -->
+            <!--     <version>2.2.0</version> -->
+            <!-- </dependency> -->
+
+            <!-- <dependency> -->
+            <!--     <groupId>org.jzy3d</groupId> -->
+            <!--     <artifactId>jzy3d-core-awt</artifactId> -->
+            <!--     <version>2.2.0</version> -->
+            <!-- </dependency> -->
+
+            <!-- <!-\- For emulated OpenGL in AWT -\-> -->
+
+            <!-- <dependency> -->
+            <!--     <groupId>org.jzy3d</groupId> -->
+            <!--     <artifactId>jzy3d-emul-gl-awt</artifactId> -->
+            <!--     <version>2.2.0</version> -->
+            <!-- </dependency> -->
 
             <!-- For native OpenGL in AWT -->
 
@@ -79,56 +93,13 @@
                 <version>2.0.0</version>
             </dependency>
 
-            <!-- For native OpenGL in Swing -->
-
             <dependency>
                 <groupId>org.jzy3d</groupId>
                 <artifactId>jzy3d-native-jogl-swing</artifactId>
                 <version>2.0.0</version>
             </dependency>
 
-            <!-- For native OpenGL in SWT -->
-
-            <!-- <dependency> -->
-            <!--     <groupId>org.jzy3d</groupId> -->
-            <!--     <artifactId>jzy3d-native-jogl-swt</artifactId> -->
-            <!--     <version>2.2.1</version> -->
-            <!-- </dependency> -->
-
-            <!-- <dependency> -->
-            <!--     <groupId>org.jzy3d</groupId> -->
-            <!--     <artifactId>jzy3d-native-jogl-awt</artifactId> -->
-            <!--     <version>2.0.0-SNAPSHOT</version> -->
-            <!--     <type>pom</type> -->
-            <!--     <scope>import</scope> -->
-            <!-- </dependency> -->
-
-            <!-- <dependency> -->
-            <!--     <groupId>org.jzy3d</groupId> -->
-            <!--     <artifactId>jzy3d-native-jogl-swing</artifactId> -->
-            <!--     <version>2.0.0-SNAPSHOT</version> -->
-            <!--     <type>pom</type> -->
-            <!--     <scope>import</scope> -->
-            <!-- </dependency> -->
-
-            <!-- <dependency> -->
-            <!--     <groupId>org.jzy3d</groupId> -->
-            <!--     <artifactId>jzy3d-native-jogl-newt</artifactId> -->
-            <!--     <version>2.0.0-SNAPSHOT</version> -->
-            <!--     <type>pom</type> -->
-            <!--     <scope>import</scope> -->
-            <!-- </dependency> -->
-
-            <!-- <dependency> -->
-            <!--     <groupId>org.jzy3d</groupId> -->
-            <!--     <artifactId>jzy3d-native-jogl-swt</artifactId> -->
-            <!--     <version>2.0.0-SNAPSHOT</version> -->
-            <!--     <type>pom</type> -->
-            <!--     <scope>import</scope> -->
-            <!-- </dependency> -->
-
         </dependencies>
-
 
     </dependencyManagement>
 
@@ -166,8 +137,22 @@
 
         <!-- <dependency> -->
         <!--     <groupId>org.jzy3d</groupId> -->
-        <!--     <artifactId>jzy3d-emulgl-awt</artifactId> -->
-        <!--     <version>2.2.1</version> -->
+        <!--     <artifactId>jzy3d-everything</artifactId> -->
+        <!--     <version>2.2.0</version> -->
+        <!-- </dependency> -->
+
+        <!-- <dependency> -->
+        <!--     <groupId>org.jzy3d</groupId> -->
+        <!--     <artifactId>jzy3d-core-awt</artifactId> -->
+        <!--     <version>2.2.0</version> -->
+        <!-- </dependency> -->
+
+        <!-- <!-\- For emulated OpenGL in AWT -\-> -->
+
+        <!-- <dependency> -->
+        <!--     <groupId>org.jzy3d</groupId> -->
+        <!--     <artifactId>jzy3d-emul-gl-awt</artifactId> -->
+        <!--     <version>2.2.0</version> -->
         <!-- </dependency> -->
 
         <!-- For native OpenGL in AWT -->
@@ -178,45 +163,11 @@
             <version>2.0.0</version>
         </dependency>
 
-        <!-- For native OpenGL in Swing -->
-
         <dependency>
             <groupId>org.jzy3d</groupId>
             <artifactId>jzy3d-native-jogl-swing</artifactId>
             <version>2.0.0</version>
         </dependency>
-
-        <!-- For native OpenGL in SWT -->
-
-        <!-- <dependency> -->
-        <!--     <groupId>org.jzy3d</groupId> -->
-        <!--     <artifactId>jzy3d-native-jogl-swt</artifactId> -->
-        <!--     <version>2.2.1</version> -->
-        <!-- </dependency> -->
-
-        <!-- <dependency> -->
-        <!--     <groupId>org.jzy3d</groupId> -->
-        <!--     <artifactId>jzy3d-native-jogl-awt</artifactId> -->
-        <!--     <version>2.0.0-SNAPSHOT</version> -->
-        <!-- </dependency> -->
-
-        <!-- <dependency> -->
-        <!--     <groupId>org.jzy3d</groupId> -->
-        <!--     <artifactId>jzy3d-native-jogl-swing</artifactId> -->
-        <!--     <version>2.0.0-SNAPSHOT</version> -->
-        <!-- </dependency> -->
-
-        <!-- <dependency> -->
-        <!--     <groupId>org.jzy3d</groupId> -->
-        <!--     <artifactId>jzy3d-native-jogl-newt</artifactId> -->
-        <!--     <version>2.0.0-SNAPSHOT</version> -->
-        <!-- </dependency> -->
-
-        <!-- <dependency> -->
-        <!--     <groupId>org.jzy3d</groupId> -->
-        <!--     <artifactId>jzy3d-native-jogl-swt</artifactId> -->
-        <!--     <version>2.0.0-SNAPSHOT</version> -->
-        <!-- </dependency> -->
 
     </dependencies>
 
