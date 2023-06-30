@@ -56,8 +56,6 @@ public class ChartOutputer3d extends AWTAbstractAnalysis implements IOutputResul
                 }
             // points[i].setColor(getColorHeat(projectileVelocity))
             */
-
-            }
         }
 
         LineStrip lineStrip = new LineStrip(points);
