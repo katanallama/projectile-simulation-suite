@@ -40,6 +40,7 @@ public class ChartOutputer3d extends AWTAbstractAnalysis implements IOutputResul
     @Override
     public void init() {
         List<org.jzy3d.maths.Coord3d> points = new ArrayList<org.jzy3d.maths.Coord3d>();
+        // TODO: change datatype from Coord3d to Point so colors can be set for each point
 
         
         double maxVelocity = 0; // record highest velocity as reference for heatmap colors 
@@ -58,22 +59,9 @@ public class ChartOutputer3d extends AWTAbstractAnalysis implements IOutputResul
             Vector3d vector = results[i];
             // the Point type has fields of type Color (rgb), float (width), and Coord3d (xyz)
             // retrieve the velocity of the projectile result at i
-<<<<<<< HEAD
-            //  pass it into the getColorHeat method
-            /*
-            //  Color getColorHeat(Vector3d vector) {
-                    // grab magnitude of vector
-                    // convert magnitude into rgb floats (low values == blue, -> high values -> red)
-                    //                                      purple, blue, green, yellow, orange, red
-                    // create new Color(red-value, green-value, blue-value)
-                }
-            // points[i].setColor(getColorHeat(projectileVelocity))
-            */
-=======
             // Use constructor Point(Coord3d xyz, Color rgb)
             //      pass it into the getColorHeat method
             points[i].setColor(getColorHeat(projectileVelocity));
->>>>>>> cab5d6a (add comment-written plan for changes to plot color)
         }
 
         LineStrip lineStrip = new LineStrip(points);
