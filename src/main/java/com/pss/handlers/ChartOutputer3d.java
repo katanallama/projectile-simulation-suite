@@ -44,10 +44,24 @@ public class ChartOutputer3d extends AWTAbstractAnalysis implements IOutputResul
         for (int i = 0; i < results.length; i++) {
             Vector3d vector = results[i];
             points.add(new org.jzy3d.maths.Coord3d(vector.x, vector.y, vector.z));
+            // the Point type has fields of type Color (rgb), float (width), and Coord3d (xyz)
+            // retrieve the velocity of the projectile result at i
+            //  pass it into the getColorHeat method
+            /*
+            //  Color getColorHeat(Vector3d vector) {
+                    // grab magnitude of vector
+                    // convert magnitude into rgb floats (low values == blue, -> high values -> red)
+                    //                                      purple, blue, green, yellow, orange, red
+                    // create new Color(red-value, green-value, blue-value)
+                }
+            // points[i].setColor(getColorHeat(projectileVelocity))
+            */
+
+            }
         }
 
         LineStrip lineStrip = new LineStrip(points);
-        lineStrip.setWireframeColor(Color.BLACK);
+        lineStrip.setWireframeColor(Color.BLACK); // TODO: replace with unique color values with each point
         lineStrip.setWireframeDisplayed(true);
         lineStrip.setWireframeWidth(3); // line width
 
