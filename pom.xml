@@ -16,7 +16,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
     </properties>
 
@@ -79,11 +80,12 @@
 
             <!-- <!-\- For emulated OpenGL in AWT -\-> -->
 
-            <!-- <dependency> -->
-            <!--     <groupId>org.jzy3d</groupId> -->
-            <!--     <artifactId>jzy3d-emul-gl-awt</artifactId> -->
-            <!--     <version>2.2.0</version> -->
-            <!-- </dependency> -->
+            <dependency>
+                <groupId>org.jzy3d</groupId>
+                <!-- <artifactId>jzy3d-emul-gl-awt</artifactId> -->
+                <artifactId>jzy3d-emul-gl</artifactId>
+                <version>2.0.0</version>
+            </dependency>
 
             <!-- For native OpenGL in AWT -->
 
@@ -149,11 +151,12 @@
 
         <!-- <!-\- For emulated OpenGL in AWT -\-> -->
 
-        <!-- <dependency> -->
-        <!--     <groupId>org.jzy3d</groupId> -->
-        <!--     <artifactId>jzy3d-emul-gl-awt</artifactId> -->
-        <!--     <version>2.2.0</version> -->
-        <!-- </dependency> -->
+        <dependency>
+            <groupId>org.jzy3d</groupId>
+            <!-- <artifactId>jzy3d-emul-gl-awt</artifactId> -->
+            <artifactId>jzy3d-emul-gl</artifactId>
+            <version>2.0.0</version>
+        </dependency>
 
         <!-- For native OpenGL in AWT -->
 
@@ -173,6 +176,11 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
