@@ -12,6 +12,7 @@ stdenv.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
+    mvn dependency:resolve -Dclassifier=sources
     mvn package -Dmaven.repo.local=$out
 
     runHook postBuild
@@ -33,6 +34,5 @@ stdenv.mkDerivation {
   dontFixup = true; # don't do any fixup
   outputHashAlgo = "sha256";
   outputHashMode = "recursive";
-  # outputHash = "sha256-yTkdkyFpjH5bjWFucFZkZ7VgeXHi3E2EHR7JQ07F2TU=";
-  outputHash = "sha256-/faA370H40emg+Ws/Z/INo5kMyCWw/z9RRwfWibpaCI=";
+  outputHash = "sha256-Pe/Xdgvmfdlgrrpv6cINc2FodaGvo10FoWl280h4OXw=";
 }

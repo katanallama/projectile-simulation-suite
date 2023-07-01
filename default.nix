@@ -37,6 +37,6 @@ in
       # create a wrapper that will automatically set the classpath
       # this should be the paths from the dependency derivation
       makeWrapper ${jdk17}/bin/java $out/bin/${pname} \
-              --add-flags "-jar $out/${name}.jar"
+              --add-flags "--add-exports java.desktop/sun.awt=ALL-UNNAMED -jar $out/${name}.jar"
     '';
   }
