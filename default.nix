@@ -1,5 +1,7 @@
 {
   jdk17,
+  lib,
+  libXxf86vm,
   makeWrapper,
   maven,
   nix-gitignore,
@@ -9,12 +11,8 @@
   name = "${pname}-${version}";
   src = nix-gitignore.gitignoreSource ["*.nix"] ./.;
 
-  mavenJdk17 = maven.override {
-    jdk = jdk17;
-  };
-
 in
-  mavenJdk17.buildMavenPackage rec{
+  maven.buildMavenPackage rec {
     inherit pname name src version;
 
     mvnHash = "sha256-mBF36zHv1BRf3E4uD2uaGBT1EyydDrbkSmT+v2wAfYg=";
@@ -33,10 +31,10 @@ in
       # with the prefix of lib/
       cp target/${name}.jar $out/
 
-
       # create a wrapper that will automatically set the classpath
       # this should be the paths from the dependency derivation
       makeWrapper ${jdk17}/bin/java $out/bin/${pname} \
-              --add-flags "--add-exports java.desktop/sun.awt=ALL-UNNAMED -jar $out/${name}.jar"
+              --add-flags "--add-exports java.desktop/sun.awt=ALL-UNNAMED -jar $out/${name}.jar" \
+              --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [libXxf86vm]}
     '';
   }
