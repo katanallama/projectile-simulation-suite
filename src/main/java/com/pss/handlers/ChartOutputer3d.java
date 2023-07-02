@@ -20,11 +20,12 @@ import org.jzy3d.plot3d.primitives.LineStrip;
 import org.jzy3d.plot3d.rendering.canvas.Quality;
 
 public class ChartOutputer3d extends AWTAbstractAnalysis implements IOutputResults {
-    private Vector3d[] results;
+
+    private LineStrip lineStrip;
 
     @Override
     public void outputResults(Vector3d[] results) {
-        this.results = results;
+        this.lineStrip = lineStripFromResults(results);
 
         // start the chart in a new thread
         new Thread(() -> {
@@ -39,6 +40,7 @@ public class ChartOutputer3d extends AWTAbstractAnalysis implements IOutputResul
 
     @Override
     public void init() {
+<<<<<<< HEAD
         List<org.jzy3d.maths.Coord3d> points = new ArrayList<org.jzy3d.maths.Coord3d>();
         // TODO: change datatype from Coord3d to Point so colors can be set for each point
 
@@ -69,6 +71,8 @@ public class ChartOutputer3d extends AWTAbstractAnalysis implements IOutputResul
         lineStrip.setWireframeDisplayed(true);
         lineStrip.setWireframeWidth(3); // line width
 
+=======
+>>>>>>> 56c3d0e (refactor to abstract class)
         Quality q = Quality.Advanced();
 
         GLCapabilities c = new GLCapabilities(GLProfile.get(GLProfile.GL2));
@@ -96,5 +100,21 @@ public class ChartOutputer3d extends AWTAbstractAnalysis implements IOutputResul
         
     
 
+
+    private LineStrip lineStripFromResults(Vector3d[] results) {
+        List<org.jzy3d.maths.Coord3d> points = new ArrayList<>();
+
+        for (Vector3d vector : results) {
+            points.add(new org.jzy3d.maths.Coord3d(vector.x, vector.y, vector.z));
+        }
+
+        LineStrip lineStrip = new LineStrip(points);
+        lineStrip.setWireframeColor(Color.BLACK); // TODO: replace with unique color values with each point
+        lineStrip.setWireframeDisplayed(true);
+        lineStrip.setWireframeWidth(3); // line width
+        lineStrip.setWidth(3);
+
+        return lineStrip;
+    }
 
 }
