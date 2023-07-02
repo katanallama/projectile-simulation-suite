@@ -2,13 +2,15 @@ package com.pss.handlers;
 
 import javax.vecmath.Vector3d;
 
+import com.pss.interfaces.I3dOutputer;
+
 import org.jzy3d.chart.Chart;
 import org.jzy3d.chart.EmulGLSkin;
 import org.jzy3d.chart.factories.EmulGLChartFactory;
 import org.jzy3d.plot3d.primitives.LineStrip;
 import org.jzy3d.plot3d.rendering.canvas.Quality;
 
-public class ChartOutputer3dNonACC extends AbstractOutputer3d {
+public class ChartOutputer3dNonACC implements I3dOutputer {
 
     @Override
     public void outputResults(Vector3d[] results) {
@@ -25,7 +27,7 @@ public class ChartOutputer3dNonACC extends AbstractOutputer3d {
     }
 
     @Override
-    protected void displayChart(LineStrip lineStrip) {
+    public void displayChart(LineStrip lineStrip) {
         Quality q = Quality.Advanced();
         q.setAnimated(false);
 

@@ -1,18 +1,15 @@
-package com.pss.handlers;
+package com.pss.interfaces;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.vecmath.Vector3d;
 
-import com.pss.interfaces.IOutputResults;
-
 import org.jzy3d.colors.Color;
 import org.jzy3d.plot3d.primitives.LineStrip;
 
-public abstract class AbstractOutputer3d implements IOutputResults {
-
-    protected LineStrip lineStripFromResults(Vector3d[] results) {
+public interface I3dOutputer extends IOutputResults {
+    default LineStrip lineStripFromResults(Vector3d[] results) {
         List<org.jzy3d.maths.Coord3d> points = new ArrayList<>();
 
         for (Vector3d vector : results) {
@@ -28,6 +25,7 @@ public abstract class AbstractOutputer3d implements IOutputResults {
         return lineStrip;
     }
 
-    protected abstract void displayChart(LineStrip lineStrip);
+    default void displayChart(LineStrip lineStrip) {
+    }
 
 }
