@@ -30,7 +30,7 @@
         self.packages.${system}.projectile-simulation-suite
       ];
       JAVA_HOME = pkgs.jdk17;
-      JDTLS_PATH = "${pkgs.jdt-language-server}/share/java/}";
+      JDTLS_PATH = "${self.packages.${system}.jdt-language-server}/share/java/";
       LD_LIBRARY_PATH = "${pkgs.xorg.libXxf86vm}/lib/libXxf86vm.so.1";
     };
     formatter.${system} = pkgs.alejandra;
