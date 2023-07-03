@@ -21,14 +21,14 @@ public class ProjectileSimulationSuite {
             _results[t] = new Vector3d(0, 0, 0);
             _results[t].add(_simulator.updatePosition());
         }
-
+        
         outputResults();
     }
 
     private static void initSimulation() {
         _results = new Vector3d[MAX_SIMSTEPS];
         _resultsOutputers = getOutputers();
-        _configHandler = new StubGetConfiguration();
+        _configHandler = new FileGetConfiguration();
 
         _simulator = new MakeProjectileSimulator().createProjectileSimulator(_configHandler);
     };

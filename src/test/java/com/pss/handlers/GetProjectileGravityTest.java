@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class GetProjectileGravityTest {
     @Test
     void getProjectileGravity() {
-        IGetConfiguration configHandler = new StubGetConfiguration();
+        IGetConfiguration configHandler = new BaseGetConfiguration();
         IGetProjectile projectileHandler = new GetProjectile(configHandler);
         GetProjectileGravity gravityHandler = new GetProjectileGravity(configHandler, projectileHandler);
 

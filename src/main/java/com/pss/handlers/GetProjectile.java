@@ -1,5 +1,6 @@
 package com.pss.handlers;
 
+import com.pss.enums.Settings;
 import com.pss.interfaces.*;
 import com.pss.models.*;
 
@@ -26,10 +27,10 @@ public class GetProjectile implements IGetProjectile {
         // Todo make this set initial settings via configs
         Projectile projectile = new Projectile();
         
-        projectile.setWeight(_configurationHandler.getSetting("weight"));
-        Vector3d initialVelocity = _configurationHandler.getSetting("initialDirection");
+        projectile.setWeight(_configurationHandler.getSetting(Settings.Gravity));
+        Vector3d initialVelocity = new Vector3d(_configurationHandler.<Vector3d>getSetting(Settings.InitialDirection));
         initialVelocity.normalize();
-        initialVelocity.scale(_configurationHandler.getSetting("initialForce"));
+        initialVelocity.scale(_configurationHandler.getSetting(Settings.InitialForce));
         projectile.setVelocity(initialVelocity);
 
         return projectile;

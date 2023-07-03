@@ -1,5 +1,6 @@
 package com.pss.handlers;
 
+import com.pss.enums.Settings;
 import com.pss.interfaces.*;
 
 import javax.vecmath.Vector3d;
@@ -20,10 +21,10 @@ public class GetProjectileDrag implements IGetProjectileDrag {
         if (velocity.equals(new Vector3d(0, 0, 0)))
             return new Vector3d(0, 0, 0);
 
-        // HACK for testing
-        double rho = 1.204;
-        double A = 0.1;
-        double Cd = 0.04;
+        
+        double rho = _configurationHandler.getSetting(Settings.FluidRho);
+        double A = _configurationHandler.getSetting(Settings.ProjectileArea);
+        double Cd = _configurationHandler.getSetting(Settings.DragCoefficent);
 
         // Calculate the drag force
         double vSquared = velocity.lengthSquared();
