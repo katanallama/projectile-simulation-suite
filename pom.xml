@@ -6,9 +6,19 @@
     <artifactId>pss</artifactId>
     <version>0.1</version>
 
+    <repositories>
+        <repository>
+            <id>jzy3d-releases</id>
+            <name>Jzy3d Releases</name>
+            <url>https://maven.jzy3d.org/releases</url>
+        </repository>
+    </repositories>
+
     <properties>
+        <project.build.outputTimestamp>2023-01-01T00:00:00Z</project.build.outputTimestamp>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
     </properties>
 
@@ -18,8 +28,8 @@
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
                 <version>5.9.3</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <!-- <type>pom</type> -->
+                <!-- <scope>import</scope> -->
             </dependency>
 
             <!-- json parsing -->
@@ -27,8 +37,8 @@
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>2.10.1</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <!-- <type>pom</type> -->
+                <!-- <scope>import</scope> -->
             </dependency>
 
             <!-- CLI argument parsing -->
@@ -36,8 +46,8 @@
                 <groupId>info.picocli</groupId>
                 <artifactId>picocli</artifactId>
                 <version>4.7.4</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <!-- <type>pom</type> -->
+                <!-- <scope>import</scope> -->
             </dependency>
 
             <!-- Vectors -->
@@ -45,20 +55,41 @@
                 <groupId>javax.vecmath</groupId>
                 <artifactId>vecmath</artifactId>
                 <version>1.5.2</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <!-- <type>pom</type> -->
+                <!-- <scope>import</scope> -->
             </dependency>
 
             <dependency>
                 <groupId>org.jfree</groupId>
                 <artifactId>jfreechart</artifactId>
                 <version>1.5.3</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <!-- <type>pom</type> -->
+                <!-- <scope>import</scope> -->
+            </dependency>
+
+            <!-- For emulated OpenGL -->
+
+            <dependency>
+                <groupId>org.jzy3d</groupId>
+                <artifactId>jzy3d-emul-gl</artifactId>
+                <version>2.0.0</version>
+            </dependency>
+
+            <!-- For native OpenGL in AWT -->
+
+            <dependency>
+                <groupId>org.jzy3d</groupId>
+                <artifactId>jzy3d-native-jogl-awt</artifactId>
+                <version>2.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jzy3d</groupId>
+                <artifactId>jzy3d-native-jogl-swing</artifactId>
+                <version>2.0.0</version>
             </dependency>
 
         </dependencies>
-
 
     </dependencyManagement>
 
@@ -73,6 +104,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+            <version>5.9.3</version>
             <scope>test</scope>
         </dependency>
 
@@ -94,10 +126,37 @@
             <version>1.5.3</version>
         </dependency>
 
+        <!-- For emulated OpenGL -->
+
+        <dependency>
+            <groupId>org.jzy3d</groupId>
+            <artifactId>jzy3d-emul-gl</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <!-- For native OpenGL in AWT -->
+
+        <dependency>
+            <groupId>org.jzy3d</groupId>
+            <artifactId>jzy3d-native-jogl-awt</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jzy3d</groupId>
+            <artifactId>jzy3d-native-jogl-swing</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>

@@ -1,7 +1,7 @@
 {
   description = "A Nix flake for building a projectile simulation suite";
 
-  inputs = {nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";};
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   outputs = {
     self,
@@ -9,28 +9,30 @@
     ...
   }: let
     system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    overlays.default = final: _: removeAttrs self.packages.${final.system} ["default"];
+    #overlay is deprecated ( i still use it sometimes though)
+    overlay = self.overlays.default;
 
-    pkgs = import nixpkgs {inherit system;};
-
-    overlay = self: super: {
-      projectile-simulation-suite = self.callPackage ./default.nix {};
-      jdt-language-server = self.callPackage ./jdt-language-server.nix {};
+    packages.${system} = {
+      projectile-simulation-suite = pkgs.callPackage ./. {};
+      jdt-language-server = pkgs.callPackage ./jdt-language-server.nix {};
+      default = self.packages.${system}.projectile-simulation-suite;
     };
 
-    appPkgs = pkgs.extend overlay;
-  in
-    with appPkgs; {
-      packages.${system}.default = appPkgs.projectile-simulation-suite;
-
-      devShells.${system}.default = mkShellNoCC {
-        name = "java";
-        buildInputs = [jdk17 maven jdt-language-server];
-
-        shellHook = ''
-          export JAVA_HOME=${jdk17}
-          export JDTLS_PATH=${jdt-language-server}/share/java/
-        '';
-      };
-      formatter.${system} = pkgs.alejandra;
+    devShells.${system}.default = pkgs.mkShellNoCC {
+      packages = [
+        pkgs.jdk17
+        self.packages.${system}.jdt-language-server
+      ];
+      inputsFrom = [
+        self.packages.${system}.projectile-simulation-suite
+      ];
+      JAVA_HOME = pkgs.jdk17;
+      JDTLS_PATH = "${self.packages.${system}.jdt-language-server}/share/java/";
+      LD_LIBRARY_PATH = "${pkgs.xorg.libXxf86vm}/lib/libXxf86vm.so.1";
     };
+    formatter.${system} = pkgs.alejandra;
+  };
 }
