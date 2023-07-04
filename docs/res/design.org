@@ -24,7 +24,7 @@ The individual Classes and basic relationships are as follows:
 @startuml
 title Interfaces Diagram
 
-package pss.interfaces {
+package interfaces {
     interface "I3dOutputer" as I3dOutputer {
         +lineStripFromResults(results: Vector3d[]): LineStrip
         +displayChart(lineStrip: LineStrip): void
@@ -78,7 +78,7 @@ IGetConfiguration <|.. GetProjectileGravity: implements
 @startuml
 title Handlers Diagram
 
-package pss.handlers {
+package handlers {
     class "ConsoleOutputer" as ConsoleOutputer {
         +outputResults(results: Vector3d[]): void
         -formatVector(vector: Vector3d): String
@@ -187,7 +187,7 @@ BaseGetConfiguration <|-- FileGetConfiguration: extends
 @startuml
 title Factories Diagram
 
-package pss.factories {
+package factories {
     class "MakeProjectileSimulator" as MakeProjectileSimulator {
         +createProjectileSimulator(configurationHandler: IGetConfiguration): ProjectileSimulator
         -getProjectileGravityHandler(configurationHandler: IGetConfiguration, projectileHandler: IGetProjectile): IGetProjectileGravity
@@ -209,7 +209,7 @@ package pss.factories {
 @startuml
 title Models Diagram
 
-package pss.models {
+package models {
     class "Projectile" as Projectile {
         -Position: Vector3d
         -Velocity: Vector3d
@@ -238,7 +238,7 @@ package pss.models {
 @startuml
 title Enums Diagram
 
-package pss.enums {
+package enums {
     enum "DataTypes" {
         Vector,
         Double
