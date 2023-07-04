@@ -1,16 +1,23 @@
 
 # Table of Contents
 
-1.  [Design Choices](#org4540916)
-    1.  [Benefits](#org69827a2)
-    2.  [Basic Classes](#orgc799de0)
-1.  [Overall Class Diagram](#orga050aab)
+1.  [Design Choices](#orge7e4e1e)
+    1.  [Benefits](#org2529fb6)
+    2.  [Basic Classes](#org2201866)
+        1.  [Interfaces](#orgf11a81f)
+        2.  [Handlers](#org22d7394)
+        3.  [Factories](#org0c709cf)
+        4.  [Projectile](#orgd128678)
+        5.  [Enums](#orgd967769)
+        6.  [Simulator](#orgbce01c1)
+        7.  [Simulation Suite](#orgd2520ca)
+2.  [Overall Class Diagram](#org4681038)
 
 
 
-<a id="org4540916"></a>
+<a id="orge7e4e1e"></a>
 
-## Design Choices
+# Design Choices
 
 Taking into account the modularity, extensibility, and testability required for this simulation program, the strategy design pattern is best suited.
 
@@ -19,9 +26,9 @@ The strategy design pattern allows us to select an algorithm&rsquo;s behavior at
 This allows for adding new - or removing, variables without affecting the overall structure of the simulation, and without having to change the main simulation code. This separation of concerns makes it easier to write tests for each strategy.
 
 
-<a id="org69827a2"></a>
+<a id="org2529fb6"></a>
 
-### Benefits
+## Benefits
 
 -   *Flexibility*: It allows us to dynamically choose between different behaviors.
 
@@ -30,39 +37,67 @@ This allows for adding new - or removing, variables without affecting the overal
 -   *Testability*: We can test behaviors individually, isolated from the rest of the system.
 
 
-<a id="orgc799de0"></a>
+<a id="org2201866"></a>
 
-### Basic Classes
+## Basic Classes
 
 The individual Classes and basic relationships are as follows:
 
-1.  Simulation Suite
 
-    ![img](./res/pss.png)
+<a id="orgf11a81f"></a>
 
-2.  Simulator
+### Interfaces
 
-    ![img](./res/simulator.png)
-
-3.  Projectile
-
-    ![img](./res/projectile.png)
-
-4.  Handlers
-
-    ![img](./res/handlers.png)
-
-5.  Interfaces
-
-    ![img](./res/interfaces.png)
-
-6.  Factories
-
-    ![img](./res/factories.png)
+![img](interfaces.png)
 
 
-<a id="orga050aab"></a>
+<a id="org22d7394"></a>
+
+### Handlers
+
+![img](handlers.png)
+
+
+<a id="org0c709cf"></a>
+
+### Factories
+
+![img](factories.png)
+
+
+<a id="orgd128678"></a>
+
+### Projectile
+
+![img](projectile.png)
+
+
+<a id="orgd967769"></a>
+
+### Enums
+
+![img](enums.png)
+
+
+<a id="orgbce01c1"></a>
+
+### Simulator
+
+![img](simulator.png)
+
+
+<a id="orgd2520ca"></a>
+
+### Simulation Suite
+
+![img](pss.png)
+
+
+<a id="org4681038"></a>
 
 # Overall Class Diagram
 
-![img](./res/suite.png)
+For readability, stub classes and settings enums are not included in this diagram, refer to diagrams above for details.
+
+![img](suite.png)
+

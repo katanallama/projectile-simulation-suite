@@ -1,4 +1,8 @@
-# README
+# Projectile Simulation Suite
+
+Java package to simulate projectile motion in 3 dimensions. Provides an interactive 3d plot of the trajectory and a console output of the position over time.
+
+![pss simulation](./docs/res/rec.gif)
 
 ## Project Documentation
 
@@ -6,7 +10,7 @@ All project related documentation found [here](/docs/README.org)
 
 ### Build with Nix/Maven
 
-This project utilizes a Nix flake to build the project and provide a `devShell` with the build dependencies; `jdt-language-server`; `maven`; and the built `pss` package using `direnv` to automatically load the environment. Additionally, the flake provides the project as the default package.
+This project utilizes a Nix flake to build the project and provide a `devShell` with the build dependencies `jdt-language-server`and `maven`using `direnv` to automatically load the environment. Additionally, the flake provides the project as the default package.
 
 **To build the project from the flake:**
 
@@ -20,11 +24,13 @@ If using `direnv` run `direnv allow` in project root
 
 #### Adding new dependencies
 
-To update the dependencies, update `pom.xml` and set the [output hash](./.build-maven-repo.nix) in `.build-maven-repo.nix` :
+To update the dependencies, update `pom.xml` run `nix build` and set the [mvnHash](./default.nix) in `./default.nix` :
 
 `outputHash = "";` remove the old hash
 
-`direnv reload`, so long as you have `direnv` installed
+`direnv reload`, so long as you have `direnv` installed or,
+
+`nix build`
 
 ```
 warning: found empty hash, assuming 'sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='
@@ -34,13 +40,13 @@ error: hash mismatch in fixed-output derivation '/nix/store/p635baxv930v2bb4k527
             got:    sha256-CrXCiJgU5kKywK7D01YrSk+teXkAMvrYmbNCh7lWX0I=
 ```
 
-Update the hash in `.build-maven-repo.nix`:
+Update the hash in `./default.nix`:
 
 `outputHash = "sha256-CrXCiJgU5kKywK7D01YrSk+teXkAMvrYmbNCh7lWX0I=";`
 
 `direnv reload`
 
-The environment should reload on the next command as `direnv` is set to watch `*.*.nix` and `pom.xml`
+The environment should reload on the next command as `direnv` is set to watch `*.nix` and `pom.xml`
 
 ### Build with Maven
 
