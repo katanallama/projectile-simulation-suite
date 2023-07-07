@@ -9,9 +9,11 @@ This suite visualizes the projectile's trajectory in 3D and provides real-time d
 
 ## Project Documentation
 
-All project related documentation found [here](/docs/README.org)
+Checkout the [documentation](/docs/README.org)
 
-### Build with Nix/Maven
+Visit the [Project Roadmap](/docs/schedule.md)
+
+## Build with Nix/Maven
 
 This project utilizes a Nix flake to build the project and provide a `devShell` with the build dependencies `jdt-language-server`and `maven`using `direnv` to automatically load the environment. Additionally, the flake provides the project as the default package.
 
@@ -61,4 +63,3 @@ Install [Maven](https://maven.apache.org/)
 
 - `mvn exec:java` to run the main class
 
-## [Project Roadmap](/docs/schedule.md)
