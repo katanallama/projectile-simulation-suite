@@ -1,6 +1,9 @@
 # Projectile Simulation Suite
+Java-based howitzer firing simulator offering an interactive 3D experience to understand complex kinematics and dynamics principles. The simulator considers numerous real-world parameters such as projectile mass, drag coefficient, initial speed, and gravity.
 
-Java package to simulate projectile motion in 3 dimensions. Provides an interactive 3d plot of the trajectory and a console output of the position over time.
+The primary focus of this suite is to serve as a platform for rigorous software testing practices. Apart from being a physics learning tool, it also allows us to design and execute extensive test suites, ensuring the software's reliability and robustness.
+
+This suite visualizes the projectile's trajectory in 3D and provides real-time data output of the projectile's position, making it an efficient tool for both learning and software quality assurance.
 
 ![pss simulation](./docs/res/rec.gif)
 
