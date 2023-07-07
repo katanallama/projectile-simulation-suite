@@ -1,21 +1,22 @@
 
 # Table of Contents
 
-1.  [Design Choices](#orge7e4e1e)
-    1.  [Benefits](#org2529fb6)
-    2.  [Basic Classes](#org2201866)
-        1.  [Interfaces](#orgf11a81f)
-        2.  [Handlers](#org22d7394)
-        3.  [Factories](#org0c709cf)
-        4.  [Projectile](#orgd128678)
-        5.  [Enums](#orgd967769)
-        6.  [Simulator](#orgbce01c1)
-        7.  [Simulation Suite](#orgd2520ca)
-2.  [Overall Class Diagram](#org4681038)
+1.  [Design Choices](#org5ab0ffc)
+    1.  [Benefits](#org2fb050e)
+    2.  [Basic Classes](#orgdf102ae)
+        1.  [Interfaces](#org505796c)
+        2.  [Handler Stubs](#orgc7119c1)
+        3.  [Handlers](#org41e51f2)
+        4.  [Factories](#orgf42c553)
+        5.  [Projectile](#org8fe4830)
+        6.  [Enums](#orgb5e33d7)
+        7.  [Simulator](#org4d983f6)
+        8.  [Simulation Suite](#orga29c91f)
+2.  [Overall Class Diagram](#org4a6dbf0)
 
 
 
-<a id="orge7e4e1e"></a>
+<a id="org5ab0ffc"></a>
 
 # Design Choices
 
@@ -26,7 +27,7 @@ The strategy design pattern allows us to select an algorithm&rsquo;s behavior at
 This allows for adding new - or removing, variables without affecting the overall structure of the simulation, and without having to change the main simulation code. This separation of concerns makes it easier to write tests for each strategy.
 
 
-<a id="org2529fb6"></a>
+<a id="org2fb050e"></a>
 
 ## Benefits
 
@@ -37,67 +38,73 @@ This allows for adding new - or removing, variables without affecting the overal
 -   *Testability*: We can test behaviors individually, isolated from the rest of the system.
 
 
-<a id="org2201866"></a>
+<a id="orgdf102ae"></a>
 
 ## Basic Classes
 
 The individual Classes and basic relationships are as follows:
 
 
-<a id="orgf11a81f"></a>
+<a id="org505796c"></a>
 
 ### Interfaces
 
-![img](interfaces.png)
+![img](./res/interfaces.png)
 
 
-<a id="org22d7394"></a>
+<a id="orgc7119c1"></a>
+
+### Handler Stubs
+
+![img](./res/handlerstubs.png)
+
+
+<a id="org41e51f2"></a>
 
 ### Handlers
 
-![img](handlers.png)
+![img](./res/handlers.png)
 
 
-<a id="org0c709cf"></a>
+<a id="orgf42c553"></a>
 
 ### Factories
 
-![img](factories.png)
+![img](./res/factories.png)
 
 
-<a id="orgd128678"></a>
+<a id="org8fe4830"></a>
 
 ### Projectile
 
-![img](projectile.png)
+![img](./res/projectile.png)
 
 
-<a id="orgd967769"></a>
+<a id="orgb5e33d7"></a>
 
 ### Enums
 
-![img](enums.png)
+![img](./res/enums.png)
 
 
-<a id="orgbce01c1"></a>
+<a id="org4d983f6"></a>
 
 ### Simulator
 
-![img](simulator.png)
+![img](./res/simulator.png)
 
 
-<a id="orgd2520ca"></a>
+<a id="orga29c91f"></a>
 
 ### Simulation Suite
 
-![img](pss.png)
+![img](./res/pss.png)
 
 
-<a id="org4681038"></a>
+<a id="org4a6dbf0"></a>
 
 # Overall Class Diagram
 
 For readability, stub classes and settings enums are not included in this diagram, refer to diagrams above for details.
 
-![img](suite.png)
-
+![img](./res/suite.png)

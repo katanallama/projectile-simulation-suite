@@ -72,42 +72,13 @@ IGetConfiguration <|.. GetProjectileGravity: implements
 #+RESULTS:
 [[file:interfaces.png]]
 
-*** Handlers
+*** Handler Stubs
 
-#+begin_src plantuml :file handlers.png
+#+begin_src plantuml :file handlerstubs.png
 @startuml
-title Handlers Diagram
+title Handler Stubs Diagram
 
-package handlers {
-    class "ConsoleOutputer" as ConsoleOutputer {
-        +outputResults(results: Vector3d[]): void
-        -formatVector(vector: Vector3d): String
-        -formatDouble(value: double): String
-    }
-
-    class "GetProjectileGravity" as GetProjectileGravity {
-        -_configurationHandler: IGetConfiguration
-        -_projectileHandler: IGetProjectile
-        +GetProjectileGravity(configurationHandler: IGetConfiguration, projectileHander: IGetProjectile)
-        +getProjectileGravity(): Vector3d
-    }
-
-    class "GetProjectile" as GetProjectile {
-        -_configurationHandler: IGetConfiguration
-        -_instance: Projectile
-        +GetProjectile(configurationHandler: IGetConfiguration)
-        +getProjectile(): Projectile
-        -createProjectile(): Projectile
-    }
-
-    class "StubGetConfiguration" as StubGetConfiguration {
-        -_settings: HashMap<String, Object>
-        +StubGetConfiguration()
-        +StubGetConfiguration(settings: HashMap<String, Object>)
-        +getSetting(settingName: String): T
-        -initializeSettings(): void
-    }
-
+package handlerstubs {
     class "StubGetProjectileDrag" as StubGetProjectileDrag {
         +getProjectileDrag(): Vector3d
     }
@@ -115,65 +86,119 @@ package handlers {
     class "StubGetProjectileForce" as StubGetProjectileForce {
         +getProjectileForce(): Vector3d
     }
+}
 
-    class "ChartOutputer3d" as ChartOutputer3d {
-        -lineStrip: LineStrip
-        +outputResults(results: Vector3d[]): void
-        +init(): void
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:handlerstubs.png]]
+
+*** Handlers
+
+#+begin_src plantuml :file handlers.png
+@startuml
+title Handlers Diagram
+
+package handlers {
+    together {
+        class "ConsoleOutputer" as ConsoleOutputer {
+            +outputResults(results: Vector3d[]): void
+            -formatVector(vector: Vector3d): String
+            -formatDouble(value: double): String
+        }
+
+
+
+        class "ChartOutputer" as ChartOutputer {
+            +outputResults(results: Vector3d[]): void
+        }
+
+        class "ChartOutputer3d" as ChartOutputer3d {
+            -lineStrip: LineStrip
+            +outputResults(results: Vector3d[]): void
+            +init(): void
+        }
+
+        class "ChartOutputer3dNonACC" as ChartOutputer3dNonACC {
+            +outputResults(results: Vector3d[]): void
+            +displayChart(lineStrip: LineStrip): void
+        }
     }
 
-    class "ChartOutputer3dNonACC" as ChartOutputer3dNonACC {
-        +outputResults(results: Vector3d[]): void
-        +displayChart(lineStrip: LineStrip): void
+    together {
+        class "GetProjectile" as GetProjectile {
+            -_configurationHandler: IGetConfiguration
+            -_instance: Projectile
+            +GetProjectile(configurationHandler: IGetConfiguration)
+            +getProjectile(): Projectile
+            -createProjectile(): Projectile
+        }
+
+        class "GetProjectileGravity" as GetProjectileGravity {
+            -_configurationHandler: IGetConfiguration
+            -_projectileHandler: IGetProjectile
+            +GetProjectileGravity(configurationHandler: IGetConfiguration, projectileHander: IGetProjectile)
+            +getProjectileGravity(): Vector3d
+        }
+
+        class "GetProjectileConstantContinualForce" as GetProjectileConstantContinualForce {
+            -_configurationHandler: IGetConfiguration
+            -_projectileHandler: IGetProjectile
+            +GetProjectileConstantContinualForce(configurationHandler: IGetConfiguration, projectileHandler: IGetProjectile)
+            +getProjectileForce(): Vector3d
+        }
+
+        class "GetProjectileDrag" as GetProjectileDrag {
+            -_configurationHandler: IGetConfiguration
+            -_projectileHandler: IGetProjectile
+            +GetProjectileDrag(configurationHandler: IGetConfiguration, projectileHandler: IGetProjectile)
+            +getProjectileDrag(): Vector3d
+        }
     }
 
+    together {
+        class "BaseGetConfiguration" {
+            -_settings: HashMap<String, Object>
+            +BaseGetConfiguration()
+            +BaseGetConfiguration(settings: HashMap<String, Object>)
+            +getSetting(setting: Settings): T
+            +overrideSettings(settings: HashMap<String, Object>): void
+            +overrideSetting(key: String, value: Object): void
+        }
 
-    class "GetProjectileConstantContinualForce" as GetProjectileConstantContinualForce {
-        -_configurationHandler: IGetConfiguration
-        -_projectileHandler: IGetProjectile
-        +GetProjectileConstantContinualForce(configurationHandler: IGetConfiguration, projectileHandler: IGetProjectile)
-        +getProjectileForce(): Vector3d
-    }
-
-    class "GetProjectileDrag" as GetProjectileDrag {
-        -_configurationHandler: IGetConfiguration
-        -_projectileHandler: IGetProjectile
-        +GetProjectileDrag(configurationHandler: IGetConfiguration, projectileHandler: IGetProjectile)
-        +getProjectileDrag(): Vector3d
-    }
-
-    class "BaseGetConfiguration" {
-        -_settings: HashMap<String, Object>
-        +BaseGetConfiguration()
-        +BaseGetConfiguration(settings: HashMap<String, Object>)
-        +getSetting(setting: Settings): T
-        +overrideSettings(settings: HashMap<String, Object>): void
-        +overrideSetting(key: String, value: Object): void
-    }
-
-    class "FileGetConfiguration" {
-        -FILE_PATH: String = "simulatorSettings.json"
-        +FileGetConfiguration()
-        +FileGetConfiguration(settings: HashMap<String, Object>)
-        +parseJsonFile(filePath: String): HashMap<String, Object>
-        -initializeSettings(): void
+        class "FileGetConfiguration" {
+            -FILE_PATH: String = "simulatorSettings.json"
+            +FileGetConfiguration()
+            +FileGetConfiguration(settings: HashMap<String, Object>)
+            +parseJsonFile(filePath: String): HashMap<String, Object>
+            -initializeSettings(): void
+        }
     }
 
 }
 
+ConsoleOutputer-[hidden]right--> ChartOutputer3d
+BaseGetConfiguration-[hidden]right--> ChartOutputer
+ChartOutputer3d-[hidden]right--> ChartOutputer3dNonACC
+ChartOutputer-[hidden]right--> ConsoleOutputer
 
-IOutputResults <.up. ConsoleOutputer: implements
-IGetProjectileForce <.up. GetProjectileConstantContinualForce: implements
-IGetProjectileDrag <.up. GetProjectileDrag: implements
-GetProjectileGravity ..|> IGetProjectileGravity
-GetProjectile ..|> IGetProjectile
-StubGetConfiguration ..|> IGetConfiguration
-StubGetProjectileDrag ..|> IGetProjectileDrag
-StubGetProjectileForce ..|> IGetProjectileForce
-I3dOutputer <.up. ChartOutputer3d: implements
-I3dOutputer <.up. ChartOutputer3dNonACC: implements
-IGetConfiguration <|-- BaseGetConfiguration: extends
-BaseGetConfiguration <|-- FileGetConfiguration: extends
+GetProjectileConstantContinualForce-[hidden]left--> FileGetConfiguration
+GetProjectileConstantContinualForce-[hidden]right--> GetProjectile
+GetProjectileDrag-[hidden]up--> GetProjectileConstantContinualForce
+
+IGetProjectileForce <.down. GetProjectileConstantContinualForce: implements
+IGetProjectileDrag <.down. GetProjectileDrag: implements
+IGetProjectileGravity <.down. GetProjectileGravity: implements
+IGetProjectile <.down. GetProjectile: implements
+
+IOutputResults <.right. ChartOutputer: implements
+IOutputResults <.right. ConsoleOutputer: implements
+I3dOutputer <.right. ChartOutputer3d: implements
+I3dOutputer <.right. ChartOutputer3dNonACC: implements
+
+IGetConfiguration <|-down- BaseGetConfiguration: extends
+BaseGetConfiguration <|-down- FileGetConfiguration: extends
 
 @enduml
 #+end_src
@@ -542,3 +567,6 @@ ProjectileSimulationSuite --> IOutputResults: uses
 
 @enduml
 #+end_src
+
+#+RESULTS:
+[[file:suite.png]]
