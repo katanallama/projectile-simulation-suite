@@ -1,108 +1,88 @@
 
 # Table of Contents
 
-1.  [Schedule <code>[1/4]</code>](#org249871a)
-    1.  [Development <code>[1/3]</code>](#orgd027a10)
-        1.  [Development](#org2fbdcc5)
-        2.  [Implement the input and output handling](#org56000d3)
-        3.  [Physics simulation Itr 1](#org712b4ba)
-        4.  [Physics simulation Itr 2](#org055e0d4)
-    2.  [Testing <code>[0/3]</code>](#org7c5dbb7)
-        1.  [Unit Testing](#org200a99c)
-        2.  [Integration Testing](#orgb507af1)
-        3.  [System Testing](#org7def42b)
-    3.  [Docs & Submission <code>[0/3]</code>](#org0b7c9ce)
-        1.  [Documentation](#orgcf92ffe)
-        2.  [Review and Final Adjustments](#org22d0c18)
-        3.  [Final Submission](#org7ac8627)
-2.  [Completed](#org59972b3)
-    1.  [Set Up Development Environment](#org21ebf59)
-    2.  [Develop Initial Understanding](#org6b327fc)
-        1.  [Problem Spec readme](#orgae4074f)
-    3.  [Design <code>[0/0]</code>](#orgb250fcf)
-        1.  [Initial Design](#org2270545)
-        2.  [Define system specifications](#org1267fd6)
-        3.  [Design the software architecture](#org4529c12)
-    4.  [Development](#org4dca766)
-        1.  [Misc](#org683b406)
+1.  [Schedule <code>[1/4]</code>](#orgafef1a8)
+    1.  [Development <code>[2/6]</code>](#org34f6171)
+        1.  [Implement the input and output handling](#org454e1d1)
+        2.  [Review Itr 1](#org2bdf4c7)
+        3.  [Physics simulation Itr 2](#org9350c7e)
+        4.  [Review Itr 2](#org0311b6f)
+    2.  [Testing <code>[0/3]</code>](#orgecacf7d)
+        1.  [Unit Testing](#org07d39b9)
+        2.  [Integration Testing](#org82d1ff8)
+        3.  [System Testing](#orgdc38708)
+    3.  [Docs & Submission <code>[0/3]</code>](#org5ad90dd)
+        1.  [Documentation](#org8635d54)
+        2.  [Review and Final Adjustments](#orgfaec38f)
+        3.  [Final Submission](#org3b41e67)
+2.  [Completed](#orgc8cff4f)
+    1.  [Set Up Development Environment](#org46b1d4e)
+    2.  [Develop Initial Understanding](#org3d00a4f)
+        1.  [Problem Spec readme](#org9879e54)
+    3.  [Design <code>[0/0]</code>](#org6bfeee5)
+        1.  [Initial Design](#org8349596)
+        2.  [Define system specifications](#org895f738)
+        3.  [Design the software architecture](#org6b66cf6)
+    4.  [Development](#org0a6b79f)
+        1.  [Misc](#org9fa91b4)
+        2.  [Physics simulation Itr 1](#org3d38bef)
 
 
 
-<a id="org249871a"></a>
+<a id="orgafef1a8"></a>
 
 # PROJ Schedule <code>[1/4]</code>
 
 
-<a id="orgd027a10"></a>
+<a id="org34f6171"></a>
 
-## TODO Development <code>[1/3]</code>
-
-
-<a id="org2fbdcc5"></a>
-
-### DONE Development
-
-<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-18 Sun&gt;</span></span></p>
-
--   [X] Set up the basic structure of the simulator
--   [X] Create the basic classes and functions as per the software architecture
--   [X] Set up a basic UI if necessary, depending on plan to represent the simulator
+## TODO Development <code>[2/6]</code>
 
 
-<a id="org56000d3"></a>
+<a id="org454e1d1"></a>
 
 ### TODO Implement the input and output handling
 
 <p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-27 Tue&gt;</span></span></p>
 
--   [ ] Develop the logic for users to input the variables for the simulation
-    -   [ ] json file parsing (gson)
-    -   [ ] cli arguments (picocli)
+-   [X] Develop the logic for users to input the variables for the simulation
+    -   [X] json file parsing (gson)
+-   [ ] cli arguments (picocli)
 -   [ ] Implement the logic for displaying the output of the simulation
     -   Currently prints a tuple(x, y, z) coordinates of the projectile in the vector space
 
 
-<a id="org712b4ba"></a>
+<a id="org2bdf4c7"></a>
 
-### TODO Physics simulation Itr 1
+### TODO Review Itr 1
 
 <p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-27 Tue&gt;</span></span></p>
 
-First iteration will include external force and drag in a unidirectional, time invariant vector space
-
--   [ ] Translate the physics formulas into Java code, options:
-    -   [ ] hard coded kinematics
-    -   [ ] parse equations to function
--   [ ] Implement the logic for simulating projectile movement
-    -   [ ] external force applied
-    -   [ ] drag force applied
-
-1.  TODO Review Itr 1
-
-    <p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-27 Tue&gt;</span></span></p>
-    
-    -   [ ] Ensure that all key variables incorporated into the simulation correctly
-    -   [ ] Ensure that errors in inputs handled gracefully
-    -   [ ] Align on path forward for next iteration
+-   [ ] Ensure that all key variables incorporated into the simulation correctly
+-   [ ] Ensure that errors in inputs handled gracefully
+-   [ ] Align on path forward for next iteration
 
 
-<a id="org055e0d4"></a>
+<a id="org9350c7e"></a>
 
 ### TODO Physics simulation Itr 2
 
-<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-04 Tue&gt;</span></span></p>
-
-1.  TODO Review Itr 2
-
-    <p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-04 Tue&gt;</span></span></p>
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-11 Tue&gt;</span></span></p>
 
 
-<a id="org7c5dbb7"></a>
+<a id="org0311b6f"></a>
+
+### TODO Review Itr 2
+
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-07-13 Thu&gt;</span></span></p>
+
+
+<a id="orgecacf7d"></a>
 
 ## TODO Testing <code>[0/3]</code>
 
 
-<a id="org200a99c"></a>
+<a id="org07d39b9"></a>
 
 ### TODO Unit Testing
 
@@ -117,7 +97,7 @@ First iteration will include external force and drag in a unidirectional, time i
 -   [ ] Develop slice tests
 
 
-<a id="orgb507af1"></a>
+<a id="org82d1ff8"></a>
 
 ### TODO Integration Testing
 
@@ -127,7 +107,7 @@ First iteration will include external force and drag in a unidirectional, time i
 -   [ ] Develop and execute integration tests
 
 
-<a id="org7def42b"></a>
+<a id="orgdc38708"></a>
 
 ### TODO System Testing
 
@@ -137,12 +117,12 @@ First iteration will include external force and drag in a unidirectional, time i
 -   [ ] Develop and execute system tests
 
 
-<a id="org0b7c9ce"></a>
+<a id="org5ad90dd"></a>
 
 ## TODO Docs & Submission <code>[0/3]</code>
 
 
-<a id="orgcf92ffe"></a>
+<a id="org8635d54"></a>
 
 ### TODO Documentation
 
@@ -153,7 +133,7 @@ First iteration will include external force and drag in a unidirectional, time i
 -   [ ] Ensure code is commented
 
 
-<a id="org22d0c18"></a>
+<a id="orgfaec38f"></a>
 
 ### TODO Review and Final Adjustments
 
@@ -163,19 +143,19 @@ First iteration will include external force and drag in a unidirectional, time i
 -   [ ] Make necessary adjustments
 
 
-<a id="org7ac8627"></a>
+<a id="org3b41e67"></a>
 
 ### TODO Final Submission
 
 <p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-08-02 Wed&gt;</span></span></p>
 
 
-<a id="org59972b3"></a>
+<a id="orgc8cff4f"></a>
 
 # Completed
 
 
-<a id="org21ebf59"></a>
+<a id="org46b1d4e"></a>
 
 ## DONE Set Up Development Environment
 
@@ -185,7 +165,7 @@ First iteration will include external force and drag in a unidirectional, time i
 -   [X] Setup GitHub repository
 
 
-<a id="org6b327fc"></a>
+<a id="org3d00a4f"></a>
 
 ## DONE Develop Initial Understanding
 
@@ -196,7 +176,7 @@ First iteration will include external force and drag in a unidirectional, time i
 -   [X] Research on best practices for java testing frameworks
 
 
-<a id="orgae4074f"></a>
+<a id="org9879e54"></a>
 
 ### DONE Problem Spec readme
 
@@ -209,12 +189,12 @@ First iteration will include external force and drag in a unidirectional, time i
 3.  DONE Requirements
 
 
-<a id="orgb250fcf"></a>
+<a id="org6bfeee5"></a>
 
 ## DONE Design <code>[0/0]</code>
 
 
-<a id="org2270545"></a>
+<a id="org8349596"></a>
 
 ### DONE Initial Design
 
@@ -225,7 +205,7 @@ First iteration will include external force and drag in a unidirectional, time i
 -   [X] Understand the physics formulas provided and how they apply to the problem
 
 
-<a id="org1267fd6"></a>
+<a id="org895f738"></a>
 
 ### DONE Define system specifications
 
@@ -236,7 +216,7 @@ First iteration will include external force and drag in a unidirectional, time i
 -   [X] Discuss and agree on how these variables will be represented and manipulated in the simulator
 
 
-<a id="org4529c12"></a>
+<a id="org6b66cf6"></a>
 
 ### DONE Design the software architecture
 
@@ -248,15 +228,37 @@ First iteration will include external force and drag in a unidirectional, time i
 -   [X] Sketch out a flowchart or UML diagram of the proposed system for visualization
 
 
-<a id="org4dca766"></a>
+<a id="org0a6b79f"></a>
 
 ## DONE Development
 
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-18 Sun&gt;</span></span></p>
 
-<a id="org683b406"></a>
+
+<a id="org9fa91b4"></a>
 
 ### Misc
 
 -   [X] Set up action to run tests on github
 -   [X] Set up action to mirror repo to gitlab
+
+-   [X] Set up the basic structure of the simulator
+-   [X] Create the basic classes and functions as per the software architecture
+-   [X] Set up a basic UI if necessary, depending on plan to represent the simulator
+
+
+<a id="org3d38bef"></a>
+
+### DONE Physics simulation Itr 1
+
+<p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp">&lt;2023-06-27 Tue&gt;</span></span></p>
+
+First iteration will include external force and drag in a unidirectional, time invariant vector space
+
+-   [X] Translate the physics formulas into Java code, options:
+    -   [X] hard coded kinematics
+    -   [X] parse equations to function
+-   [X] Implement the logic for simulating projectile movement
+    -   [X] external force applied
+    -   [X] drag force applied
 

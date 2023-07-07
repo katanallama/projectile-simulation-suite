@@ -1,12 +1,21 @@
-# README
+# Projectile Simulation Suite
+Java-based howitzer firing simulator offering an interactive 3D experience to understand complex kinematics and dynamics principles. The simulator considers numerous real-world parameters such as projectile mass, drag coefficient, initial speed, and gravity.
+
+The primary focus of this suite is to serve as a platform for rigorous software testing practices. Apart from being a physics learning tool, it also allows us to design and execute extensive test suites, ensuring the software's reliability and robustness.
+
+This suite visualizes the projectile's trajectory in 3D and provides real-time data output of the projectile's position, making it an efficient tool for both learning and software quality assurance.
+
+![pss simulation](./docs/res/rec.gif)
 
 ## Project Documentation
 
-All project related documentation found [here](/docs/README.org)
+Checkout the [documentation](/docs/README.org)
 
-### Build with Nix/Maven
+Visit the [Project Roadmap](/docs/schedule.md)
 
-This project utilizes a Nix flake to build the project and provide a `devShell` with the build dependencies; `jdt-language-server`; `maven`; and the built `pss` package using `direnv` to automatically load the environment. Additionally, the flake provides the project as the default package.
+## Build with Nix/Maven
+
+This project utilizes a Nix flake to build the project and provide a `devShell` with the build dependencies `jdt-language-server`and `maven`using `direnv` to automatically load the environment. Additionally, the flake provides the project as the default package.
 
 **To build the project from the flake:**
 
@@ -20,11 +29,13 @@ If using `direnv` run `direnv allow` in project root
 
 #### Adding new dependencies
 
-To update the dependencies, update `pom.xml` and set the [output hash](./.build-maven-repo.nix) in `.build-maven-repo.nix` :
+To update the dependencies, update `pom.xml` run `nix build` and set the [mvnHash](./default.nix) in `./default.nix` :
 
 `outputHash = "";` remove the old hash
 
-`direnv reload`, so long as you have `direnv` installed
+`direnv reload`, so long as you have `direnv` installed or,
+
+`nix build`
 
 ```
 warning: found empty hash, assuming 'sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='
@@ -34,13 +45,13 @@ error: hash mismatch in fixed-output derivation '/nix/store/p635baxv930v2bb4k527
             got:    sha256-CrXCiJgU5kKywK7D01YrSk+teXkAMvrYmbNCh7lWX0I=
 ```
 
-Update the hash in `.build-maven-repo.nix`:
+Update the hash in `./default.nix`:
 
 `outputHash = "sha256-CrXCiJgU5kKywK7D01YrSk+teXkAMvrYmbNCh7lWX0I=";`
 
 `direnv reload`
 
-The environment should reload on the next command as `direnv` is set to watch `*.*.nix` and `pom.xml`
+The environment should reload on the next command as `direnv` is set to watch `*.nix` and `pom.xml`
 
 ### Build with Maven
 
@@ -52,4 +63,3 @@ Install [Maven](https://maven.apache.org/)
 
 - `mvn exec:java` to run the main class
 
-## [Project Roadmap](/docs/schedule.md)

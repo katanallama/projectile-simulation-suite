@@ -3,43 +3,27 @@
 
 * PROJ Schedule [1/4]
 
-** TODO Development [1/3]
-
-*** DONE Development
-DEADLINE: <2023-06-18 Sun>
-- [X] Set up the basic structure of the simulator
-- [X] Create the basic classes and functions as per the software architecture
-- [X] Set up a basic UI if necessary, depending on plan to represent the simulator
+** TODO Development [2/6]
 
 *** TODO Implement the input and output handling
 DEADLINE: <2023-06-27 Tue>
-- [ ] Develop the logic for users to input the variables for the simulation
-  - [ ] json file parsing (gson)
-  - [ ] cli arguments (picocli)
+- [X] Develop the logic for users to input the variables for the simulation
+  - [X] json file parsing (gson)
+- [ ] cli arguments (picocli)
 - [ ] Implement the logic for displaying the output of the simulation
   - Currently prints a tuple(x, y, z) coordinates of the projectile in the vector space
 
-*** TODO Physics simulation Itr 1
-DEADLINE: <2023-06-27 Tue>
-First iteration will include external force and drag in a unidirectional, time invariant vector space
-- [ ] Translate the physics formulas into Java code, options:
-  - [ ] hard coded kinematics
-  - [ ] parse equations to function
-- [ ] Implement the logic for simulating projectile movement
-  - [ ] external force applied
-  - [ ] drag force applied
-
-**** TODO Review Itr 1
+*** TODO Review Itr 1
 DEADLINE: <2023-06-27 Tue>
 - [ ] Ensure that all key variables incorporated into the simulation correctly
 - [ ] Ensure that errors in inputs handled gracefully
 - [ ] Align on path forward for next iteration
 
 *** TODO Physics simulation Itr 2
-DEADLINE: <2023-07-04 Tue>
+DEADLINE: <2023-07-11 Tue>
 
-**** TODO Review Itr 2
-DEADLINE: <2023-07-04 Tue>
+*** TODO Review Itr 2
+DEADLINE: <2023-07-13 Thu>
 
 
 ** TODO Testing [0/3]
@@ -83,6 +67,7 @@ DEADLINE: <2023-08-02 Wed>
 
 
 * Completed
+
 ** DONE Set Up Development Environment
 DEADLINE: <2023-05-23 Tue>
 - [X] Install necessary software
@@ -123,7 +108,21 @@ DEADLINE: <2023-06-11 Sun>
 
 
 ** DONE Development
-
+DEADLINE: <2023-06-18 Sun>
 *** Misc
 - [X] Set up action to run tests on github
 - [X] Set up action to mirror repo to gitlab
+
+- [X] Set up the basic structure of the simulator
+- [X] Create the basic classes and functions as per the software architecture
+- [X] Set up a basic UI if necessary, depending on plan to represent the simulator
+
+*** DONE Physics simulation Itr 1
+DEADLINE: <2023-06-27 Tue>
+First iteration will include external force and drag in a unidirectional, time invariant vector space
+- [X] Translate the physics formulas into Java code, options:
+  - [X] hard coded kinematics
+  - [X] parse equations to function
+- [X] Implement the logic for simulating projectile movement
+  - [X] external force applied
+  - [X] drag force applied
