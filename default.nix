@@ -15,7 +15,7 @@ in
   maven.buildMavenPackage rec {
     inherit pname name src version;
 
-    mvnHash = "sha256-mBF36zHv1BRf3E4uD2uaGBT1EyydDrbkSmT+v2wAfYg=";
+    mvnHash = "sha256-f/D+MCdFGRlGcaoB4wJcCJV78Ter7EQadJQUJ/TmLbg=";
 
     nativeBuildInputs = [jdk17 maven makeWrapper];
 
