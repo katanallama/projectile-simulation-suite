@@ -3,21 +3,12 @@
 
 * PROJ Schedule [1/4]
 
-** TODO Development [2/6]
+** TODO Development [1/4]
+
 
 *** TODO Implement the input and output handling
 DEADLINE: <2023-06-27 Tue>
-- [X] Develop the logic for users to input the variables for the simulation
-  - [X] json file parsing (gson)
 - [ ] cli arguments (picocli)
-- [ ] Implement the logic for displaying the output of the simulation
-  - Currently prints a tuple(x, y, z) coordinates of the projectile in the vector space
-
-*** TODO Review Itr 1
-DEADLINE: <2023-06-27 Tue>
-- [ ] Ensure that all key variables incorporated into the simulation correctly
-- [ ] Ensure that errors in inputs handled gracefully
-- [ ] Align on path forward for next iteration
 
 *** TODO Physics simulation Itr 2
 DEADLINE: <2023-07-11 Tue>
@@ -30,13 +21,12 @@ DEADLINE: <2023-07-13 Thu>
 
 *** TODO Unit Testing
 DEADLINE: <2023-07-09 Sun>
-- [ ] Identify functions for testing
+- [X] Identify functions for testing
 - [ ] Develop boundary value tests
 - [ ] Develop equivalence class tests
-- [ ] Develop decision table-based tests
+- [X] Develop decision table-based tests
 - [ ] Develop path tests
 - [ ] Develop data flow tests
-- [ ] Develop slice tests
 
 *** TODO Integration Testing
 DEADLINE: <2023-07-09 Sun>
@@ -45,7 +35,7 @@ DEADLINE: <2023-07-09 Sun>
 
 *** TODO System Testing
 DEADLINE: <2023-07-09 Sun>
-- [ ] Identify subset of use cases for system testing
+- [X] Identify subset of use cases for system testing
 - [ ] Develop and execute system tests
 
 
@@ -53,7 +43,7 @@ DEADLINE: <2023-07-09 Sun>
 
 *** TODO Documentation
 DEADLINE: <2023-07-20 Thu>
-- [ ] Create README.md file
+- [X] Create README.md file
 - [ ] Create TESTING.md file
 - [ ] Ensure code is commented
 
@@ -73,6 +63,7 @@ DEADLINE: <2023-05-23 Tue>
 - [X] Install necessary software
 - [X] Setup GitHub repository
 
+
 ** DONE Develop Initial Understanding
 DEADLINE: <2023-06-02 Fri>
 - [X] Understand the physics involved in the simulation
@@ -84,6 +75,7 @@ DEADLINE: <2023-06-02 Fri>
 **** DONE Objectives
 **** DONE Functions
 **** DONE Requirements
+
 
 ** DONE Design [0/0]
 
@@ -126,3 +118,16 @@ First iteration will include external force and drag in a unidirectional, time i
 - [X] Implement the logic for simulating projectile movement
   - [X] external force applied
   - [X] drag force applied
+
+*** DONE Review Itr 1
+DEADLINE: <2023-06-27 Tue>
+- [X] Ensure that all key variables incorporated into the simulation correctly
+- [X] Ensure that errors in inputs handled gracefully
+- [X] Align on path forward for next iteration
+
+*** DONE Implement the input and output handling
+DEADLINE: <2023-06-27 Tue>
+- [X] Develop the logic for users to input the variables for the simulation
+  - [X] json file parsing (gson)
+- [X] Implement the logic for displaying the output of the simulation
+  - Currently prints a tuple(x, y, z) coordinates of the projectile in the vector space
