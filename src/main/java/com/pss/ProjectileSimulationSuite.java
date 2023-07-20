@@ -5,59 +5,86 @@ import com.pss.interfaces.*;
 import com.pss.handlers.*;
 
 import javax.vecmath.Vector3d;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * This class provides a suite for running projectile simulations.
+ * The simulations steps are computed, stored, and output to various formats.
+ */
 public class ProjectileSimulationSuite {
-    private static Vector3d[] _results;
-    private static IOutputResults[] _resultsOutputers;
-    private static final int MAX_OUTPUTERS = 4;
-    // private static final int MAX_OUTPUTERS = 3;
-    private static final int MAX_SIMSTEPS = 80;
-    private static IGetConfiguration _configHandler;
-    private static ProjectileSimulator _simulator;
 
+    private static int MAX_SIMSTEPS = 100;
+    private static int steps;
+    private static IOutputResults[] _resultsOutputers;
+    private static ProjectileSimulator _simulator;
+    private static List<Vector3d> _results;
+    private static Vector3d[] _sim_steps;
+
+    /**
+     * The main method of the suite. It initializes the simulation, runs it,
+     * and then outputs the results.
+     *
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         initSimulation();
 
         for (int t = 0; t < MAX_SIMSTEPS; t++) {
-            _results[t] = new Vector3d(0, 0, 0);
-            _results[t].add(_simulator.updatePosition());
+            _sim_steps[t] = new Vector3d(0, 0, 0);
+            _sim_steps[t].add(_simulator.updatePosition());
+            // Increment steps counter if the z coordinate is non-negative
+            if (_sim_steps[t].z >= 0)
+                steps++;
         }
-        
+
+        // Store the results
+        _results = new ArrayList<>(steps);
+        for (int i = 0; i < steps; i++) {
+            _results.add(_sim_steps[i]);
+        }
+
         outputResults();
     }
 
+    /**
+     * Initializes the simulation by getting outputers and creating a new simulator.
+     * The precision of the simulator is set by dividing the maximum number of
+     * simulation steps set by the precision of the time steps used in computation.
+     *
+     * The default setting is 100 steps at 0.001 precision which results in 100,000
+     * simulation steps total.
+     */
     private static void initSimulation() {
-        _results = new Vector3d[MAX_SIMSTEPS];
         _resultsOutputers = getOutputers();
-        _configHandler = new FileGetConfiguration();
+        _simulator = new MakeProjectileSimulator().createProjectileSimulator(new FileGetConfiguration());
+        MAX_SIMSTEPS = (int) (MAX_SIMSTEPS / _simulator.getTimeStep());
+        _sim_steps = new Vector3d[MAX_SIMSTEPS];
+    }
 
-        _simulator = new MakeProjectileSimulator().createProjectileSimulator(_configHandler);
-    };
-
+    /**
+     * Returns an array of output result handlers.
+     *
+     * @return An array of IOutputResults instances
+     */
     private static IOutputResults[] getOutputers() {
-        IOutputResults[] availableOutputers = new IOutputResults[MAX_OUTPUTERS];
-        availableOutputers[0] = new ConsoleOutputer();
-        availableOutputers[1] = new ChartOutputer();
-        availableOutputers[2] = new ChartOutputer3d();
-        availableOutputers[3] = new ChartOutputer3dNonACC();
+        IOutputResults[] availableOutputers = {
+                new ConsoleOutputer(),
+                new ChartOutputer(),
+                new ChartOutputer3d(),
+                new ChartOutputer3dNonACC()
+        };
 
-        // TODO Get this via config
-        IOutputResults[] outputers = new IOutputResults[getOutputerAmount()];
-        outputers[0] = availableOutputers[0];
-        outputers[1] = availableOutputers[1];
-        outputers[2] = availableOutputers[2];
-        outputers[3] = availableOutputers[3];
-        return outputers;
+        return availableOutputers;
     }
 
-    private static int getOutputerAmount() {
-        // return 3;
-        return 4;
-    }
-
+    /**
+     * Output the results using all available output result handlers.
+     */
     private static void outputResults() {
-        for(int i = 0; i < _resultsOutputers.length; i++) {
-            _resultsOutputers[i].outputResults(_results);
+        // For each outputer, output the results
+        for (IOutputResults outputer : _resultsOutputers) {
+            outputer.outputResults(_results.toArray(new Vector3d[0]), _simulator.getTimeStep());
         }
     }
 }
