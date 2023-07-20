@@ -1,0 +1,117 @@
+#+title: Test Suite
+#+OPTIONS: p:t
+
+* Decision Table Testing
+
+Before we start, it's important to understand what decision table-based testing is. This method is a black-box test design technique where test cases are designed to execute the combinations of inputs and/or stimuli (causes) shown in a decision table. A decision table is a good way to deal with combinations of things (e.g., inputs).
+
+To conduct Decision Table-Based testing on the ~getProjectileDrag()~ method, we begin by identifying the decisions the code is making and the variables those decisions are based on.
+
+These decisions encapsulate the business logic of the function, providing a well-defined set of rules for how the function should behave under various conditions. The goal of decision table testing is to ensure that these rules are being applied correctly and consistently across a broad range of potential scenarios.
+
+** Variables Involved
+
+- ~velocity~ : The velocity of the projectile.
+
+- ~rho~ : The density of the fluid in which the projectile is moving.
+
+- ~A~ : The cross-sectional area of the projectile.
+
+- ~Cd~ : The drag coefficient.
+
+
+** First Iteration
+
+*** Decisions Summary
+
+- If the projectile's velocity is ~(0, 0, 0)~, then the function immediately returns ~(0, 0, 0)~.
+
+- If not, the function calculates the drag force using the given parameters and returns the result.
+
+Based on these decisions and variables, we construct a decision table. However, as these variables are continuous and not discrete, creating a full decision table isn't feasible. Instead, we focus on testing key scenarios or boundaries which could be representative of the whole range of possible scenarios.
+
+
+*** Decision Table
+
+|     |                      | 1 | 2 |
+|-----+----------------------+---+---|
+| C1: | velocity = 0?        | T | F |
+|-----+----------------------+---+---|
+| A1: | Return (0,0,0)       | X | - |
+| A2: | Return Drag          | - | X |
+
+And the outputs:
+
+|   | C1:           | A1:            | A2:         |
+|   | velocity = 0? | Return (0,0,0) | Return Drag |
+| 1 | (0, 0 ,0)     | X              | -           |
+| 2 | (1, 1, 1)     | -              | X           |
+
+
+** Second Iteration
+
+Based on the second iteration of the function, we can see that some changes have been implemented, which require the decision table to be updated.
+
+*** Updated Decisions Summary
+
+The second iteration of ~getProjectileDrag()~ incorporates additional decisions based on the findings from the first iteration of testing.
+
+- If the velocity of the projectile is ~(0, 0, 0)~, then the function immediately returns a drag of ~(0, 0, 0)~. This corresponds to the physical intuition that if an object is not moving, it will not experience any drag.
+
+- If any =x, y= component of the velocity vector is negative, the function also returns a drag of ~(0, 0, 0)~. This corresponds to a physical model using relative positioning. We consider the origin as the howitzer position and the trajectory of a projectile as a positive displacement over time. This trajectory can then be overlaid onto any mapping of potential physical terrain.
+
+- Subsequently, the function proceeds to calculate the drag force using the parameters: fluid density ~rho~, the cross-sectional area of the projectile ~A~, the drag coefficient ~Cd~, and the current velocity squared ~vSquared~.
+
+- While calculating the drag, the function checks if the computed drag magnitude is greater than 0, which would mean the drag is in the same direction as the velocity. This is physically incorrect as the drag should always oppose the direction of velocity. If this condition is met, the function returns a drag of ~(0, 0, 0)~.
+
+If any of the above conditions are not met, the function calculates the drag force as per the equation and returns the resultant drag vector.
+
+
+*** Updated Decision Table
+
+The full decision table for the 4 conditions and \(2^{4} = 16\) rules:
+
+|     |                      | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
+|-----+----------------------+---+---+---+---+---+---+---+---+---+----+----+----+----+----+----+----|
+| C1: | ~velocity~ = 0?      | T | T | T | T | T | T | T | T | F | F  | F  | F  | F  | F  | F  | F  |
+| C2: | ~velocity.x, y~ < 0? | - | - | - | - | - | - | - | - | T | T  | T  | T  | F  | F  | F  | F  |
+| C3: | rho or A or Cd <= 0? | - | - | - | - | - | - | - | - | - | -  | -  | -  | T  | T  | F  | F  |
+| C4: | dragMagnitude > 0?   | - | - | - | - | - | - | - | - | - | -  | -  | -  | -  | F  | T  | F  |
+|-----+----------------------+---+---+---+---+---+---+---+---+---+----+----+----+----+----+----+----|
+| A1: | Return (0,0,0)       | X | X | X | X | X | X | X | X | X | X  | X  | X  | X  | X  | X  | -  |
+| A2: | Return Drag          | - | - | - | - | - | - | - | - | - | -  | -  | -  | -  | -  | -  | X  |
+
+Simplifying the full decision table:
+
+|     |                      | 1 | 2 | 3 | 4 |
+|-----+----------------------+---+---+---+---|
+| C1: | velocity = 0?        | T | T | F | F |
+| C2: | velocity.x, y < 0?   | - | T | T | F |
+| C3: | rho or A or Cd <= 0? | - | - | T | F |
+| C4: | dragMagnitude > 0?   | - | - | - | F |
+|-----+----------------------+---+---+---+---|
+| A1: | Return (0,0,0)       | X | X | X | - |
+| A2: | Return Drag          | - | - | - | X |
+
+The simplified table shows the dependency between some of the rules, but for robustness of testing the function will be tested with the extended set.
+
+
+|    | C1:             | C2:                  | C3:                  | C4:                | A1:            | A2:         |
+|    | ~velocity~ = 0? | ~velocity.x, y~ < 0? | rho or A or Cd <= 0? | dragMagnitude > 0? | Return (0,0,0) | Return Drag |
+|  1 | (0, 0, 0)       | -                    | -                    | -                  | X              | -           |
+|  2 | (1, 1, 1)       | (-1, 1, 1)           | -                    | -                  | X              | -           |
+|  3 | (1, 1, 1)       | (1, -1, 1)           | -                    | -                  | X              | -           |
+|  4 | (1, 1, 1)       | (1, 1, 1)            | rho = 0              | -                  | X              | -           |
+|  5 | (1, 1, 1)       | (1, 1, 1)            | A = 0                | -                  | X              | -           |
+|  6 | (1, 1, 1)       | (1, 1, 1)            | Cd = 0               | -                  | X              | -           |
+|  7 | (1, 1, 1)       | (1, 1, 1)            | rho = 0              | F                  | X              | -           |
+| 8  | (1, 1, 1)       | (1, 1, 1)            | A = 0                | F                  | X              | -           |
+| 9  | (1, 1, 1)       | (1, 1, 1)            | Cd = 0               | F                  | X              | -           |
+| 10 | (1, 1, 1)       | (1, 1, 1)            | rho = -1             | T                  | X              | -           |
+| 11 | (1, 1, 1)       | (1, 1, 1)            | A = -1               | T                  | X              | -           |
+| 12 | (1, 1, 1)       | (1, 1, 1)            | Cd = -1              | T                  | X              | -           |
+| 13 | (1, 1, 1)       | (1, 1, 1)            | rho = 1              | F                  | -              | X           |
+| 14 | (1, 1, 1)       | (1, 1, 1)            | A = 1                | F                  | -              | X           |
+| 15 | (1, 1, 1)       | (1, 1, 1)            | Cd = 1               | F                  | -              | X           |
+
+As seen from the revised decision table, we now have additional test cases where the velocity components are negative, testing the updated conditions in the function. This will provide a more thorough test of the function's logic and help identify any potential issues with these new conditions.
