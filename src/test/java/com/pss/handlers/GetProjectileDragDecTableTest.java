@@ -29,7 +29,7 @@ import org.mockito.quality.Strictness;
  * using decision table based testing methods.
  *
  * @see <a href=
- *      "https://docs.oracle.com/en/java/https://github.com/katanallama/projectile-simulation-suite/blob/main/docs/testing.md#decision-table-testing">Testing
+ *      "https://github.com/katanallama/projectile-simulation-suite/blob/main/docs/testing.md#decision-table-testing">Testing
  *      Documentation</a> describes the full test design and procedure.
  */
 @ExtendWith(MockitoExtension.class)
@@ -96,7 +96,7 @@ public class GetProjectileDragDecTableTest {
      * streaming arguments for the test function.
      *
      * @see <a href=
-     *      "https://docs.oracle.com/en/java/https://github.com/katanallama/projectile-simulation-suite/blob/main/docs/testing.md#decision-table-testing">Testing
+     *      "https://github.com/katanallama/projectile-simulation-suite/blob/main/docs/testing.md#decision-table-testing">Testing
      *      Documentation</a> describes the full test design and procedure.
      *
      * @return Stream of Arguments containing different test cases.

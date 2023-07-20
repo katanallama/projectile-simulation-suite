@@ -37,7 +37,7 @@ public class GetProjectileDrag implements IGetProjectileDrag {
         // fetch and copy the velocity of the projectile
         Vector3d velocity = new Vector3d(_projectileHandler.getProjectile().getVelocity());
 
-        // if the velocity is zero or negative in any direction, return zero drag
+        // if the velocity is zero or negative in x or y direction, return zero drag
         if (velocity.equals(new Vector3d(0, 0, 0)) || velocity.x < 0 || velocity.y < 0)
             return new Vector3d(0, 0, 0);
 
