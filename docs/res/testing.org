@@ -33,22 +33,17 @@ Based on these decisions and variables, we construct a decision table. However, 
 
 *** Decision Table
 
-| Velocity     | Rho |     A |  Cd | Expected Output   |
-| (0, 0, 0)    |   - |     - |   - | (0, 0, 0)         |
-| (1, 1, 1)    |   0 |     1 |   1 | (0, 0, 0)         |
-| (1, 1, 1)    |   1 |     0 |   1 | (0, 0, 0)         |
-| (1, 1, 1)    |   1 |     1 |   0 | (0, 0, 0)         |
-| (-1, -1, -1) |   1 |     1 |   1 | (as per equation) |
-| (1, 1, 1)    |   1 |     1 |   1 | (as per equation) |
-| (1, 1, 1)    | 0.1 |     1 |   1 | (as per equation) |
-| (1, 1, 1)    | 2.0 |     1 |   1 | (as per equation) |
-| (1, 1, 1)    |   1 |   0.1 |   1 | (as per equation) |
-| (1, 1, 1)    |   1 | 100.0 |   1 | (as per equation) |
-| (1, 1, 1)    |   1 |     1 | 0.1 | (as per equation) |
-| (1, 1, 1)    |   1 |     1 | 1.0 | (as per equation) |
-| (1, 1, 1)    |  -1 |     1 |   1 | (0, 0, 0)         |
-| (1, 1, 1)    |   1 |    -1 |   1 | (0, 0, 0)         |
-| (1, 1, 1)    |   1 |     1 |  -1 | (0, 0, 0)         |
+|     |                      | 1 | 2 |
+|-----+----------------------+---+---|
+| C1: | velocity = 0?        | T | F |
+|-----+----------------------+---+---|
+| A1: | Return (0,0,0)       | X | - |
+| A2: | Return Drag          | - | X |
+
+|   | C1:           | A1:            | A2:         |
+|   | velocity = 0? | Return (0,0,0) | Return Drag |
+| 1 | (0, 0 ,0)     | X              | -           |
+| 2 | (1, 1, 1)     | -              | X           |
 
 
 ** Second Iteration
@@ -72,24 +67,49 @@ If any of the above conditions are not met, the function calculates the drag for
 
 *** Updated Decision Table
 
-| Velocity     | Rho |     A |  Cd | Expected Output   |
-| (0, 0, 0)    |   - |     - |   - | (0, 0, 0)         |
-| (1, 1, 1)    |   0 |     1 |   1 | (0, 0, 0)         |
-| (1, 1, 1)    |   1 |     0 |   1 | (0, 0, 0)         |
-| (-1, 1, 1)   |   1 |     1 |   1 | (0, 0, 0)         |
-| (1, -1, 1)   |   1 |     1 |   1 | (0, 0, 0)         |
-| (1, 1, -1)   |   1 |     1 |   1 | (0, 0, 0)         |
-| (1, 1, 1)    |   1 |     1 |   0 | (0, 0, 0)         |
-| (-1, -1, -1) |   1 |     1 |   1 | (as per equation) |
-| (1, 1, 1)    |   1 |     1 |   1 | (as per equation) |
-| (1, 1, 1)    | 0.1 |     1 |   1 | (as per equation) |
-| (1, 1, 1)    | 2.0 |     1 |   1 | (as per equation) |
-| (1, 1, 1)    |   1 |   0.1 |   1 | (as per equation) |
-| (1, 1, 1)    |   1 | 100.0 |   1 | (as per equation) |
-| (1, 1, 1)    |   1 |     1 | 0.1 | (as per equation) |
-| (1, 1, 1)    |   1 |     1 | 1.0 | (as per equation) |
-| (1, 1, 1)    |  -1 |     1 |   1 | (0, 0, 0)         |
-| (1, 1, 1)    |   1 |    -1 |   1 | (0, 0, 0)         |
-| (1, 1, 1)    |   1 |     1 |  -1 | (0, 0, 0)         |
+The full decision table for the 4 conditions and \(2^{4} = 16\) rules:
+
+|     |                      | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
+|-----+----------------------+---+---+---+---+---+---+---+---+---+----+----+----+----+----+----+----|
+| C1: | ~velocity~ = 0?      | T | T | T | T | T | T | T | T | F | F  | F  | F  | F  | F  | F  | F  |
+| C2: | ~velocity.x, y~ < 0? | - | - | - | - | - | - | - | - | T | T  | T  | T  | F  | F  | F  | F  |
+| C3: | rho or A or Cd <= 0? | - | - | - | - | - | - | - | - | - | -  | -  | -  | T  | T  | F  | F  |
+| C4: | dragMagnitude > 0?   | - | - | - | - | - | - | - | - | - | -  | -  | -  | -  | F  | T  | F  |
+|-----+----------------------+---+---+---+---+---+---+---+---+---+----+----+----+----+----+----+----|
+| A1: | Return (0,0,0)       | X | X | X | X | X | X | X | X | X | X  | X  | X  | X  | X  | X  | -  |
+| A2: | Return Drag          | - | - | - | - | - | - | - | - | - | -  | -  | -  | -  | -  | -  | X  |
+
+Simplifying the full decision table:
+
+|     |                      | 1 | 2 | 3 | 4 |
+|-----+----------------------+---+---+---+---|
+| C1: | velocity = 0?        | T | T | F | F |
+| C2: | velocity.x, y < 0?   | - | T | T | F |
+| C3: | rho or A or Cd <= 0? | - | - | T | F |
+| C4: | dragMagnitude > 0?   | - | - | - | F |
+|-----+----------------------+---+---+---+---|
+| A1: | Return (0,0,0)       | X | X | X | - |
+| A2: | Return Drag          | - | - | - | X |
+
+The simplified table shows the dependency between some of the rules, but for robustness of testing the function will be tested with the extended set.
+
+
+|    | C1:             | C2:                  | C3:                  | C4:                | A1:            | A2:         |
+|    | ~velocity~ = 0? | ~velocity.x, y~ < 0? | rho or A or Cd <= 0? | dragMagnitude > 0? | Return (0,0,0) | Return Drag |
+|  1 | (0, 0, 0)       | -                    | -                    | -                  | X              | -           |
+|  2 | (1, 1, 1)       | (-1, 1, 1)           | -                    | -                  | X              | -           |
+|  3 | (1, 1, 1)       | (1, -1, 1)           | -                    | -                  | X              | -           |
+|  4 | (1, 1, 1)       | (1, 1, 1)            | rho = 0              | -                  | X              | -           |
+|  5 | (1, 1, 1)       | (1, 1, 1)            | A = 0                | -                  | X              | -           |
+|  6 | (1, 1, 1)       | (1, 1, 1)            | Cd = 0               | -                  | X              | -           |
+|  7 | (1, 1, 1)       | (1, 1, 1)            | rho = 0              | F                  | X              | -           |
+| 8  | (1, 1, 1)       | (1, 1, 1)            | A = 0                | F                  | X              | -           |
+| 9  | (1, 1, 1)       | (1, 1, 1)            | Cd = 0               | F                  | X              | -           |
+| 10 | (1, 1, 1)       | (1, 1, 1)            | rho = 1              | T                  | -              | X           |
+| 11 | (1, 1, 1)       | (1, 1, 1)            | A = 1                | T                  | -              | X           |
+| 12 | (1, 1, 1)       | (1, 1, 1)            | Cd = 1               | T                  | -              | X           |
+| 13 | (1, 1, 1)       | (1, 1, 1)            | rho = -1             | F                  | X              | -           |
+| 14 | (1, 1, 1)       | (1, 1, 1)            | A = -1               | F                  | X              | -           |
+| 15 | (1, 1, 1)       | (1, 1, 1)            | Cd = -1              | F                  | X              | -           |
 
 As seen from the revised decision table, we now have additional test cases where the velocity components are negative, testing the updated conditions in the function. This will provide a more thorough test of the function's logic and help identify any potential issues with these new conditions.

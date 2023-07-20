@@ -1,18 +1,18 @@
 
 # Table of Contents
 
-1.  [Decision Table Testing](#org21181cf)
-    1.  [Variables Involved](#orgfdfc6e2)
-    2.  [First Iteration](#org9fba096)
-        1.  [Decisions Summary](#org2d9eb1e)
-        2.  [Decision Table](#org6f1375c)
-    3.  [Second Iteration](#org0c88afa)
-        1.  [Updated Decisions Summary](#org2c20b17)
-        2.  [Updated Decision Table](#orgaf37e8f)
+1.  [Decision Table Testing](#orgf80c6de)
+    1.  [Variables Involved](#org4f5aeac)
+    2.  [First Iteration](#org778d8bd)
+        1.  [Decisions Summary](#org6c309b8)
+        2.  [Decision Table](#org9aeb274)
+    3.  [Second Iteration](#org0832cf4)
+        1.  [Updated Decisions Summary](#orgbeea438)
+        2.  [Updated Decision Table](#orgadd3438)
 
 
 
-<a id="org21181cf"></a>
+<a id="orgf80c6de"></a>
 
 # Decision Table Testing
 
@@ -23,7 +23,7 @@ To conduct Decision Table-Based testing on the `getProjectileDrag()` method, we 
 These decisions encapsulate the business logic of the function, providing a well-defined set of rules for how the function should behave under various conditions. The goal of decision table testing is to ensure that these rules are being applied correctly and consistently across a broad range of potential scenarios.
 
 
-<a id="orgfdfc6e2"></a>
+<a id="org4f5aeac"></a>
 
 ## Variables Involved
 
@@ -36,12 +36,12 @@ These decisions encapsulate the business logic of the function, providing a well
 -   `Cd` : The drag coefficient.
 
 
-<a id="org9fba096"></a>
+<a id="org778d8bd"></a>
 
 ## First Iteration
 
 
-<a id="org2d9eb1e"></a>
+<a id="org6c309b8"></a>
 
 ### Decisions Summary
 
@@ -52,7 +52,7 @@ These decisions encapsulate the business logic of the function, providing a well
 Based on these decisions and variables, we construct a decision table. However, as these variables are continuous and not discrete, creating a full decision table isn&rsquo;t feasible. Instead, we focus on testing key scenarios or boundaries which could be representative of the whole range of possible scenarios.
 
 
-<a id="org6f1375c"></a>
+<a id="org9aeb274"></a>
 
 ### Decision Table
 
@@ -62,169 +62,103 @@ Based on these decisions and variables, we construct a decision table. However, 
 <colgroup>
 <col  class="org-left" />
 
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">1</th>
+<th scope="col" class="org-left">2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="org-left">C1:</td>
+<td class="org-left">velocity = 0?</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+</tr>
+</tbody>
+
+<tbody>
+<tr>
+<td class="org-left">A1:</td>
+<td class="org-left">Return (0,0,0)</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
+</tr>
+
+
+<tr>
+<td class="org-left">A2:</td>
+<td class="org-left">Return Drag</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
 <col  class="org-right" />
 
-<col  class="org-right" />
+<col  class="org-left" />
 
-<col  class="org-right" />
+<col  class="org-left" />
 
 <col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">Velocity</td>
-<td class="org-right">Rho</td>
-<td class="org-right">A</td>
-<td class="org-right">Cd</td>
-<td class="org-left">Expected Output</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">C1:</td>
+<td class="org-left">A1:</td>
+<td class="org-left">A2:</td>
 </tr>
 
 
 <tr>
-<td class="org-left">(0, 0, 0)</td>
-<td class="org-right">-</td>
-<td class="org-right">-</td>
-<td class="org-right">-</td>
-<td class="org-left">(0, 0, 0)</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">velocity = 0?</td>
+<td class="org-left">Return (0,0,0)</td>
+<td class="org-left">Return Drag</td>
 </tr>
 
 
 <tr>
+<td class="org-right">1</td>
+<td class="org-left">(0, 0 ,0)</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
+</tr>
+
+
+<tr>
+<td class="org-right">2</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">0</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(0, 0, 0)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">0</td>
-<td class="org-right">1</td>
-<td class="org-left">(0, 0, 0)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">0</td>
-<td class="org-left">(0, 0, 0)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(-1, -1, -1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(as per equation)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(as per equation)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">0.1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(as per equation)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">2.0</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(as per equation)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">0.1</td>
-<td class="org-right">1</td>
-<td class="org-left">(as per equation)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">100.0</td>
-<td class="org-right">1</td>
-<td class="org-left">(as per equation)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">0.1</td>
-<td class="org-left">(as per equation)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1.0</td>
-<td class="org-left">(as per equation)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">-1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(0, 0, 0)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">-1</td>
-<td class="org-right">1</td>
-<td class="org-left">(0, 0, 0)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">-1</td>
-<td class="org-left">(0, 0, 0)</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
 </tr>
 </tbody>
 </table>
 
 
-<a id="org0c88afa"></a>
+<a id="org0832cf4"></a>
 
 ## Second Iteration
 
 Based on the second iteration of the function, we can see that some changes have been implemented, which require the decision table to be updated.
 
 
-<a id="org2c20b17"></a>
+<a id="orgbeea438"></a>
 
 ### Updated Decisions Summary
 
@@ -241,9 +175,11 @@ The second iteration of `getProjectileDrag()` incorporates additional decisions 
 If any of the above conditions are not met, the function calculates the drag force as per the equation and returns the resultant drag vector.
 
 
-<a id="orgaf37e8f"></a>
+<a id="orgadd3438"></a>
 
 ### Updated Decision Table
+
+The full decision table for the 4 conditions and $2^{4} = 16$ rules:
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -251,183 +187,495 @@ If any of the above conditions are not met, the function calculates the drag for
 <colgroup>
 <col  class="org-left" />
 
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">1</th>
+<th scope="col" class="org-left">2</th>
+<th scope="col" class="org-left">3</th>
+<th scope="col" class="org-left">4</th>
+<th scope="col" class="org-left">5</th>
+<th scope="col" class="org-left">6</th>
+<th scope="col" class="org-left">7</th>
+<th scope="col" class="org-left">8</th>
+<th scope="col" class="org-left">9</th>
+<th scope="col" class="org-left">10</th>
+<th scope="col" class="org-left">11</th>
+<th scope="col" class="org-left">12</th>
+<th scope="col" class="org-left">13</th>
+<th scope="col" class="org-left">14</th>
+<th scope="col" class="org-left">15</th>
+<th scope="col" class="org-left">16</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="org-left">C1:</td>
+<td class="org-left"><code>velocity</code> = 0?</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C2:</td>
+<td class="org-left"><code>velocity.x, y</code> &lt; 0?</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C3:</td>
+<td class="org-left">rho or A or Cd &lt;= 0?</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C4:</td>
+<td class="org-left">dragMagnitude &gt; 0?</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+</tr>
+</tbody>
+
+<tbody>
+<tr>
+<td class="org-left">A1:</td>
+<td class="org-left">Return (0,0,0)</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
+</tr>
+
+
+<tr>
+<td class="org-left">A2:</td>
+<td class="org-left">Return Drag</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
+</tr>
+</tbody>
+</table>
+
+Simplifying the full decision table:
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">1</th>
+<th scope="col" class="org-left">2</th>
+<th scope="col" class="org-left">3</th>
+<th scope="col" class="org-left">4</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="org-left">C1:</td>
+<td class="org-left">velocity = 0?</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C2:</td>
+<td class="org-left">velocity.x, y &lt; 0?</td>
+<td class="org-left">-</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C3:</td>
+<td class="org-left">rho or A or Cd &lt;= 0?</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C4:</td>
+<td class="org-left">dragMagnitude &gt; 0?</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">F</td>
+</tr>
+</tbody>
+
+<tbody>
+<tr>
+<td class="org-left">A1:</td>
+<td class="org-left">Return (0,0,0)</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
+</tr>
+
+
+<tr>
+<td class="org-left">A2:</td>
+<td class="org-left">Return Drag</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
+</tr>
+</tbody>
+</table>
+
+The simplified table shows the dependency between some of the rules, but for robustness of testing the function will be tested with the extended set.
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
 <col  class="org-right" />
 
-<col  class="org-right" />
+<col  class="org-left" />
 
-<col  class="org-right" />
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
 
 <col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">Velocity</td>
-<td class="org-right">Rho</td>
-<td class="org-right">A</td>
-<td class="org-right">Cd</td>
-<td class="org-left">Expected Output</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">C1:</td>
+<td class="org-left">C2:</td>
+<td class="org-left">C3:</td>
+<td class="org-left">C4:</td>
+<td class="org-left">A1:</td>
+<td class="org-left">A2:</td>
 </tr>
 
 
 <tr>
-<td class="org-left">(0, 0, 0)</td>
-<td class="org-right">-</td>
-<td class="org-right">-</td>
-<td class="org-right">-</td>
-<td class="org-left">(0, 0, 0)</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><code>velocity</code> = 0?</td>
+<td class="org-left"><code>velocity.x, y</code> &lt; 0?</td>
+<td class="org-left">rho or A or Cd &lt;= 0?</td>
+<td class="org-left">dragMagnitude &gt; 0?</td>
+<td class="org-left">Return (0,0,0)</td>
+<td class="org-left">Return Drag</td>
 </tr>
 
 
 <tr>
+<td class="org-right">1</td>
+<td class="org-left">(0, 0, 0)</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
+</tr>
+
+
+<tr>
+<td class="org-right">2</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">0</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(0, 0, 0)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">0</td>
-<td class="org-right">1</td>
-<td class="org-left">(0, 0, 0)</td>
-</tr>
-
-
-<tr>
 <td class="org-left">(-1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(0, 0, 0)</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
 </tr>
 
 
 <tr>
+<td class="org-right">3</td>
+<td class="org-left">(1, 1, 1)</td>
 <td class="org-left">(1, -1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(0, 0, 0)</td>
+<td class="org-left">-</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
 </tr>
 
 
 <tr>
-<td class="org-left">(1, 1, -1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(0, 0, 0)</td>
-</tr>
-
-
-<tr>
+<td class="org-right">4</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">0</td>
-<td class="org-left">(0, 0, 0)</td>
-</tr>
-
-
-<tr>
-<td class="org-left">(-1, -1, -1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(as per equation)</td>
-</tr>
-
-
-<tr>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(as per equation)</td>
+<td class="org-left">rho = 0</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
 </tr>
 
 
 <tr>
+<td class="org-right">5</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">0.1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(as per equation)</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">A = 0</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
 </tr>
 
 
 <tr>
+<td class="org-right">6</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">2.0</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(as per equation)</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">Cd = 0</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
 </tr>
 
 
 <tr>
+<td class="org-right">7</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">0.1</td>
-<td class="org-right">1</td>
-<td class="org-left">(as per equation)</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">rho = 0</td>
+<td class="org-left">F</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
 </tr>
 
 
 <tr>
+<td class="org-right">8</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">100.0</td>
-<td class="org-right">1</td>
-<td class="org-left">(as per equation)</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">A = 0</td>
+<td class="org-left">F</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
 </tr>
 
 
 <tr>
+<td class="org-right">9</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">0.1</td>
-<td class="org-left">(as per equation)</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">Cd = 0</td>
+<td class="org-left">F</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
 </tr>
 
 
 <tr>
+<td class="org-right">10</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">1.0</td>
-<td class="org-left">(as per equation)</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">rho = 1</td>
+<td class="org-left">T</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
 </tr>
 
 
 <tr>
+<td class="org-right">11</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">-1</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-left">(0, 0, 0)</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">A = 1</td>
+<td class="org-left">T</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
 </tr>
 
 
 <tr>
+<td class="org-right">12</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">-1</td>
-<td class="org-right">1</td>
-<td class="org-left">(0, 0, 0)</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">Cd = 1</td>
+<td class="org-left">T</td>
+<td class="org-left">-</td>
+<td class="org-left">X</td>
 </tr>
 
 
 <tr>
+<td class="org-right">13</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-right">1</td>
-<td class="org-right">1</td>
-<td class="org-right">-1</td>
-<td class="org-left">(0, 0, 0)</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">rho = -1</td>
+<td class="org-left">F</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
+</tr>
+
+
+<tr>
+<td class="org-right">14</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">A = -1</td>
+<td class="org-left">F</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
+</tr>
+
+
+<tr>
+<td class="org-right">15</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">(1, 1, 1)</td>
+<td class="org-left">Cd = -1</td>
+<td class="org-left">F</td>
+<td class="org-left">X</td>
+<td class="org-left">-</td>
 </tr>
 </tbody>
 </table>
