@@ -1,18 +1,18 @@
 
 # Table of Contents
 
-1.  [Decision Table Testing](#orgf80c6de)
-    1.  [Variables Involved](#org4f5aeac)
-    2.  [First Iteration](#org778d8bd)
-        1.  [Decisions Summary](#org6c309b8)
-        2.  [Decision Table](#org9aeb274)
-    3.  [Second Iteration](#org0832cf4)
-        1.  [Updated Decisions Summary](#orgbeea438)
-        2.  [Updated Decision Table](#orgadd3438)
+1.  [Decision Table Testing](#org25dc064)
+    1.  [Variables Involved](#org02b51cf)
+    2.  [First Iteration](#org4e922c5)
+        1.  [Decisions Summary](#org43ccb3a)
+        2.  [Decision Table](#org1ced758)
+    3.  [Second Iteration](#org58e9b0f)
+        1.  [Updated Decisions Summary](#orgcfd452d)
+        2.  [Updated Decision Table](#orgce5c833)
 
 
 
-<a id="orgf80c6de"></a>
+<a id="org25dc064"></a>
 
 # Decision Table Testing
 
@@ -23,7 +23,7 @@ To conduct Decision Table-Based testing on the `getProjectileDrag()` method, we 
 These decisions encapsulate the business logic of the function, providing a well-defined set of rules for how the function should behave under various conditions. The goal of decision table testing is to ensure that these rules are being applied correctly and consistently across a broad range of potential scenarios.
 
 
-<a id="org4f5aeac"></a>
+<a id="org02b51cf"></a>
 
 ## Variables Involved
 
@@ -36,12 +36,12 @@ These decisions encapsulate the business logic of the function, providing a well
 -   `Cd` : The drag coefficient.
 
 
-<a id="org778d8bd"></a>
+<a id="org4e922c5"></a>
 
 ## First Iteration
 
 
-<a id="org6c309b8"></a>
+<a id="org43ccb3a"></a>
 
 ### Decisions Summary
 
@@ -52,7 +52,7 @@ These decisions encapsulate the business logic of the function, providing a well
 Based on these decisions and variables, we construct a decision table. However, as these variables are continuous and not discrete, creating a full decision table isn&rsquo;t feasible. Instead, we focus on testing key scenarios or boundaries which could be representative of the whole range of possible scenarios.
 
 
-<a id="org9aeb274"></a>
+<a id="org1ced758"></a>
 
 ### Decision Table
 
@@ -104,6 +104,8 @@ Based on these decisions and variables, we construct a decision table. However, 
 </tbody>
 </table>
 
+And the outputs:
+
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -151,14 +153,14 @@ Based on these decisions and variables, we construct a decision table. However, 
 </table>
 
 
-<a id="org0832cf4"></a>
+<a id="org58e9b0f"></a>
 
 ## Second Iteration
 
 Based on the second iteration of the function, we can see that some changes have been implemented, which require the decision table to be updated.
 
 
-<a id="orgbeea438"></a>
+<a id="orgcfd452d"></a>
 
 ### Updated Decisions Summary
 
@@ -175,7 +177,7 @@ The second iteration of `getProjectileDrag()` incorporates additional decisions 
 If any of the above conditions are not met, the function calculates the drag force as per the equation and returns the resultant drag vector.
 
 
-<a id="orgadd3438"></a>
+<a id="orgce5c833"></a>
 
 ### Updated Decision Table
 
@@ -617,10 +619,10 @@ The simplified table shows the dependency between some of the rules, but for rob
 <td class="org-right">10</td>
 <td class="org-left">(1, 1, 1)</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-left">rho = 1</td>
+<td class="org-left">rho = -1</td>
 <td class="org-left">T</td>
-<td class="org-left">-</td>
 <td class="org-left">X</td>
+<td class="org-left">-</td>
 </tr>
 
 
@@ -628,10 +630,10 @@ The simplified table shows the dependency between some of the rules, but for rob
 <td class="org-right">11</td>
 <td class="org-left">(1, 1, 1)</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-left">A = 1</td>
+<td class="org-left">A = -1</td>
 <td class="org-left">T</td>
-<td class="org-left">-</td>
 <td class="org-left">X</td>
+<td class="org-left">-</td>
 </tr>
 
 
@@ -639,10 +641,10 @@ The simplified table shows the dependency between some of the rules, but for rob
 <td class="org-right">12</td>
 <td class="org-left">(1, 1, 1)</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-left">Cd = 1</td>
+<td class="org-left">Cd = -1</td>
 <td class="org-left">T</td>
-<td class="org-left">-</td>
 <td class="org-left">X</td>
+<td class="org-left">-</td>
 </tr>
 
 
@@ -650,10 +652,10 @@ The simplified table shows the dependency between some of the rules, but for rob
 <td class="org-right">13</td>
 <td class="org-left">(1, 1, 1)</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-left">rho = -1</td>
+<td class="org-left">rho = 1</td>
 <td class="org-left">F</td>
-<td class="org-left">X</td>
 <td class="org-left">-</td>
+<td class="org-left">X</td>
 </tr>
 
 
@@ -661,10 +663,10 @@ The simplified table shows the dependency between some of the rules, but for rob
 <td class="org-right">14</td>
 <td class="org-left">(1, 1, 1)</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-left">A = -1</td>
+<td class="org-left">A = 1</td>
 <td class="org-left">F</td>
-<td class="org-left">X</td>
 <td class="org-left">-</td>
+<td class="org-left">X</td>
 </tr>
 
 
@@ -672,10 +674,10 @@ The simplified table shows the dependency between some of the rules, but for rob
 <td class="org-right">15</td>
 <td class="org-left">(1, 1, 1)</td>
 <td class="org-left">(1, 1, 1)</td>
-<td class="org-left">Cd = -1</td>
+<td class="org-left">Cd = 1</td>
 <td class="org-left">F</td>
-<td class="org-left">X</td>
 <td class="org-left">-</td>
+<td class="org-left">X</td>
 </tr>
 </tbody>
 </table>

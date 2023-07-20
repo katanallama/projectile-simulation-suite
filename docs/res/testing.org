@@ -40,6 +40,8 @@ Based on these decisions and variables, we construct a decision table. However, 
 | A1: | Return (0,0,0)       | X | - |
 | A2: | Return Drag          | - | X |
 
+And the outputs:
+
 |   | C1:           | A1:            | A2:         |
 |   | velocity = 0? | Return (0,0,0) | Return Drag |
 | 1 | (0, 0 ,0)     | X              | -           |
@@ -105,11 +107,11 @@ The simplified table shows the dependency between some of the rules, but for rob
 |  7 | (1, 1, 1)       | (1, 1, 1)            | rho = 0              | F                  | X              | -           |
 | 8  | (1, 1, 1)       | (1, 1, 1)            | A = 0                | F                  | X              | -           |
 | 9  | (1, 1, 1)       | (1, 1, 1)            | Cd = 0               | F                  | X              | -           |
-| 10 | (1, 1, 1)       | (1, 1, 1)            | rho = 1              | T                  | -              | X           |
-| 11 | (1, 1, 1)       | (1, 1, 1)            | A = 1                | T                  | -              | X           |
-| 12 | (1, 1, 1)       | (1, 1, 1)            | Cd = 1               | T                  | -              | X           |
-| 13 | (1, 1, 1)       | (1, 1, 1)            | rho = -1             | F                  | X              | -           |
-| 14 | (1, 1, 1)       | (1, 1, 1)            | A = -1               | F                  | X              | -           |
-| 15 | (1, 1, 1)       | (1, 1, 1)            | Cd = -1              | F                  | X              | -           |
+| 10 | (1, 1, 1)       | (1, 1, 1)            | rho = -1             | T                  | X              | -           |
+| 11 | (1, 1, 1)       | (1, 1, 1)            | A = -1               | T                  | X              | -           |
+| 12 | (1, 1, 1)       | (1, 1, 1)            | Cd = -1              | T                  | X              | -           |
+| 13 | (1, 1, 1)       | (1, 1, 1)            | rho = 1              | F                  | -              | X           |
+| 14 | (1, 1, 1)       | (1, 1, 1)            | A = 1                | F                  | -              | X           |
+| 15 | (1, 1, 1)       | (1, 1, 1)            | Cd = 1               | F                  | -              | X           |
 
 As seen from the revised decision table, we now have additional test cases where the velocity components are negative, testing the updated conditions in the function. This will provide a more thorough test of the function's logic and help identify any potential issues with these new conditions.
