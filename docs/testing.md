@@ -698,7 +698,7 @@ As seen from the revised decision table, we now have additional test cases where
 
 This is a straightforward technique of analyzing a software artifact - in this case the function ```getProjectileDrag()``` - outside of runtime. The method we use here is to convert the code blocks into a directed, structural graph to visually describe all possible courses of actions the code can take. Then we can explicitly demonstrate what pieces of code are covered by our test cases.
 
-![img](./res/graph-structural.png "Structural Graph")
+![img](./res/graph-structural.jpg "Structural Graph")
 
 <a id="orgf56ae2c"></a>
 
@@ -745,7 +745,7 @@ Another type of structural analysis is data flow, which focuses on the definitio
 The coverage criteria we are analyzing for is **All DU-Path Coverage**, as it is the most comprehensive type of data flow analysis (subsuming both All Def-Coverage and All Use-Coverage). All DU-Path Coverage is defined as: ```For each set S = du(initial_node, final_node, variable), the Test Requirements contain every path d in S```
     --> cover all the paths between a variables def and its uses
 
-![img](./res/graph-data-flow.png "Data Flow Graph")
+![img](./res/graph-data-flow.jpg "Data Flow Graph")
 
 ### Test Requirements
 
