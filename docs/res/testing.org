@@ -115,3 +115,85 @@ The simplified table shows the dependency between some of the rules, but for rob
 | 15 | (1, 1, 1)       | (1, 1, 1)            | Cd = 1               | F                  | -              | X           |
 
 As seen from the revised decision table, we now have additional test cases where the velocity components are negative, testing the updated conditions in the function. This will provide a more thorough test of the function's logic and help identify any potential issues with these new conditions.
+
+
+* System Testing
+** Finite State Machine
+
+** States
+- Configuration and initialization
+- Run simulation
+- Output results
+
+** Transitions
+- Simulation initialized
+- Simulation step executed
+- Output complete
+
+** Basic Diagram
+
+#+begin_src plantuml :file fsm.png
+@startuml
+|Initialization|
+start
+:Initializing Simulation;
+#lightblue:**Load Config**;
+#lightblue:**Create Simulator**;
+:Simulation Initialized;
+
+|Simulation|
+#lightgreen:**Start Simulation**;
+while (Step < MAX_SIMSTEPS) is (yes)
+  :Update Position;
+endwhile (no)
+:All Steps Completed;
+
+|Output|
+#palegreen:**Process Results**;
+:Results Outputted;
+stop
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:fsm.png]]
+
+
+** Detailed Diagram
+
+#+begin_src plantuml :file detailed-fsm.png
+@startuml
+|Initialize|
+start
+:**Initialize Simulation**;
+#lightblue:Read File;
+#lightblue:Parse Config;
+#lightgreen:**Store Config**;
+#orange:**Simulation Initialized**;
+
+|Simulate|
+:**Start Simulation**;
+while (Step < MAX_SIMSTEPS) is (yes)
+  #lightblue:Update Position;
+  if (z-coordinate >= 0) then (yes)
+    #lightblue:Increment Step Counter;
+  endif
+endwhile (no)
+#lightgreen:**Simulation Completed**;
+#orange:**Store Results**;
+
+|Output|
+:**Prepare Plot Data**;
+if (Environment is Headless) then (no)
+  #lightgreen:**Save Plot as PNG**;
+else (yes)
+  #lightgreen:**Display Plot in GUI**;
+endif
+#lightgreen:**Print Results to Console**;
+#orange:**Output Result**;
+stop
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:detailed-fsm.png]]
