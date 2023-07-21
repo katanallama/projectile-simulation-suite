@@ -3,6 +3,7 @@ package com.pss.factories;
 import com.pss.*;
 import com.pss.interfaces.*;
 import com.pss.handlers.*;
+import com.pss.enums.Settings;
 
 public class MakeProjectileSimulator {
     public ProjectileSimulator createProjectileSimulator(IGetConfiguration configurationHandler) {
@@ -15,7 +16,7 @@ public class MakeProjectileSimulator {
         IGetProjectileForce projectileForceHandler = getProjectileForceHandler(configurationHandler,
                 projectileHandler);
 
-        double timeStep = 1;
+        double timeStep = configurationHandler.getSetting(Settings.TimeStep);
 
         return new ProjectileSimulator(projectileHandler, projectileDragHandler, projectileForceHandler,
                 projectileGravityHandler, timeStep);

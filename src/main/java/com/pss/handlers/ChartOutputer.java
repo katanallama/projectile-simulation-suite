@@ -14,38 +14,38 @@ import java.io.File;
 import java.io.IOException;
 
 public class ChartOutputer implements IOutputResults {
-    public void outputResults(Vector3d[] results) {
+    public void outputResults(Vector3d[] results, double timeStep) {
         boolean isHeadless = GraphicsEnvironment.isHeadless();
         boolean print = false;
 
-            XYSeriesCollection dataset = new XYSeriesCollection();
-            XYSeries positionSeriesX = new XYSeries("Position X-axis");
-            XYSeries positionSeriesY = new XYSeries("Position Y-axis");
-            XYSeries positionSeriesZ = new XYSeries("Position Z-axis");
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        XYSeries positionSeriesX = new XYSeries("Position X-axis");
+        XYSeries positionSeriesY = new XYSeries("Position Y-axis");
+        XYSeries positionSeriesZ = new XYSeries("Position Z-axis");
 
-            for (int i = 0; i < results.length; i++) {
-                Vector3d vector = results[i];
-                positionSeriesX.add(i, vector.x);
-                positionSeriesY.add(i, vector.y);
-                positionSeriesZ.add(i, vector.z);
-            }
+        for (int i = 0; i < results.length; i++) {
+            Vector3d vector = results[i];
+            positionSeriesX.add(i, vector.x);
+            positionSeriesY.add(i, vector.y);
+            positionSeriesZ.add(i, vector.z);
+        }
 
-            dataset.addSeries(positionSeriesX);
-            dataset.addSeries(positionSeriesY);
-            dataset.addSeries(positionSeriesZ);
+        dataset.addSeries(positionSeriesX);
+        dataset.addSeries(positionSeriesY);
+        dataset.addSeries(positionSeriesZ);
 
-            JFreeChart chart = ChartFactory.createXYLineChart(
-                    "Position vs Time",
-                    "Time (s)",
-                    "Position (m)",
-                    dataset);
+        JFreeChart chart = ChartFactory.createXYLineChart(
+                "Position vs Time",
+                "Time Step (" + timeStep + "s)",
+                "Position (m)",
+                dataset);
 
         if (isHeadless || print) {
-            // TODO get project path instead of hardcoding this
-            String dir = "/home/bh/projects/projectile-simulation-suite/image.png";
+            String currentDir = System.getProperty("user.dir");
+            String dir = currentDir + "/image.png";
 
             try {
-                ChartUtils.saveChartAsPNG(new File(dir), chart, 1600, 900);
+                ChartUtils.saveChartAsPNG(new File(dir), chart, 1600, 1000);
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -1,3 +1,5 @@
 {
-    "initialDirection" : "(-10, 10, 12)"
+    "initialDirection" : "(8, 10, 12)",
+    "initialForce" :  600,
+    "weight" :  16
 }
