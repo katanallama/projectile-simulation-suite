@@ -22,6 +22,10 @@ public class ProjectileSimulator {
         this.timeStep = timeStep;
     }
 
+    public double getTimeStep() {
+        return timeStep;
+    }
+
     public Projectile getProjectile() {
         return _projectileHandler.getProjectile();
     }

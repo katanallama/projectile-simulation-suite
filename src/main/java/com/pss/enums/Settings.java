@@ -11,7 +11,8 @@ public enum Settings {
     InitialDirection("initialDirection", DataTypes.Vector, new Vector3d(10, 10, 10)),
     FluidRho("fluidRho", DataTypes.Double, 1.204d),
     ProjectileArea("projectileArea", DataTypes.Double, 0.1d),
-    DragCoefficent("dragCoefficent", DataTypes.Double, 0.04d);
+    DragCoefficent("dragCoefficent", DataTypes.Double, 0.04d),
+    TimeStep("timeStep", DataTypes.Double, 0.001d);
 
     private String name;
     private DataTypes type;

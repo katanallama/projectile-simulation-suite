@@ -13,7 +13,7 @@ import org.jzy3d.plot3d.rendering.canvas.Quality;
 public class ChartOutputer3dNonACC implements I3dOutputer {
 
     @Override
-    public void outputResults(Vector3d[] results) {
+    public void outputResults(Vector3d[] results, double timeStep) {
         // start the chart in a new thread
         new Thread(() -> {
             try {
