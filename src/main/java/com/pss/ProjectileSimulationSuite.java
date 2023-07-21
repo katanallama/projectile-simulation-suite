@@ -36,6 +36,8 @@ public class ProjectileSimulationSuite {
             // Increment steps counter if the z coordinate is non-negative
             if (_sim_steps[t].z >= 0)
                 steps++;
+            else
+                t = MAX_SIMSTEPS;
         }
 
         // Store the results
