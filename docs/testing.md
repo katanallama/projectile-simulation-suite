@@ -706,7 +706,7 @@ This is a straightforward technique of analyzing a software artifact - in this c
 
 One type of static analysis is path testing, where we analyze the "paths" a software could take under certain conditions. 
 
-Normally, we would aim to analyze for **Prime Path Coverage**, but  due to the simplicity of ```getProjectileDrag()```, the Prime Path Coverage in our case also happens to be the best (and most expensive) kind of graph coverage: **Complete Graph Coverage**. 
+Normally, we would aim to analyze following **Prime Path Coverage**, but  due to the simplicity of ```getProjectileDrag()```, the Prime Path Coverage in our case also happens to be the best (and most expensive) kind of graph coverage: **Complete Graph Coverage**. 
 
 ### Test Requirements
 
@@ -734,6 +734,7 @@ The Prime/Complete path set is as follows:
 - Settings.FluidRho = -1
 - Settings.ProjectileArea = 1
 - Settings.DragCoefficient = 1
+
 **NOTE** this condition may be impossible to reach! For drag magnitude to be > 0, one or all 3 of the initial settings must be incorrectly set to a negative number, an un-intentional (and physically impossible) use case. However, we will also test this case for robustness since it is the only one (as compared to a set of illogical conditions in a more complex function).
 
 <a id="org42ca9d1"></a>
