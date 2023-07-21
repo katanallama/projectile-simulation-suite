@@ -1,7 +1,9 @@
 package com.pss.handlers;
-
-import com.pss.interfaces.IOutputResults;
 import javax.vecmath.Vector3d;
+
+import com.pss.SimulatorState;
+import com.pss.enums.State;
+import com.pss.interfaces.IOutputResults;
 
 public class ConsoleOutputer implements IOutputResults {
     private static final int OUTPUT_FREQUENCY = 1000; // Output each 1000th result
@@ -18,5 +20,6 @@ public class ConsoleOutputer implements IOutputResults {
         // Print the timestep at which the projectile lands
         Vector3d last = results[results.length-1];
         System.out.printf("%10.2f %10.1f %10.1f %10.1f\n", results.length*timeStep, last.x, last.y, last.z);
+        SimulatorState.setCurrentState(State.PRINT_RESULTS_TO_CONSOLE);
     }
 }
