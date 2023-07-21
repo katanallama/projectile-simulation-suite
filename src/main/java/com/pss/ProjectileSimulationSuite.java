@@ -73,7 +73,7 @@ public class ProjectileSimulationSuite {
         IOutputResults[] availableOutputers = {
                 new ConsoleOutputer(),
                 new ChartOutputer(),
-                new ChartOutputer3d(),
+                // new ChartOutputer3d(),
                 new ChartOutputer3dNonACC()
         };
 
