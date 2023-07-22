@@ -201,4 +201,4 @@ If we define the "happy path" as avoiding both if statements (edges (2,3) and (3
 
 *** Test Cases
 
-We can see these Test Requirements are the same set of prime paths from the [[**Path Coverage]] described above, as is expected with Prime Path and Complete Path Coverage. As such, we have proven we do not need to write any additional test cases, as the test requirements are already fulfilled by other tests.
+We can see these Test Requirements are the same set of prime paths from the [[Path Coverage]] described above, as is expected with Prime Path and Complete Path Coverage. As such, we have proven we do not need to write any additional test cases, as the test requirements are already fulfilled by other tests.
