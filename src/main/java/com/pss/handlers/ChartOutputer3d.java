@@ -20,7 +20,7 @@ public class ChartOutputer3d extends AWTAbstractAnalysis implements I3dOutputer 
     private LineStrip lineStrip;
 
     @Override
-    public void outputResults(Vector3d[] results) {
+    public void outputResults(Vector3d[] results, double timeStep) {
         this.lineStrip = lineStripFromResults(results);
 
         // start the chart in a new thread
