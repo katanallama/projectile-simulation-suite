@@ -9,6 +9,10 @@ Benjamin Hajdukiewicz (###)
 Daniil Aleshechkin (###)
 Jacob Meyer (200364255)
 
+#+BEGIN_NOTES
+Put speaker notes here
+#+END_NOTES
+
 
 * Editor Notes [REMOVE ME]
 Consider putting toc:nil in OPTIONS to supress creating a table of contents (depending on how it looks, or if it shows up at all)
@@ -21,7 +25,6 @@ The rubric has the following categories of grading
 - Design Communication and Teamwork
 
 
-
 * Agenda
 - Introduction
 - Problem Definition
@@ -30,6 +33,10 @@ The rubric has the following categories of grading
 - Project Management
 - Conclusion and Future Scope
 
+#+BEGIN_NOTES
+Put speaker notes here
+#+END_NOTES
+
 
 * Introduction
 #+BEGIN_COMMENT 
@@ -37,11 +44,31 @@ The rubric has the following categories of grading
     - Give a rationale what is needed and why.
 #+END_COMMENT
 
+- This project involves the development of a simulator to teach soldiers about kinematics and dynamics in relation to a Howitzer shooting a projectile across an empty field.
+- The goal is to accurately simulate the physics of a fired projectile.
+
+#+BEGIN_NOTES
+1. 
+2. the goal includes: 
+    - considering variables that could affect its trajectory, 
+    - providing a realistic and educational simulator that helps soldiers understand and predict the effects of different variables on the trajectory and 
+    - final position of a howitzer-fired projectile.
+#+END_NOTES
+
 
 * Problem Definition
 #+BEGIN_COMMENT 
     - What is the problem you're trying to solve?
 #+END_COMMENT
+
+- We are trying to build a solution that accurately captures the physics of a projectile in an easy to use and understand software package, including a high quality of:
+    - speed of computation
+    - variability of potential inputs
+    - extendability for future development
+
+#+BEGIN_NOTES
+Put speaker notes here
+#+END_NOTES
 
 
 * Design Requirements
@@ -51,6 +78,133 @@ The rubric has the following categories of grading
     - Objectives
     - Constraints (if any)
 #+END_COMMENT
+
+- Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile and display the results of each simulation "run" in a way anybody can understand.
+
+- Create a robust test suite for parts of the simulator to demonstrate complete knowledge of standard test procedures.
+
+#+BEGIN_NOTES
+Put speaker notes here
+#+END_NOTES
+
+
+** Functions
+
+- representation of 3D projectile trajectory
+
+- representation of the forces acting on the projectile during its flight
+
+- final impact position of the projectile
+
+- real-time kinematic and dynamic statistics (position, velocity, acceleration, forces) for deeper understanding and analysis
+
+
+** Objectives
+
+The simulator should be designed with the following requirements:
+
+/Intuitive User Interface/
+
+/Realism/
+
+/Performance/
+
+/Flexibility/
+
+/Educational/
+
+#+BEGIN_NOTES
+We haven't completed all of our objectives yet, but are well on our way for some of them.
+
+1. UI: The simulator should have an intuitive user interface that allows users to easily input variables and understand the output. -> NOT REACHED
+
+2. Realism: The simulator should realistically model the physics of a fired projectile, including the effects of gravity and drag. -> PARTIALLY REACHED
+
+3. Performance: The simulator should be able to run the simulation smoothly and handle calculations quickly, even for complex trajectories. -> REACHED
+
+4. Flexibility: : The simulator should allow for the adjustment of a wide range of variables, allowing for a variety of simulations. -> REACHED
+
+5. Educational: The simulator should have educational value, helping soldiers understand the factors that affect the trajectory and final position of a projectile. -> NOT REACHED
+#+END_NOTES
+
+
+** Constraints
+
+- Ethics
+
+- Accuracy
+
+- Reproducible Results
+
+- Reliability
+
+- User Control and Display
+
+- Information Management
+
+Results should be logged in ~csv~ format that is easily interpreted by common analysis and visualization tools such as ~matplotlib~ and ~seaborn~.
+
+#+BEGIN_NOTES
+1. Ethics: The purpose of the simulator is to educate soldiers for combat, which includes the potential destruction of lives and infrastructure, while the team does not condone this, our hope as a development team is that the education from our simulator is used to strengthen a strategy of combat deterrence and de-escalation, but we recognize the likelihood of said education to be used towards actual combat.
+
+2. Accuracy: This simulator is a simplified model of a non-deterministic environment, we cannot guarantee that it precisely replicates the real-world-equivalent actions.
+
+3. Reproducible Results: This is an important factor in not only simulation, but development as well. The team strives to produce a project and results that are highly reproducible. From the use of [[https://nixos.org/guides/nix-pills/][Nix]] as a build tool, to the development of the project. By ensuring that the project build is reproducible across multiple systems, this helps to ensure that the simulation results are also reproducible as the back-end will be consistent from machine to machine.
+
+4. Reliability: The results of the simulator will be deterministic of the given configuration, resulting in expected outputs for a given input.
+
+5. User Control and Display: The simulation will run without a GUI; inputs and outputs are to be managed through external files according to the Information Management constraint. At most, the user input will be a one-time prompt at the program startup. At most, the simulation output either displayed through the console and/or recorded separately. The results should be able to be imported into other visualization tools easily.
+
+6. Information Management: The simulation is initialized and run according to a configuration ~.json~ file with the relevant information which can be overriden with supplied commands. Simulation results saved to the user specified ~outdir/~  that includes but is not limited to:
+ - simulator configuration
+ -- mass : the mass of the projectile (kg)
+ -- drag_coeffient : how aerodynamic the projectile is (number)
+ -- initial_force : the force vector applied by the cannon (N)
+ -- gravity_strength : the strengh of gravity (m/s^2)
+ -- wind_vector : the constant wind vector (N)
+ -- object_area : the surface area of the projectile (m^2)
+ -- object_force_mode : the type of external force exerted by the projectile (enum)
+ -- wind_vector_field_mode : the type of vector field that the project will travel through (enum)
+ - simulator results
+ -- csv file with two columns: Time and postion 
+ -- run timestamp
+#+END_NOTES
+
+
+** Design Specifications
+
+- Taking into account the modularity, extensibility, and testability required for this simulation program, the *strategy design pattern* is best suited.
+
+- Concerns were separated into:
+    1. Handlers to allow for universal, uncoupled access to the projectile status and any forces acting on it
+    2. Factories to create all the objects
+    3. Configurable input and output options 
+        -e.g. command line, config file, 2D chart, 3D chart, etc
+    4. A suite to build and manage the simulator and handle its inputs and outputs
+
+
+#+BEGIN_NOTES
+1. This allows for adding new - or removing, variables without affecting the overall structure of the simulation, and without having to change the main simulation code. This separation of concerns makes it easier to write tests for each strategy.
+#+END_NOTES
+
+
+** Testing Specifications
+
+For effective testing of the simulator, ensuring the robustness and reliability of the simulator the following test methods are used.
+
+/Unit Testing/
+
+/Integration Testing/ 
+
+/System Testing/
+
+#+BEGIN_NOTES
+1. Unit Testing: Test individual functions and components separately. For instance, testing the function calculating the projectile trajectory with a variety of inputs, including boundary values, equivalence classes, decision tables, paths, data flows, and slices.
+
+2. Integration Testing: Select a subset to combine and test together. For instance, testing the function for trajectory calculation together with the drag calculation function and gravity effects to ensure they work correctly in tandem.
+
+3. System Testing: Select a subset of use cases for system testing, to evaluate the system's overall functionality in scenarios that resemble real-world usage.
+#+END_NOTES
 
 
 * Solutions
@@ -64,14 +218,52 @@ The rubric has the following categories of grading
         - use a table to compare the solutions
 #+END_COMMENT
 
+Some words about all solutions and the process
+
+- We built our solutions using the AGILE and MVP paradigms 
+
+#+BEGIN_NOTES
+Put speaker notes here
+#+END_NOTES
+
+
+** Solution 1: Basic Operation and Output
+
+- Our first solution was made to get the bare minimum of a product available to use and interact with.
+- Many components (e.g. input values) were still hard-coded
+- The projectile would properly move through the air with only gravity affecting it and no way to detect the ground
+
+
+** Solution 2: 
+
+
+** Solution 3:
+
+
+** Comparing Solutions:
+
+PUT A TABLE IN ME
+
 
 * Project Management
 #+BEGIN_COMMENT 
     - Describe a gantt chart representing the progress of your work
 #+END_COMMENT
 
+PUT A GANTT CHART IN ME
+
+#+BEGIN_NOTES
+Put speaker notes here
+#+END_NOTES
+
 
 * Conclusion and Future Scope
 #+BEGIN_COMMENT 
     - Write whatever the hell you want
 #+END_COMMENT
+
+Final words
+
+#+BEGIN_NOTES
+Put speaker notes here
+#+END_NOTES
