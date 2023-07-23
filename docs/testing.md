@@ -1,27 +1,23 @@
 
 # Table of Contents
 
-1.  [Decision Table Testing](#org25dc064)
-    1.  [Variables Involved](#org02b51cf)
-    2.  [First Iteration](#org4e922c5)
+1. [Testing Summary](#orgfca23cd1)
+    1. [Variables Involved](#org02b51cf)
+2. [Decision Table Testing](#org25dc064)
+    1.  [First Iteration](#org4e922c5)
         1.  [Decisions Summary](#org43ccb3a)
         2.  [Decision Table](#org1ced758)
-    3.  [Second Iteration](#org58e9b0f)
+    2.  [Second Iteration](#org58e9b0f)
         1.  [Updated Decisions Summary](#orgcfd452d)
         2.  [Updated Decision Table](#orgce5c833)
+3. [Structural Analysis](#org3ac4fb9)
+    1. [Path Coverage](#orgf56ae2c)
+    2. [Data Flow Coverage](#org42ca9d1)
 
 
+<a id="orgfca23cd1"></a>
 
-<a id="org25dc064"></a>
-
-# Decision Table Testing
-
-Before we start, it&rsquo;s important to understand what decision table-based testing is. This method is a black-box test design technique where test cases are designed to execute the combinations of inputs and/or stimuli (causes) shown in a decision table. A decision table is a good way to deal with combinations of things (e.g., inputs).
-
-To conduct Decision Table-Based testing on the `getProjectileDrag()` method, we begin by identifying the decisions the code is making and the variables those decisions are based on.
-
-These decisions encapsulate the business logic of the function, providing a well-defined set of rules for how the function should behave under various conditions. The goal of decision table testing is to ensure that these rules are being applied correctly and consistently across a broad range of potential scenarios.
-
+# Testing Summary
 
 <a id="org02b51cf"></a>
 
@@ -34,6 +30,17 @@ These decisions encapsulate the business logic of the function, providing a well
 -   `A` : The cross-sectional area of the projectile.
 
 -   `Cd` : The drag coefficient.
+
+
+<a id="org25dc064"></a>
+
+# Decision Table Testing
+
+Before we start, it&rsquo;s important to understand what decision table-based testing is. This method is a black-box test design technique where test cases are designed to execute the combinations of inputs and/or stimuli (causes) shown in a decision table. A decision table is a good way to deal with combinations of things (e.g., inputs).
+
+To conduct Decision Table-Based testing on the `getProjectileDrag()` method, we begin by identifying the decisions the code is making and the variables those decisions are based on.
+
+These decisions encapsulate the business logic of the function, providing a well-defined set of rules for how the function should behave under various conditions. The goal of decision table testing is to ensure that these rules are being applied correctly and consistently across a broad range of potential scenarios.
 
 
 <a id="org4e922c5"></a>
@@ -684,3 +691,82 @@ The simplified table shows the dependency between some of the rules, but for rob
 
 As seen from the revised decision table, we now have additional test cases where the velocity components are negative, testing the updated conditions in the function. This will provide a more thorough test of the function&rsquo;s logic and help identify any potential issues with these new conditions.
 
+
+<a id="org3ac4fb9"></a>
+
+# Structural Analysis
+
+This is a straightforward technique of analyzing a software artifact - in this case the function ```getProjectileDrag()``` - outside of runtime. The method we use here is to convert the code blocks into a directed, structural graph to visually describe all possible courses of actions the code can take. Then we can explicitly demonstrate what pieces of code are covered by our test cases.
+
+![img](./res/graph-structural.jpg "Structural Graph")
+
+<a id="orgf56ae2c"></a>
+
+## Path Coverage
+
+One type of static analysis is path testing, where we analyze the "paths" a software could take under certain conditions. 
+
+Normally, we would aim to analyze following **Prime Path Coverage**, but  due to the simplicity of ```getProjectileDrag()```, the Prime Path Coverage in our case also happens to be the best (and most expensive) kind of graph coverage: **Complete Graph Coverage**. 
+
+### Test Requirements
+
+The Prime/Complete path set is as follows:
+1. [1, 2, 4, 5, 6, 7]
+2. [1, 2, 3]
+3. [1, 2, 4, 3]
+
+### Test Cases
+
+1. Happy Path
+- velocity = (1, 1, 1)
+- Settings.FluidRho = 1
+- Settings.ProjectileArea = 1
+- Settings.DragCoefficient = 1
+
+2. Negative or Zero Velocity
+- velocity = (0, 0, 0)
+- Settings.FluidRho = 1
+- Settings.ProjectileArea = 1
+- Settings.DragCoefficient = 1
+
+3. Invalid Drag Magnitude
+- velocity = (1, 1, 1)
+- Settings.FluidRho = -1
+- Settings.ProjectileArea = 1
+- Settings.DragCoefficient = 1
+
+**NOTE** this condition may be impossible to reach! For drag magnitude to be > 0, one or all 3 of the initial settings must be incorrectly set to a negative number, an un-intentional (and physically impossible) use case. However, we will also test this case for robustness since it is the only one (as compared to a set of illogical conditions in a more complex function).
+
+<a id="org42ca9d1"></a>
+
+## Data Flow Coverage
+
+Another type of structural analysis is data flow, which focuses on the definition and use of variables. This allows us to verify that all variables are used correctly (e.g. not redefined before their intended use, or never used at all).
+
+The coverage criteria we are analyzing for is **All DU-Path Coverage**, as it is the most comprehensive type of data flow analysis (subsuming both All Def-Coverage and All Use-Coverage). All DU-Path Coverage is defined as: ```For each set S = du(initial_node, final_node, variable), the Test Requirements contain every path d in S```
+    --> cover all the paths between a variables def and its uses
+
+![img](./res/graph-data-flow.jpg "Data Flow Graph")
+
+### Test Requirements
+
+The DU pairs of the graph are as follows:
+1. du(1, 2, velocity)
+2. du(1, (2, 3), velocity)
+3. du(1, 4, velocity)
+4. du(4, 5, unitVelocity)
+5. du(4, (4, 3), dragMagnitude)
+6. du(4, 6, dragMagnitude)
+7. du(5, 6, unitVelocity)
+8. du(6, 7, dragForce)
+
+(Note: a few node have definitions followed by a single immediate use (rho, A, cD, vSquared, unitVelocity, and dragMagnitude) and are not considered for our du-paths)
+
+If we define the "happy path" as avoiding both if statements (edges (2,3) and (3, 4)), we can plainly see that all du paths except for these "if" edges are covered. Thus, a simple test suite of the following paths will cover all du-paths:
+1. [1, 2, 4, 5 ,6, 7]
+2. [1, 2, 3]
+3. [1, 2, 4, 3]
+
+### Test Cases
+
+We can see these Test Requirements are the same set of prime paths from the [Path Coverage](#orgf56ae2c) described above, as is expected with Prime Path and Complete Path Coverage. As such, we have proven we do not need to write any additional test cases, as the test requirements are already fulfilled by other tests.
