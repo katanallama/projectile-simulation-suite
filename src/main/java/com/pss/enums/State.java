@@ -1,10 +1,10 @@
 package com.pss.enums;
 
 public enum State {
-    INIT_SIMULATION,
     READ_FILE,
     PARSE_CONFIG,
     STORE_CONFIG,
+    INIT_SIMULATION,
     SIMULATION_INITIALIZED,
     START_SIMULATION,
     UPDATE_POSITION,
@@ -13,7 +13,8 @@ public enum State {
     STORE_RESULTS,
     PREPARE_PLOT_DATA,
     SAVE_PLOT_AS_PNG,
-    DISPLAY_PLOT_IN_GUI,
+    NOT_SAVE_PLOT_AS_PNG,
+    DISPLAY_PLOT_IN_GUI, // how test this?
     PRINT_RESULTS_TO_CONSOLE,
     OUTPUT_RESULT
 }

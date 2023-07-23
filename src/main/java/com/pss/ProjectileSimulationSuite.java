@@ -28,13 +28,33 @@ public class ProjectileSimulationSuite {
 
     /**
      * The main method of the suite. It initializes the simulation, runs it,
-     * and then outputs the results.
+     * and then stores and outputs the results.
      *
      * @param args Command line arguments
      */
     public static void main(String[] args) {
         initSimulation();
+        runSimulation();
+        storeResults();
+        outputResults();
+    }
 
+    /**
+     * Stores the results of the simulation. Create a new list to store the results
+     * and adds the simulation steps to the results list.
+     */
+    private static void storeResults() {
+        _results = new ArrayList<>(steps);
+        for (int i = 0; i < steps; i++) {
+            _results.add(_sim_steps[i]);
+        }
+        SimulatorState.setCurrentState(State.STORE_RESULTS);
+    }
+
+    /**
+     * Runs the simulation for the set number of steps.
+     */
+    private static void runSimulation() {
         SimulatorState.setCurrentState(State.START_SIMULATION);
         for (int t = 0; t < MAX_SIMSTEPS; t++) {
             _sim_steps[t] = new Vector3d(0, 0, 0);
@@ -47,14 +67,6 @@ public class ProjectileSimulationSuite {
             }
         }
         SimulatorState.setCurrentState(State.SIMULATION_COMPLETED);
-
-        _results = new ArrayList<>(steps);
-        for (int i = 0; i < steps; i++) {
-            _results.add(_sim_steps[i]);
-        }
-        SimulatorState.setCurrentState(State.STORE_RESULTS);
-
-        outputResults();
     }
 
     /**
@@ -66,12 +78,13 @@ public class ProjectileSimulationSuite {
      * simulation steps total.
      */
     private static void initSimulation() {
+        SimulatorState.setCurrentState(State.INIT_SIMULATION);
         _simulator = new MakeProjectileSimulator().createProjectileSimulator(new FileGetConfiguration());
-        MAX_SIMSTEPS = (int) (MAX_SIMSTEPS / _simulator.getTimeStep());
+        MAX_SIMSTEPS = (int) (_simulator.getMaxStep() / _simulator.getTimeStep());
         _sim_steps = new Vector3d[MAX_SIMSTEPS];
 
         _resultsOutputers = getOutputers();
-        SimulatorState.setCurrentState(State.INIT_SIMULATION);
+        SimulatorState.setCurrentState(State.SIMULATION_INITIALIZED);
     }
 
     /**
@@ -83,8 +96,8 @@ public class ProjectileSimulationSuite {
         IOutputResults[] availableOutputers = {
                 new ConsoleOutputer(),
                 new ChartOutputer(),
-                // new ChartOutputer3d(),
                 new ChartOutputer3dNonACC()
+                // new ChartOutputer3d(),
         };
 
         return availableOutputers;

@@ -39,12 +39,13 @@ public class ChartOutputer implements IOutputResults {
         dataset.addSeries(positionSeriesY);
         dataset.addSeries(positionSeriesZ);
 
-        SimulatorState.setCurrentState(State.PREPARE_PLOT_DATA);
         JFreeChart chart = ChartFactory.createXYLineChart(
                 "Position vs Time",
                 "Time Step (" + timeStep + "s)",
                 "Position (m)",
                 dataset);
+
+        SimulatorState.setCurrentState(State.PREPARE_PLOT_DATA);
 
         if (isHeadless || print) {
             String currentDir = System.getProperty("user.dir");
@@ -55,6 +56,7 @@ public class ChartOutputer implements IOutputResults {
                 SimulatorState.setCurrentState(State.SAVE_PLOT_AS_PNG);
             } catch (IOException e) {
                 e.printStackTrace();
+                SimulatorState.setCurrentState(State.NOT_SAVE_PLOT_AS_PNG);
             }
         } else {
             ChartFrame frame = new ChartFrame("Chart", chart);
