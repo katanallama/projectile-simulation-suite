@@ -7,53 +7,38 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/dist/reveal.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
 
-<link rel="stylesheet" href="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/dist/theme/Black.css" id="theme"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/moon.css" id="theme"/>
 </head>
 <body>
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h1 class="title">Testing A Howitzer Simulator in Java</h1><h2 class="author">Benjamin Hajdukiewicz</h2><p class="date">Created: 2023-07-23 Sun 12:53</p>
+<h2 class="title">Testing A Howitzer Simulator in Java</h2><em>ENSE 375, University of Regina</em><br><br>Benjamin Hajdukiewicz<br>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-orgb675c89">Testing A Howitzer Simulator in Java</a></li>
-<li><a href="#/slide-org190c7c1">Editor Notes [REMOVE ME]</a></li>
-<li><a href="#/slide-org3bf136a">Agenda</a></li>
-<li><a href="#/slide-org28ce31b">Introduction</a></li>
-<li><a href="#/slide-org7493d4a">Problem Definition</a></li>
-<li><a href="#/slide-org74d8fba">Design Requirements</a>
-<ul>
-<li><a href="#/slide-org9342cef">Functions</a></li>
-<li><a href="#/slide-orgfeaa139">Objectives</a></li>
-<li><a href="#/slide-org8cd3585">Constraints</a></li>
-<li><a href="#/slide-orge9c1255">Design Specifications</a></li>
-<li><a href="#/slide-orgcd6df80">Testing Specifications</a></li>
-</ul>
-</li>
-<li><a href="#/slide-orgafce6e9">Solutions</a>
-<ul>
-<li><a href="#/slide-orge6e6370">Solution 1: Basic Operation and Output</a></li>
-<li><a href="#/slide-org2e1a773">Solution 2:</a></li>
-<li><a href="#/slide-org6a066f1">Solution 3:</a></li>
-<li><a href="#/slide-orgcd49add">Comparing Solutions:</a></li>
-</ul>
-</li>
-<li><a href="#/slide-orgc8ffee6">Project Management</a></li>
-<li><a href="#/slide-orgff16fec">Conclusion and Future Scope</a></li>
+<li><a href="#/slide-orgf4035e5">Testing A Howitzer Simulator in Java</a></li>
+<li><a href="#/slide-orgc6ab6ed">Editor Notes [REMOVE ME]</a></li>
+<li><a href="#/slide-org36e2fd1">Agenda</a></li>
+<li><a href="#/slide-org41ae729">Introduction</a></li>
+<li><a href="#/slide-org37d0218">Problem Definition</a></li>
+<li><a href="#/slide-orgb79ebea">Design Requirements</a></li>
+<li><a href="#/slide-org6c77add">Solutions</a></li>
+<li><a href="#/slide-org9b54379">Project Management</a></li>
+<li><a href="#/slide-orgf42a64a">Conclusion and Future Scope</a></li>
 </ul>
 </div>
 </div>
 </section>
 
 <section>
-<section id="slide-orgb675c89">
-<h2 id="orgb675c89">Testing A Howitzer Simulator in Java</h2>
+<section id="slide-orgf4035e5">
+<h2 id="orgf4035e5">Testing A Howitzer Simulator in Java</h2>
 <p>
 Benjamin Hajdukiewicz (###)
 Daniil Aleshechkin (###)
@@ -71,8 +56,8 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-org190c7c1">
-<h2 id="org190c7c1">Editor Notes [REMOVE ME]</h2>
+<section id="slide-orgc6ab6ed">
+<h2 id="orgc6ab6ed">Editor Notes [REMOVE ME]</h2>
 <p>
 Consider putting toc:nil in OPTIONS to supress creating a table of contents (depending on how it looks, or if it shows up at all)
 </p>
@@ -93,8 +78,8 @@ The rubric has the following categories of grading
 </section>
 </section>
 <section>
-<section id="slide-org3bf136a">
-<h2 id="org3bf136a">Agenda</h2>
+<section id="slide-org36e2fd1">
+<h2 id="org36e2fd1">Agenda</h2>
 <ul>
 <li>Introduction</li>
 <li>Problem Definition</li>
@@ -116,8 +101,8 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-org28ce31b">
-<h2 id="org28ce31b">Introduction</h2>
+<section id="slide-org41ae729">
+<h2 id="org41ae729">Introduction</h2>
 <ul>
 <li>This project involves the development of a simulator to teach soldiers about kinematics and dynamics in relation to a Howitzer shooting a projectile across an empty field.</li>
 <li>The goal is to accurately simulate the physics of a fired projectile.</li>
@@ -144,8 +129,8 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-org7493d4a">
-<h2 id="org7493d4a">Problem Definition</h2>
+<section id="slide-org37d0218">
+<h2 id="org37d0218">Problem Definition</h2>
 <ul>
 <li>We are trying to build a solution that accurately captures the physics of a projectile in an easy to use and understand software package, including a high quality of:
 <ul>
@@ -168,8 +153,8 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-org74d8fba">
-<h2 id="org74d8fba">Design Requirements</h2>
+<section id="slide-orgb79ebea">
+<h2 id="orgb79ebea">Design Requirements</h2>
 <ul>
 <li>Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile and display the results of each simulation &ldquo;run&rdquo; in a way anybody can understand.</li>
 
@@ -186,8 +171,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-org9342cef">
-<h3 id="org9342cef">Functions</h3>
+<section id="slide-org5c64e11">
+<h3 id="org5c64e11">Functions</h3>
 <ul>
 <li>representation of 3D projectile trajectory</li>
 
@@ -201,8 +186,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-orgfeaa139">
-<h3 id="orgfeaa139">Objectives</h3>
+<section id="slide-org26bd98e">
+<h3 id="org26bd98e">Objectives</h3>
 <p>
 The simulator should be designed with the following requirements:
 </p>
@@ -249,8 +234,8 @@ We haven&rsquo;t completed all of our objectives yet, but are well on our way fo
 
 
 </section>
-<section id="slide-org8cd3585">
-<h3 id="org8cd3585">Constraints</h3>
+<section id="slide-org810fd32">
+<h3 id="org810fd32">Constraints</h3>
 <ul>
 <li>Ethics</li>
 
@@ -314,8 +299,8 @@ Information Management: The simulation is initialized and run according to a con
 
 
 </section>
-<section id="slide-orge9c1255">
-<h3 id="orge9c1255">Design Specifications</h3>
+<section id="slide-orga035443">
+<h3 id="orga035443">Design Specifications</h3>
 <ul>
 <li>Taking into account the modularity, extensibility, and testability required for this simulation program, the <b>strategy design pattern</b> is best suited.</li>
 
@@ -342,8 +327,8 @@ Information Management: The simulation is initialized and run according to a con
 
 
 </section>
-<section id="slide-orgcd6df80">
-<h3 id="orgcd6df80">Testing Specifications</h3>
+<section id="slide-orgf853347">
+<h3 id="orgf853347">Testing Specifications</h3>
 <p>
 For effective testing of the simulator, ensuring the robustness and reliability of the simulator the following test methods are used.
 </p>
@@ -376,8 +361,8 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 </section>
 </section>
 <section>
-<section id="slide-orgafce6e9">
-<h2 id="orgafce6e9">Solutions</h2>
+<section id="slide-org6c77add">
+<h2 id="org6c77add">Solutions</h2>
 <p>
 Some words about all solutions and the process
 </p>
@@ -396,8 +381,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-orge6e6370">
-<h3 id="orge6e6370">Solution 1: Basic Operation and Output</h3>
+<section id="slide-org3a3eb5a">
+<h3 id="org3a3eb5a">Solution 1: Basic Operation and Output</h3>
 <ul>
 <li>Our first solution was made to get the bare minimum of a product available to use and interact with.</li>
 <li>Many components (e.g. input values) were still hard-coded</li>
@@ -407,18 +392,18 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-org2e1a773">
-<h3 id="org2e1a773">Solution 2:</h3>
+<section id="slide-org601d030">
+<h3 id="org601d030">Solution 2:</h3>
 
 
 </section>
-<section id="slide-org6a066f1">
-<h3 id="org6a066f1">Solution 3:</h3>
+<section id="slide-orgaa5c03f">
+<h3 id="orgaa5c03f">Solution 3:</h3>
 
 
 </section>
-<section id="slide-orgcd49add">
-<h3 id="orgcd49add">Comparing Solutions:</h3>
+<section id="slide-orgb8d1c6f">
+<h3 id="orgb8d1c6f">Comparing Solutions:</h3>
 <p>
 PUT A TABLE IN ME
 </p>
@@ -427,8 +412,8 @@ PUT A TABLE IN ME
 </section>
 </section>
 <section>
-<section id="slide-orgc8ffee6">
-<h2 id="orgc8ffee6">Project Management</h2>
+<section id="slide-org9b54379">
+<h2 id="org9b54379">Project Management</h2>
 <p>
 PUT A GANTT CHART IN ME
 </p>
@@ -444,8 +429,8 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-orgff16fec">
-<h2 id="orgff16fec">Conclusion and Future Scope</h2>
+<section id="slide-orgf42a64a">
+<h2 id="orgf42a64a">Conclusion and Future Scope</h2>
 <p>
 Final words
 </p>
@@ -460,11 +445,11 @@ Put speaker notes here
 </section>
 </div>
 </div>
-<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/dist/reveal.js"></script>
-<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/plugin/markdown/markdown.js"></script>
-<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/plugin/notes/notes.js"></script>
-<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/plugin/search/search.js"></script>
-<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/search/search.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
@@ -483,7 +468,7 @@ hashOneBasedIndex: false,
 pdfSeparateFragments: true,
 overview: true,
 
-transition: 'Slide',
+transition: 'convex',
 transitionSpeed: 'default',
 
 // Plugins with reveal.js 4.x

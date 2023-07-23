@@ -1,8 +1,10 @@
-#+OPTIONS: num:nil 
-#+REVEAL_TRANS: Slide
-#+REVEAL_THEME: Black
 #+Title: Testing A Howitzer Simulator in Java
 #+Subtitle: ENSE 375, University of Regina
+#+OPTIONS: num:nil
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_THEME: moon
+#+REVEAL_TITLE_SLIDE: <h2 class="title">%t</h2><em>%s</em><br><br>%a<br>%d
+#+OPTIONS: toc:1
 
 * Testing A Howitzer Simulator in Java
 Benjamin Hajdukiewicz (###)
