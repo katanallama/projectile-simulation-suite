@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Testing A Howitzer Simulator in Java</title>
+<meta name="author" content="Benjamin Hajdukiewicz"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/dist/reveal.css"/>
+
+<link rel="stylesheet" href="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/dist/theme/Black.css" id="theme"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1 class="title">Testing A Howitzer Simulator in Java</h1><h2 class="author">Benjamin Hajdukiewicz</h2><p class="date">Created: 2023-07-23 Sun 12:53</p>
+</section>
+<section id="table-of-contents-section">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#/slide-orgb675c89">Testing A Howitzer Simulator in Java</a></li>
+<li><a href="#/slide-org190c7c1">Editor Notes [REMOVE ME]</a></li>
+<li><a href="#/slide-org3bf136a">Agenda</a></li>
+<li><a href="#/slide-org28ce31b">Introduction</a></li>
+<li><a href="#/slide-org7493d4a">Problem Definition</a></li>
+<li><a href="#/slide-org74d8fba">Design Requirements</a>
+<ul>
+<li><a href="#/slide-org9342cef">Functions</a></li>
+<li><a href="#/slide-orgfeaa139">Objectives</a></li>
+<li><a href="#/slide-org8cd3585">Constraints</a></li>
+<li><a href="#/slide-orge9c1255">Design Specifications</a></li>
+<li><a href="#/slide-orgcd6df80">Testing Specifications</a></li>
+</ul>
+</li>
+<li><a href="#/slide-orgafce6e9">Solutions</a>
+<ul>
+<li><a href="#/slide-orge6e6370">Solution 1: Basic Operation and Output</a></li>
+<li><a href="#/slide-org2e1a773">Solution 2:</a></li>
+<li><a href="#/slide-org6a066f1">Solution 3:</a></li>
+<li><a href="#/slide-orgcd49add">Comparing Solutions:</a></li>
+</ul>
+</li>
+<li><a href="#/slide-orgc8ffee6">Project Management</a></li>
+<li><a href="#/slide-orgff16fec">Conclusion and Future Scope</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<section id="slide-orgb675c89">
+<h2 id="orgb675c89">Testing A Howitzer Simulator in Java</h2>
+<p>
+Benjamin Hajdukiewicz (###)
+Daniil Aleshechkin (###)
+Jacob Meyer (200364255)
+</p>
+
+<aside class="notes">
+<p>
+Put speaker notes here
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org190c7c1">
+<h2 id="org190c7c1">Editor Notes [REMOVE ME]</h2>
+<p>
+Consider putting toc:nil in OPTIONS to supress creating a table of contents (depending on how it looks, or if it shows up at all)
+</p>
+
+<p>
+The rubric has the following categories of grading
+</p>
+<ul>
+<li>Problem definition</li>
+<li>Design selection</li>
+<li>Iterative Engineering design process</li>
+<li>Prototype development</li>
+<li>Design Communication and Teamwork</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org3bf136a">
+<h2 id="org3bf136a">Agenda</h2>
+<ul>
+<li>Introduction</li>
+<li>Problem Definition</li>
+<li>Design Requirements</li>
+<li>Solutions &amp; interactions</li>
+<li>Project Management</li>
+<li>Conclusion and Future Scope</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Put speaker notes here
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org28ce31b">
+<h2 id="org28ce31b">Introduction</h2>
+<ul>
+<li>This project involves the development of a simulator to teach soldiers about kinematics and dynamics in relation to a Howitzer shooting a projectile across an empty field.</li>
+<li>The goal is to accurately simulate the physics of a fired projectile.</li>
+
+</ul>
+
+<aside class="notes">
+<ol>
+<li></li>
+
+<li>the goal includes: 
+<ul>
+<li>considering variables that could affect its trajectory,</li>
+<li>providing a realistic and educational simulator that helps soldiers understand and predict the effects of different variables on the trajectory and</li>
+<li>final position of a howitzer-fired projectile.</li>
+
+</ul></li>
+
+</ol>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org7493d4a">
+<h2 id="org7493d4a">Problem Definition</h2>
+<ul>
+<li>We are trying to build a solution that accurately captures the physics of a projectile in an easy to use and understand software package, including a high quality of:
+<ul>
+<li>speed of computation</li>
+<li>variability of potential inputs</li>
+<li>extendability for future development</li>
+
+</ul></li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Put speaker notes here
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org74d8fba">
+<h2 id="org74d8fba">Design Requirements</h2>
+<ul>
+<li>Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile and display the results of each simulation &ldquo;run&rdquo; in a way anybody can understand.</li>
+
+<li>Create a robust test suite for parts of the simulator to demonstrate complete knowledge of standard test procedures.</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Put speaker notes here
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-org9342cef">
+<h3 id="org9342cef">Functions</h3>
+<ul>
+<li>representation of 3D projectile trajectory</li>
+
+<li>representation of the forces acting on the projectile during its flight</li>
+
+<li>final impact position of the projectile</li>
+
+<li>real-time kinematic and dynamic statistics (position, velocity, acceleration, forces) for deeper understanding and analysis</li>
+
+</ul>
+
+
+</section>
+<section id="slide-orgfeaa139">
+<h3 id="orgfeaa139">Objectives</h3>
+<p>
+The simulator should be designed with the following requirements:
+</p>
+
+<p>
+<i>Intuitive User Interface</i>
+</p>
+
+<p>
+<i>Realism</i>
+</p>
+
+<p>
+<i>Performance</i>
+</p>
+
+<p>
+<i>Flexibility</i>
+</p>
+
+<p>
+<i>Educational</i>
+</p>
+
+<aside class="notes">
+<p>
+We haven&rsquo;t completed all of our objectives yet, but are well on our way for some of them.
+</p>
+
+<ol>
+<li>UI: The simulator should have an intuitive user interface that allows users to easily input variables and understand the output. -&gt; NOT REACHED</li>
+
+<li>Realism: The simulator should realistically model the physics of a fired projectile, including the effects of gravity and drag. -&gt; PARTIALLY REACHED</li>
+
+<li>Performance: The simulator should be able to run the simulation smoothly and handle calculations quickly, even for complex trajectories. -&gt; REACHED</li>
+
+<li>Flexibility: : The simulator should allow for the adjustment of a wide range of variables, allowing for a variety of simulations. -&gt; REACHED</li>
+
+<li>Educational: The simulator should have educational value, helping soldiers understand the factors that affect the trajectory and final position of a projectile. -&gt; NOT REACHED</li>
+
+</ol>
+
+</aside>
+
+
+</section>
+<section id="slide-org8cd3585">
+<h3 id="org8cd3585">Constraints</h3>
+<ul>
+<li>Ethics</li>
+
+<li>Accuracy</li>
+
+<li>Reproducible Results</li>
+
+<li>Reliability</li>
+
+<li>User Control and Display</li>
+
+<li>Information Management</li>
+
+</ul>
+
+<p>
+Results should be logged in <code>csv</code> format that is easily interpreted by common analysis and visualization tools such as <code>matplotlib</code> and <code>seaborn</code>.
+</p>
+
+<aside class="notes">
+<ol>
+<li>Ethics: The purpose of the simulator is to educate soldiers for combat, which includes the potential destruction of lives and infrastructure, while the team does not condone this, our hope as a development team is that the education from our simulator is used to strengthen a strategy of combat deterrence and de-escalation, but we recognize the likelihood of said education to be used towards actual combat.</li>
+
+<li>Accuracy: This simulator is a simplified model of a non-deterministic environment, we cannot guarantee that it precisely replicates the real-world-equivalent actions.</li>
+
+<li>Reproducible Results: This is an important factor in not only simulation, but development as well. The team strives to produce a project and results that are highly reproducible. From the use of <a href="https://nixos.org/guides/nix-pills/">Nix</a> as a build tool, to the development of the project. By ensuring that the project build is reproducible across multiple systems, this helps to ensure that the simulation results are also reproducible as the back-end will be consistent from machine to machine.</li>
+
+<li>Reliability: The results of the simulator will be deterministic of the given configuration, resulting in expected outputs for a given input.</li>
+
+<li>User Control and Display: The simulation will run without a GUI; inputs and outputs are to be managed through external files according to the Information Management constraint. At most, the user input will be a one-time prompt at the program startup. At most, the simulation output either displayed through the console and/or recorded separately. The results should be able to be imported into other visualization tools easily.</li>
+
+<li><p>
+Information Management: The simulation is initialized and run according to a configuration <code>.json</code> file with the relevant information which can be overriden with supplied commands. Simulation results saved to the user specified <code>outdir/</code>  that includes but is not limited to:
+</p>
+<ul>
+<li>simulator configuration</li>
+
+</ul>
+<p>
+&#x2013; mass : the mass of the projectile (kg)
+&#x2013; drag<sub>coeffient</sub> : how aerodynamic the projectile is (number)
+&#x2013; initial<sub>force</sub> : the force vector applied by the cannon (N)
+&#x2013; gravity<sub>strength</sub> : the strengh of gravity (m/s<sup>2</sup>)
+&#x2013; wind<sub>vector</sub> : the constant wind vector (N)
+&#x2013; object<sub>area</sub> : the surface area of the projectile (m<sup>2</sup>)
+&#x2013; object<sub>force</sub><sub>mode</sub> : the type of external force exerted by the projectile (enum)
+&#x2013; wind<sub>vector</sub><sub>field</sub><sub>mode</sub> : the type of vector field that the project will travel through (enum)
+</p>
+<ul>
+<li>simulator results</li>
+
+</ul>
+<p>
+&#x2013; csv file with two columns: Time and postion 
+&#x2013; run timestamp
+</p></li>
+
+</ol>
+
+</aside>
+
+
+</section>
+<section id="slide-orge9c1255">
+<h3 id="orge9c1255">Design Specifications</h3>
+<ul>
+<li>Taking into account the modularity, extensibility, and testability required for this simulation program, the <b>strategy design pattern</b> is best suited.</li>
+
+<li>Concerns were separated into:
+<ol>
+<li>Handlers to allow for universal, uncoupled access to the projectile status and any forces acting on it</li>
+<li>Factories to create all the objects</li>
+<li>Configurable input and output options 
+-e.g. command line, config file, 2D chart, 3D chart, etc</li>
+<li>A suite to build and manage the simulator and handle its inputs and outputs</li>
+
+</ol></li>
+
+</ul>
+
+
+<aside class="notes">
+<ol>
+<li>This allows for adding new - or removing, variables without affecting the overall structure of the simulation, and without having to change the main simulation code. This separation of concerns makes it easier to write tests for each strategy.</li>
+
+</ol>
+
+</aside>
+
+
+</section>
+<section id="slide-orgcd6df80">
+<h3 id="orgcd6df80">Testing Specifications</h3>
+<p>
+For effective testing of the simulator, ensuring the robustness and reliability of the simulator the following test methods are used.
+</p>
+
+<p>
+<i>Unit Testing</i>
+</p>
+
+<p>
+<i>Integration Testing</i> 
+</p>
+
+<p>
+<i>System Testing</i>
+</p>
+
+<aside class="notes">
+<ol>
+<li>Unit Testing: Test individual functions and components separately. For instance, testing the function calculating the projectile trajectory with a variety of inputs, including boundary values, equivalence classes, decision tables, paths, data flows, and slices.</li>
+
+<li>Integration Testing: Select a subset to combine and test together. For instance, testing the function for trajectory calculation together with the drag calculation function and gravity effects to ensure they work correctly in tandem.</li>
+
+<li>System Testing: Select a subset of use cases for system testing, to evaluate the system&rsquo;s overall functionality in scenarios that resemble real-world usage.</li>
+
+</ol>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgafce6e9">
+<h2 id="orgafce6e9">Solutions</h2>
+<p>
+Some words about all solutions and the process
+</p>
+
+<ul>
+<li>We built our solutions using the AGILE and MVP paradigms</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Put speaker notes here
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-orge6e6370">
+<h3 id="orge6e6370">Solution 1: Basic Operation and Output</h3>
+<ul>
+<li>Our first solution was made to get the bare minimum of a product available to use and interact with.</li>
+<li>Many components (e.g. input values) were still hard-coded</li>
+<li>The projectile would properly move through the air with only gravity affecting it and no way to detect the ground</li>
+
+</ul>
+
+
+</section>
+<section id="slide-org2e1a773">
+<h3 id="org2e1a773">Solution 2:</h3>
+
+
+</section>
+<section id="slide-org6a066f1">
+<h3 id="org6a066f1">Solution 3:</h3>
+
+
+</section>
+<section id="slide-orgcd49add">
+<h3 id="orgcd49add">Comparing Solutions:</h3>
+<p>
+PUT A TABLE IN ME
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgc8ffee6">
+<h2 id="orgc8ffee6">Project Management</h2>
+<p>
+PUT A GANTT CHART IN ME
+</p>
+
+<aside class="notes">
+<p>
+Put speaker notes here
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgff16fec">
+<h2 id="orgff16fec">Conclusion and Future Scope</h2>
+<p>
+Final words
+</p>
+
+<aside class="notes">
+<p>
+Put speaker notes here
+</p>
+
+</aside>
+</section>
+</section>
+</div>
+</div>
+<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/dist/reveal.js"></script>
+<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/plugin/markdown/markdown.js"></script>
+<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/plugin/notes/notes.js"></script>
+<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/plugin/search/search.js"></script>
+<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/plugin/zoom/zoom.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+
+transition: 'Slide',
+transitionSpeed: 'default',
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealNotes, RevealSearch, RevealZoom ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
