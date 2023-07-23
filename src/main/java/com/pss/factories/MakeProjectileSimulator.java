@@ -16,10 +16,11 @@ public class MakeProjectileSimulator {
         IGetProjectileForce projectileForceHandler = getProjectileForceHandler(configurationHandler,
                 projectileHandler);
 
+        double maxStep = configurationHandler.getSetting(Settings.MaxStep);
         double timeStep = configurationHandler.getSetting(Settings.TimeStep);
 
         return new ProjectileSimulator(projectileHandler, projectileDragHandler, projectileForceHandler,
-                projectileGravityHandler, timeStep);
+                projectileGravityHandler, maxStep, timeStep);
     }
 
     private IGetProjectileGravity getProjectileGravityHandler(IGetConfiguration configurationHandler,

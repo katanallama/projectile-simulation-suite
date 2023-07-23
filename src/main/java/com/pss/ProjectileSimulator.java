@@ -10,16 +10,22 @@ public class ProjectileSimulator {
     private IGetProjectileForce _projectileForceHandler;
     private IGetProjectileGravity _projectileGravityHandler;
 
+    private double maxStep; // Time step for simulation
     private double timeStep; // Time step for simulation
 
     public ProjectileSimulator(IGetProjectile projectileHandler, IGetProjectileDrag projectileDragHandler,
             IGetProjectileForce projectileForceHandler, IGetProjectileGravity projectileGravityHandler,
-            double timeStep) {
+            double maxStep, double timeStep) {
         _projectileHandler = projectileHandler;
         _projectileForceHandler = projectileForceHandler;
         _projectileGravityHandler = projectileGravityHandler;
         _projectileDragHandler = projectileDragHandler;
+        this.maxStep = maxStep;
         this.timeStep = timeStep;
+    }
+
+    public double getMaxStep() {
+        return maxStep;
     }
 
     public double getTimeStep() {

@@ -1,5 +1,6 @@
 {
-    "initialDirection" : "(8, 10, 12)",
-    "initialForce" :  600,
-    "weight" :  16
+    "initialDirection" : "(10, 20, 30)",
+    "initialForce" : 20,
+    "simStep" :  1,
+    "timeStep" :  0.1
 }

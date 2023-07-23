@@ -10,6 +10,9 @@ import org.jzy3d.chart.factories.EmulGLChartFactory;
 import org.jzy3d.plot3d.primitives.LineStrip;
 import org.jzy3d.plot3d.rendering.canvas.Quality;
 
+import java.awt.HeadlessException;
+import java.awt.GraphicsEnvironment;
+
 public class ChartOutputer3dNonACC implements I3dOutputer {
 
     @Override
@@ -18,8 +21,12 @@ public class ChartOutputer3dNonACC implements I3dOutputer {
         new Thread(() -> {
             try {
                 LineStrip lineStrip = lineStripFromResults(results);
-                displayChart(lineStrip);
-            } catch (Exception e) {
+                if (!GraphicsEnvironment.isHeadless()) {
+                    displayChart(lineStrip);
+                }
+            } catch (HeadlessException e) {
+                System.out.println(
+                        "It is not possible to output a chart in a headless environment.");
                 e.printStackTrace();
             }
         }).start();
@@ -38,6 +45,7 @@ public class ChartOutputer3dNonACC implements I3dOutputer {
 
         EmulGLSkin skin = EmulGLSkin.on(chart);
         skin.getCanvas().setProfileDisplayMethod(true);
+
     }
 
 }
