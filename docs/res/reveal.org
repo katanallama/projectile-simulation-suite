@@ -1,0 +1,77 @@
+#+OPTIONS: num:nil 
+#+REVEAL_TRANS: Slide
+#+REVEAL_THEME: Black
+#+Title: Testing A Howitzer Simulator in Java
+#+Subtitle: ENSE 375, University of Regina
+
+* Testing A Howitzer Simulator in Java
+Benjamin Hajdukiewicz (###)
+Daniil Aleshechkin (###)
+Jacob Meyer (200364255)
+
+
+* Editor Notes [REMOVE ME]
+Consider putting toc:nil in OPTIONS to supress creating a table of contents (depending on how it looks, or if it shows up at all)
+
+The rubric has the following categories of grading
+- Problem definition 
+- Design selection
+- Iterative Engineering design process
+- Prototype development
+- Design Communication and Teamwork
+
+
+
+* Agenda
+- Introduction
+- Problem Definition
+- Design Requirements 
+- Solutions & interactions
+- Project Management
+- Conclusion and Future Scope
+
+
+* Introduction
+#+BEGIN_COMMENT 
+    - Provide a summary of the relevant background information about the topic of the project.
+    - Give a rationale what is needed and why.
+#+END_COMMENT
+
+
+* Problem Definition
+#+BEGIN_COMMENT 
+    - What is the problem you're trying to solve?
+#+END_COMMENT
+
+
+* Design Requirements
+#+BEGIN_COMMENT 
+    Describe:
+    - Functions
+    - Objectives
+    - Constraints (if any)
+#+END_COMMENT
+
+
+* Solutions
+#+BEGIN_COMMENT 
+    For each solution, describe:
+    - Application design and implementation
+    - Test cases and results
+    - Analysis of the solution
+    Compare all solutions to answer:
+    - how is a solution better than previous solutions? (if applicable)
+        - use a table to compare the solutions
+#+END_COMMENT
+
+
+* Project Management
+#+BEGIN_COMMENT 
+    - Describe a gantt chart representing the progress of your work
+#+END_COMMENT
+
+
+* Conclusion and Future Scope
+#+BEGIN_COMMENT 
+    - Write whatever the hell you want
+#+END_COMMENT
