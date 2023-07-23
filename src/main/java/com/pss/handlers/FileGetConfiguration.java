@@ -2,6 +2,8 @@ package com.pss.handlers;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pss.enums.Settings;
+import com.pss.enums.State;
+import com.pss.SimulatorState;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,14 +24,18 @@ public class FileGetConfiguration extends BaseGetConfiguration {
         HashMap<String, Object> jsonFileSettings = new HashMap<String, Object>();
 
         try (FileReader reader = new FileReader(filePath)) {
+            SimulatorState.setCurrentState(State.READ_FILE);
+
             Type type = new TypeToken<HashMap<String, String>>(){}.getType();
 
             HashMap<String, String> rawData  = gson.fromJson(reader, type);
 
+            SimulatorState.setCurrentState(State.PARSE_CONFIG);
+
             for (Settings setting : Settings.values()) {
                 if (rawData.containsKey(setting.getName())) {
                     Object value = null;
-                    
+
                     try {
                         switch (setting.getType()) {
                             case Double:
@@ -49,6 +55,7 @@ public class FileGetConfiguration extends BaseGetConfiguration {
                     jsonFileSettings.put(setting.getName(), value);
                 }
             }
+            SimulatorState.setCurrentState(State.STORE_CONFIG);
 
         } catch (FileNotFoundException e) {
             File settingsFile = new File(filePath);
@@ -67,10 +74,11 @@ public class FileGetConfiguration extends BaseGetConfiguration {
     public FileGetConfiguration() {
         initializeSettings();
     }
-    
+
     public FileGetConfiguration(HashMap<String, Object> settings) {
         initializeSettings();
-    
+        System.out.print(settings);
+
         overrideSettings(settings);
     }
 

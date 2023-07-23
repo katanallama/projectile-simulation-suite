@@ -12,6 +12,7 @@ public enum Settings {
     FluidRho("fluidRho", DataTypes.Double, 1.204d),
     ProjectileArea("projectileArea", DataTypes.Double, 0.1d),
     DragCoefficent("dragCoefficent", DataTypes.Double, 0.04d),
+    MaxStep("simStep", DataTypes.Double, 100d),
     TimeStep("timeStep", DataTypes.Double, 0.001d);
 
     private String name;
