@@ -4,7 +4,8 @@ import javax.vecmath.Vector3d;
 
 public enum DataTypes {
     Vector(Vector3d.class),
-    Double(double.class);
+    Double(double.class),
+    String(String.class);
 
     private DataTypes(Class<?> type) {
         _type = type;

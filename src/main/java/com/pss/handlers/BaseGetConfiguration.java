@@ -6,7 +6,7 @@ import com.pss.enums.Settings;
 import com.pss.interfaces.IGetConfiguration;
 
 public class BaseGetConfiguration implements IGetConfiguration {
-    private static HashMap<String,Object> getDefaultSettings() {
+    protected static HashMap<String,Object> getDefaultSettings() {
         HashMap<String, Object> defaultSettings = new HashMap<String,Object>();
 
         for (Settings setting : Settings.values()) {
@@ -33,6 +33,8 @@ public class BaseGetConfiguration implements IGetConfiguration {
     }
 
     protected void overrideSetting(String key, Object value) {
+
+        System.out.println("OVERIDING:" + key + value);
         if (value == null) {
             return;
         }

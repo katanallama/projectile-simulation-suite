@@ -12,11 +12,16 @@ import java.io.IOException;
 import java.lang.Object;
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import com.pss.enums.Settings;
+import com.pss.interfaces.*;
+
 
 import javax.naming.directory.InvalidAttributesException;
 
 public class FileGetConfiguration extends BaseGetConfiguration {
-    private static final String FILE_PATH = "simulatorSettings.json";
+
+    // private static String filePath = "simulatorSettings.json";
+    private String filePath = getSetting(Settings.InputFile);
 
     public static HashMap<String, Object> parseJsonFile(String filePath) {
         Gson gson = new Gson();
@@ -83,6 +88,6 @@ public class FileGetConfiguration extends BaseGetConfiguration {
     }
 
     private void initializeSettings() {
-        overrideSettings(parseJsonFile(FILE_PATH));
+        overrideSettings(parseJsonFile(filePath));
     }
 }

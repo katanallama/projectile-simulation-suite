@@ -2,16 +2,20 @@ package com.pss;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 import javax.vecmath.Vector3d;
+import picocli.CommandLine;
 
 import com.pss.enums.State;
 import com.pss.factories.MakeProjectileSimulator;
+import com.pss.handlers.ConsoleInputer;
 import com.pss.handlers.ChartOutputer;
 import com.pss.handlers.ChartOutputer3dNonACC;
 import com.pss.handlers.ConsoleOutputer;
 import com.pss.handlers.FileGetConfiguration;
 import com.pss.interfaces.IOutputResults;
+import com.pss.interfaces.IGetConfiguration;
 
 /**
  * This class provides a suite for running projectile simulations.
@@ -19,7 +23,7 @@ import com.pss.interfaces.IOutputResults;
  */
 public class ProjectileSimulationSuite {
 
-    private static int MAX_SIMSTEPS = 100;
+    private static int MAX_SIMSTEPS;
     private static int steps;
     private static IOutputResults[] _resultsOutputers;
     private static ProjectileSimulator _simulator;
@@ -33,7 +37,8 @@ public class ProjectileSimulationSuite {
      * @param args Command line arguments
      */
     public static void main(String[] args) {
-        initSimulation();
+
+        initSimulation(args);
         runSimulation();
         storeResults();
         outputResults();
@@ -77,9 +82,11 @@ public class ProjectileSimulationSuite {
      * The default setting is 100 steps at 0.001 precision which results in 100,000
      * simulation steps total.
      */
-    private static void initSimulation() {
+    private static void initSimulation(String[] args) {
         SimulatorState.setCurrentState(State.INIT_SIMULATION);
         _simulator = new MakeProjectileSimulator().createProjectileSimulator(new FileGetConfiguration());
+        ConsoleInputer testOut = new ConsoleInputer();
+        new CommandLine(new ConsoleInputer()).execute(args);
         MAX_SIMSTEPS = (int) (_simulator.getMaxStep() / _simulator.getTimeStep());
         _sim_steps = new Vector3d[MAX_SIMSTEPS];
 
