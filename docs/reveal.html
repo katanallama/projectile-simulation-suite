@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Testing A Howitzer Simulator in Java</title>
-<meta name="author" content="Benjamin Hajdukiewicz"/>
+<meta name="author" content="Ben Hajdukiewicz, Daniil Aleshechkin, Jacob Meyer"/>
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
@@ -15,49 +15,25 @@
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide">
-<h2 class="title">Testing A Howitzer Simulator in Java</h2><em>ENSE 375, University of Regina</em><br><br>Benjamin Hajdukiewicz<br>
+<h2 class="title">Testing A Howitzer Simulator in Java</h2><em>ENSE 375, University of Regina</em><br><br>Ben Hajdukiewicz, Daniil Aleshechkin, Jacob Meyer<br>
 </section>
 <section id="table-of-contents-section">
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-orgf4035e5">Testing A Howitzer Simulator in Java</a></li>
-<li><a href="#/slide-orgc6ab6ed">Editor Notes [REMOVE ME]</a></li>
-<li><a href="#/slide-org36e2fd1">Agenda</a></li>
-<li><a href="#/slide-org41ae729">Introduction</a></li>
-<li><a href="#/slide-org37d0218">Problem Definition</a></li>
-<li><a href="#/slide-orgb79ebea">Design Requirements</a></li>
-<li><a href="#/slide-org6c77add">Solutions</a></li>
-<li><a href="#/slide-org9b54379">Project Management</a></li>
-<li><a href="#/slide-orgf42a64a">Conclusion and Future Scope</a></li>
+<li><a href="#/slide-orgb61e5da">Agenda</a></li>
+<li><a href="#/slide-orgd76d8bb">Introduction</a></li>
+<li><a href="#/slide-orgf7f9543">Problem Definition</a></li>
+<li><a href="#/slide-orge088098">Design Requirements</a></li>
+<li><a href="#/slide-org1e05059">Solutions</a></li>
+<li><a href="#/slide-org4ac818a">Project Management</a></li>
+<li><a href="#/slide-orgdf26ba3">Conclusion and Future Scope</a></li>
 </ul>
 </div>
 </div>
 </section>
-
-<section>
-<section id="slide-orgf4035e5">
-<h2 id="orgf4035e5">Testing A Howitzer Simulator in Java</h2>
-<p>
-Benjamin Hajdukiewicz (###)
-Daniil Aleshechkin (###)
-Jacob Meyer (200364255)
-</p>
-
 <aside class="notes">
-<p>
-Put speaker notes here
-</p>
-
-</aside>
-
-
-</section>
-</section>
-<section>
-<section id="slide-orgc6ab6ed">
-<h2 id="orgc6ab6ed">Editor Notes [REMOVE ME]</h2>
 <p>
 Consider putting toc:nil in OPTIONS to supress creating a table of contents (depending on how it looks, or if it shows up at all)
 </p>
@@ -74,12 +50,11 @@ The rubric has the following categories of grading
 
 </ul>
 
+</aside>
 
-</section>
-</section>
 <section>
-<section id="slide-org36e2fd1">
-<h2 id="org36e2fd1">Agenda</h2>
+<section id="slide-orgb61e5da">
+<h2 id="orgb61e5da">Agenda</h2>
 <ul>
 <li>Introduction</li>
 <li>Problem Definition</li>
@@ -101,8 +76,8 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-org41ae729">
-<h2 id="org41ae729">Introduction</h2>
+<section id="slide-orgd76d8bb">
+<h2 id="orgd76d8bb">Introduction</h2>
 <ul>
 <li>This project involves the development of a simulator to teach soldiers about kinematics and dynamics in relation to a Howitzer shooting a projectile across an empty field.</li>
 <li>The goal is to accurately simulate the physics of a fired projectile.</li>
@@ -129,8 +104,8 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-org37d0218">
-<h2 id="org37d0218">Problem Definition</h2>
+<section id="slide-orgf7f9543">
+<h2 id="orgf7f9543">Problem Definition</h2>
 <ul>
 <li>We are trying to build a solution that accurately captures the physics of a projectile in an easy to use and understand software package, including a high quality of:
 <ul>
@@ -153,8 +128,8 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-orgb79ebea">
-<h2 id="orgb79ebea">Design Requirements</h2>
+<section id="slide-orge088098">
+<h2 id="orge088098">Design Requirements</h2>
 <ul>
 <li>Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile and display the results of each simulation &ldquo;run&rdquo; in a way anybody can understand.</li>
 
@@ -171,8 +146,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-org5c64e11">
-<h3 id="org5c64e11">Functions</h3>
+<section id="slide-orgff2da7f">
+<h3 id="orgff2da7f">Functions</h3>
 <ul>
 <li>representation of 3D projectile trajectory</li>
 
@@ -186,8 +161,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-org26bd98e">
-<h3 id="org26bd98e">Objectives</h3>
+<section id="slide-org9fd2ed3">
+<h3 id="org9fd2ed3">Objectives</h3>
 <p>
 The simulator should be designed with the following requirements:
 </p>
@@ -234,8 +209,8 @@ We haven&rsquo;t completed all of our objectives yet, but are well on our way fo
 
 
 </section>
-<section id="slide-org810fd32">
-<h3 id="org810fd32">Constraints</h3>
+<section id="slide-orga463f78">
+<h3 id="orga463f78">Constraints</h3>
 <ul>
 <li>Ethics</li>
 
@@ -299,8 +274,8 @@ Information Management: The simulation is initialized and run according to a con
 
 
 </section>
-<section id="slide-orga035443">
-<h3 id="orga035443">Design Specifications</h3>
+<section id="slide-org98d575f">
+<h3 id="org98d575f">Design Specifications</h3>
 <ul>
 <li>Taking into account the modularity, extensibility, and testability required for this simulation program, the <b>strategy design pattern</b> is best suited.</li>
 
@@ -327,8 +302,8 @@ Information Management: The simulation is initialized and run according to a con
 
 
 </section>
-<section id="slide-orgf853347">
-<h3 id="orgf853347">Testing Specifications</h3>
+<section id="slide-org438d880">
+<h3 id="org438d880">Testing Specifications</h3>
 <p>
 For effective testing of the simulator, ensuring the robustness and reliability of the simulator the following test methods are used.
 </p>
@@ -361,8 +336,8 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 </section>
 </section>
 <section>
-<section id="slide-org6c77add">
-<h2 id="org6c77add">Solutions</h2>
+<section id="slide-org1e05059">
+<h2 id="org1e05059">Solutions</h2>
 <p>
 Some words about all solutions and the process
 </p>
@@ -381,8 +356,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-org3a3eb5a">
-<h3 id="org3a3eb5a">Solution 1: Basic Operation and Output</h3>
+<section id="slide-org54e612c">
+<h3 id="org54e612c">Solution 1: Basic Operation and Output</h3>
 <ul>
 <li>Our first solution was made to get the bare minimum of a product available to use and interact with.</li>
 <li>Many components (e.g. input values) were still hard-coded</li>
@@ -392,18 +367,18 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-org601d030">
-<h3 id="org601d030">Solution 2:</h3>
+<section id="slide-orgedc5464">
+<h3 id="orgedc5464">Solution 2:</h3>
 
 
 </section>
-<section id="slide-orgaa5c03f">
-<h3 id="orgaa5c03f">Solution 3:</h3>
+<section id="slide-orgc588f07">
+<h3 id="orgc588f07">Solution 3:</h3>
 
 
 </section>
-<section id="slide-orgb8d1c6f">
-<h3 id="orgb8d1c6f">Comparing Solutions:</h3>
+<section id="slide-orge92fb94">
+<h3 id="orge92fb94">Comparing Solutions:</h3>
 <p>
 PUT A TABLE IN ME
 </p>
@@ -412,8 +387,8 @@ PUT A TABLE IN ME
 </section>
 </section>
 <section>
-<section id="slide-org9b54379">
-<h2 id="org9b54379">Project Management</h2>
+<section id="slide-org4ac818a">
+<h2 id="org4ac818a">Project Management</h2>
 <p>
 PUT A GANTT CHART IN ME
 </p>
@@ -429,8 +404,8 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-orgf42a64a">
-<h2 id="orgf42a64a">Conclusion and Future Scope</h2>
+<section id="slide-orgdf26ba3">
+<h2 id="orgdf26ba3">Conclusion and Future Scope</h2>
 <p>
 Final words
 </p>
