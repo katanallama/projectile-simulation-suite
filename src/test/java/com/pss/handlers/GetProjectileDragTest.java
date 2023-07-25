@@ -89,7 +89,6 @@ public class GetProjectileDragTest {
 
         GetProjectileDrag getProjectileDrag = new GetProjectileDrag(configurationHandler, projectileHandler);
         Vector3d result = getProjectileDrag.getProjectileDrag();
-        System.out.println(result);
 
         TestUtilities.assertEqualsVector(expected, result, 0.0001);
     }
