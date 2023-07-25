@@ -1,0 +1,12 @@
+{
+    "gravity" :  9.81,
+    "weight" :  1,
+    "initialForce" :  18000,
+    "continualForce" :  20,
+    "initialDirection" : "(0, 30, 30)",
+    "fuildRho" :  1.204,
+    "projectileArea" :  0.1,
+    "dragCoefficent" :  0.1,
+    "simStep" :  15.0,
+    "timeStep" :  0.001
+}

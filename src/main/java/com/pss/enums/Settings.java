@@ -12,10 +12,8 @@ public enum Settings {
     FluidRho("fluidRho", DataTypes.Double, 1.204d),
     ProjectileArea("projectileArea", DataTypes.Double, 0.1d),
     DragCoefficent("dragCoefficent", DataTypes.Double, 0.04d),
-    MaxStep("simStep", DataTypes.Double, 1d),
-    TimeStep("timeStep", DataTypes.Double, 0.1d),
-    InputFile("inFile", DataTypes.String, "simulatorSettings.json"),
-    OutputFile("outFile", DataTypes.String, "image.png");
+    MaxStep("simStep", DataTypes.Double, 100d),
+    TimeStep("timeStep", DataTypes.Double, 0.001d);
 
     private String name;
     private DataTypes type;
@@ -73,18 +71,12 @@ public enum Settings {
         return parsedVector;
     }
 
-    public static String parseString(String in) {
-        return in.trim(); // Simple sanitization by removing leading and trailing white spaces.
-    }
-
     public static <T> boolean validateValue(T value, Settings setting) {
         switch (setting.getType()) {
             case Double:
                 return (value instanceof Double);
             case Vector:
                 return (value instanceof Vector3d);
-            case String:
-                return (value instanceof String);
             default:
                 return false;
         }
