@@ -4,6 +4,7 @@
 #+OPTIONS: num:nil
 #+REVEAL_THEME: moon
 #+REVEAL_TRANS: slide
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
 #+REVEAL_TITLE_SLIDE: <h2 class="title">%t</h2><em>%s</em><br><br>%a<br>%d
 #+OPTIONS: toc:1
 

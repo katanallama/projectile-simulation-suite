@@ -7,9 +7,9 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/dist/reveal.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
 
-<link rel="stylesheet" href="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/dist/theme/moon.css" id="theme"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/moon.css" id="theme"/>
 </head>
 <body>
 <div class="reveal">
@@ -22,25 +22,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-org3bd7b9f">Introduction</a></li>
-<li><a href="#/slide-orgd5142c5">Problem Definition</a></li>
-<li><a href="#/slide-orgd805dc3">Design Requirements</a></li>
-<li><a href="#/slide-org6ab401b">Design Specifications</a></li>
-<li><a href="#/slide-orga438073">Testing Specifications</a></li>
-<li><a href="#/slide-orgc14d96f">Unit Testing</a></li>
-<li><a href="#/slide-orgfff0071">Integration Testing</a></li>
-<li><a href="#/slide-org271071a">System Testing</a></li>
-<li><a href="#/slide-org411b5c4">Solutions</a></li>
-<li><a href="#/slide-org8cb20d1">Project Management</a></li>
-<li><a href="#/slide-orgd677380">Conclusion and Future Scope</a></li>
+<li><a href="#/slide-org251f476">Introduction</a></li>
+<li><a href="#/slide-org5d13b65">Problem Definition</a></li>
+<li><a href="#/slide-org1acd54d">Design Requirements</a></li>
+<li><a href="#/slide-orge4d6242">Design Specifications</a></li>
+<li><a href="#/slide-orgda4d768">Testing Specifications</a></li>
+<li><a href="#/slide-org6e795fc">Unit Testing</a></li>
+<li><a href="#/slide-org0a71f1e">Integration Testing</a></li>
+<li><a href="#/slide-org3f77878">System Testing</a></li>
+<li><a href="#/slide-orgd8e7250">Solutions</a></li>
+<li><a href="#/slide-org9436af9">Project Management</a></li>
+<li><a href="#/slide-org7c0efd5">Conclusion and Future Scope</a></li>
 </ul>
 </div>
 </div>
 </section>
 
 <section>
-<section id="slide-org3bd7b9f">
-<h2 id="org3bd7b9f">Introduction</h2>
+<section id="slide-org251f476">
+<h2 id="org251f476">Introduction</h2>
 <ul>
 <li>This project involves the development of a simulator to teach soldiers about kinematics and dynamics in relation to a Howitzer shooting a projectile across an empty field.</li>
 <li>The goal is to accurately simulate the physics of a fired projectile in Java.</li>
@@ -67,8 +67,8 @@
 </section>
 </section>
 <section>
-<section id="slide-orgd5142c5">
-<h2 id="orgd5142c5">Problem Definition</h2>
+<section id="slide-org5d13b65">
+<h2 id="org5d13b65">Problem Definition</h2>
 <ul>
 <li>We are trying to build a solution that accurately captures the physics of a projectile in an easy to use and understand software package, including a high quality of:
 <ul>
@@ -91,8 +91,8 @@ Psssst, don&rsquo;t say &ldquo;it&rsquo;s because we have to for a school projec
 </section>
 </section>
 <section>
-<section id="slide-orgd805dc3">
-<h2 id="orgd805dc3">Design Requirements</h2>
+<section id="slide-org1acd54d">
+<h2 id="org1acd54d">Design Requirements</h2>
 <p>
 The simulator should be designed with the following requirements:
 </p>
@@ -134,8 +134,8 @@ We haven&rsquo;t reached all of our design requirements yet, but are well on our
 
 
 </section>
-<section id="slide-orgcebb9f6">
-<h3 id="orgcebb9f6">Functions</h3>
+<section id="slide-org0038ab9">
+<h3 id="org0038ab9">Functions</h3>
 <ul>
 <li>representation of 3D projectile trajectory</li>
 
@@ -156,8 +156,8 @@ Remember when he sent us an email saying to ignore the &ldquo;function&rdquo; pa
 
 
 </section>
-<section id="slide-orged696db">
-<h3 id="orged696db">Objectives</h3>
+<section id="slide-orgb39262f">
+<h3 id="orgb39262f">Objectives</h3>
 <ul>
 <li>Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile and display the results of each simulation &ldquo;run&rdquo; in a way anybody can understand.</li>
 
@@ -174,8 +174,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-org0e5bedb">
-<h3 id="org0e5bedb">Constraints</h3>
+<section id="slide-org33bf2f0">
+<h3 id="org33bf2f0">Constraints</h3>
 <ul>
 <li>Ethics</li>
 
@@ -237,8 +237,8 @@ Information Management: The simulation is initialized and run according to a con
 </section>
 </section>
 <section>
-<section id="slide-org6ab401b">
-<h2 id="org6ab401b">Design Specifications</h2>
+<section id="slide-orge4d6242">
+<h2 id="orge4d6242">Design Specifications</h2>
 <ul>
 <li>Taking into account the modularity, extensibility, and testability required for this simulation program, the <b>strategy design pattern</b> is best suited.</li>
 
@@ -267,10 +267,10 @@ Information Management: The simulation is initialized and run according to a con
 </aside>
 
 </section>
-<section id="slide-org60f5db2">
-<h3 id="org60f5db2">Class Diagram</h3>
+<section id="slide-org728edee">
+<h3 id="org728edee">Class Diagram</h3>
 
-<div id="orgb5ca4be" class="figure">
+<div id="orgfb923cb" class="figure">
 <p><img src="./res/suite.png" alt="suite.png" />
 </p>
 </div>
@@ -279,8 +279,8 @@ Information Management: The simulation is initialized and run according to a con
 </section>
 </section>
 <section>
-<section id="slide-orga438073">
-<h2 id="orga438073">Testing Specifications</h2>
+<section id="slide-orgda4d768">
+<h2 id="orgda4d768">Testing Specifications</h2>
 <p>
 For effective testing of the simulator, ensuring the robustness and reliability of the simulator the following test methods are used:
 </p>
@@ -309,8 +309,8 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 </section>
 </section>
 <section>
-<section id="slide-orgc14d96f">
-<h2 id="orgc14d96f">Unit Testing</h2>
+<section id="slide-org6e795fc">
+<h2 id="org6e795fc">Unit Testing</h2>
 <ul>
 <li>Path and Data Flow analysis concluded to the same test cases</li>
 <li>We analyzed for Prime Path Testing, which subsumes Data Flow analysis, so this is expected
@@ -339,28 +339,28 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 
 
 </section>
-<section id="slide-orgb9fc088">
-<h3 id="orgb9fc088">Unit Testing - Path Testing</h3>
+<section id="slide-org42f1275">
+<h3 id="org42f1275">Unit Testing - Path Testing</h3>
 
-<div id="org5057d9a" class="figure">
+<div id="orgee4ae7e" class="figure">
 <p><img src="./res/graph-structural.jpg" alt="graph-structural.jpg" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org619349e">
-<h3 id="org619349e">Unit Testing - Data Flow Testing</h3>
+<section id="slide-org3d6ebf7">
+<h3 id="org3d6ebf7">Unit Testing - Data Flow Testing</h3>
 
-<div id="orgd33f8d3" class="figure">
+<div id="orgf823f53" class="figure">
 <p><img src="./res/graph-data-flow.jpg" alt="graph-data-flow.jpg" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org55927e8">
-<h3 id="org55927e8">Unit Testing - Decision Table Testing</h3>
+<section id="slide-org1d215f5">
+<h3 id="org1d215f5">Unit Testing - Decision Table Testing</h3>
 <p>
 The simple form of our decision table:
 </p>
@@ -455,8 +455,8 @@ The simple form of our decision table:
 
 
 </section>
-<section id="slide-org29ae1a9">
-<h3 id="org29ae1a9">Unit Testing - Boundary Value Testing</h3>
+<section id="slide-orgdb539db">
+<h3 id="orgdb539db">Unit Testing - Boundary Value Testing</h3>
 <ul>
 <li>Max boundary values taken from &ldquo;Big Bertha,&rdquo; the largest cannon ever produced</li>
 
@@ -522,8 +522,8 @@ The simple form of our decision table:
 
 
 </section>
-<section id="slide-org4898cb6">
-<h3 id="org4898cb6">Unit Testing - Equivalence Value Testing</h3>
+<section id="slide-orgbca6ffa">
+<h3 id="orgbca6ffa">Unit Testing - Equivalence Value Testing</h3>
 <!-- This HTML table template is generated by emacs 29.0.92 -->
 <table border="1">
   <tr>
@@ -598,8 +598,8 @@ The simple form of our decision table:
 </section>
 </section>
 <section>
-<section id="slide-orgfff0071">
-<h2 id="orgfff0071">Integration Testing</h2>
+<section id="slide-org0a71f1e">
+<h2 id="org0a71f1e">Integration Testing</h2>
 <ul>
 <li>Integration testing was done using the factory MakeProjectileSimuator, which creates the main simulator</li>
 <li>This requires the integration of all our configuration handlers, ensuring that each part is contributing to the simulation appropriately</li>
@@ -618,8 +618,8 @@ The simple form of our decision table:
 </section>
 </section>
 <section>
-<section id="slide-org271071a">
-<h2 id="org271071a">System Testing</h2>
+<section id="slide-org3f77878">
+<h2 id="org3f77878">System Testing</h2>
 <ul>
 <li>System testing was done on the simulator as a whole, running start to finish</li>
 <li>Testing was operated on simulator states to make sure it ran in the proper, expected order</li>
@@ -629,17 +629,17 @@ The simple form of our decision table:
 
 
 </section>
-<section id="slide-org9d38d32">
-<h3 id="org9d38d32">System Testing - Finite State Machine</h3>
+<section id="slide-org9cae5fc">
+<h3 id="org9cae5fc">System Testing - Finite State Machine</h3>
 
-<div id="org82eb5cd" class="figure">
+<div id="org6856bb6" class="figure">
 <p><img src="./res/fsm.png" alt="fsm.png" />
 </p>
 </div>
 
 </section>
-<section id="slide-org6aa8082">
-<h3 id="org6aa8082">System Testing - Finite State Machine</h3>
+<section id="slide-org711de1f">
+<h3 id="org711de1f">System Testing - Finite State Machine</h3>
 <ul>
 <li>3 States:
 <ol>
@@ -671,8 +671,8 @@ The simple form of our decision table:
 </section>
 </section>
 <section>
-<section id="slide-org411b5c4">
-<h2 id="org411b5c4">Solutions</h2>
+<section id="slide-orgd8e7250">
+<h2 id="orgd8e7250">Solutions</h2>
 <ul>
 <li>We built our solutions using the AGILE and MVP paradigms</li>
 <li>Everything we added was an &ldquo;extension&rdquo; onto the basic shell of the simulator</li>
@@ -688,8 +688,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-orgd682c64">
-<h3 id="orgd682c64">Solution 1: Basic Structure, Gravity, and Output</h3>
+<section id="slide-orgcb97b3d">
+<h3 id="orgcb97b3d">Solution 1: Basic Structure, Gravity, and Output</h3>
 <ul>
 <li>Our first solution was made to get the bare minimum of a &ldquo;working&rdquo; simulation to run and interact with.</li>
 <li>Many components were left as stubs to allow for the project to build before all feature were complete</li>
@@ -707,8 +707,8 @@ Put speaker notes here
 </aside>
 
 </section>
-<section id="slide-org47b02a1">
-<h3 id="org47b02a1">Solution 2: Configuration Handler and Drag Physics</h3>
+<section id="slide-org183ae06">
+<h3 id="org183ae06">Solution 2: Configuration Handler and Drag Physics</h3>
 <ul>
 <li>Introduced initial &ldquo;firing&rdquo; force, a simple drag force</li>
 <li>Implemented the configuration handler to retrieve dynamic settings from a readable/writable json file</li>
@@ -718,8 +718,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-orge0ea242">
-<h3 id="orge0ea242">Solution 3: Finite State Machine and Precision Increases</h3>
+<section id="slide-org994a0fd">
+<h3 id="org994a0fd">Solution 3: Finite State Machine and Precision Increases</h3>
 <ul>
 <li>Introduced a much smaller time step to increase the simulator&rsquo;s precision</li>
 <li>Refactored the simulator to be represented as a Finite State Machine</li>
@@ -728,54 +728,11 @@ Put speaker notes here
 </ul>
 
 
-<p>
-#+BEGIN<sub>COMMENT</sub>
-</p>
-</section>
-<section id="slide-org55a313f">
-<h3 id="org55a313f">Comparing Solutions:</h3>
-<ul>
-<li>As expected with our development plan, each solution incrementally improved the product</li>
-
-</ul>
-
-<!-- This HTML table template is generated by emacs 29.0.92 -->
-<table border="1">
-  <tr>
-    <td align="left" valign="top">
-      &nbsp;&nbsp;&nbsp;Specifications&nbsp;&nbsp;
-    </td>
-    <td align="left" valign="top">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solution&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;
-    </td>
-    <td align="left" valign="top">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solution&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;
-    </td>
-    <td align="left" valign="top">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solution&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;<br />
-      -------------------<br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-      -------------------<br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-      -------------------<br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-      -------------------<br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-      -------------------<br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </td>
-  </tr>
-</table>
-<p>
-#+END<sub>COMMENT</sub>
-</p>
-
-
 </section>
 </section>
 <section>
-<section id="slide-org8cb20d1">
-<h2 id="org8cb20d1">Project Management</h2>
+<section id="slide-org9436af9">
+<h2 id="org9436af9">Project Management</h2>
 <p>
 <a href="./res/gantt-chart.html">./res/gantt-chart.html</a>
 </p>
@@ -791,8 +748,8 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-orgd677380">
-<h2 id="orgd677380">Conclusion and Future Scope</h2>
+<section id="slide-org7c0efd5">
+<h2 id="org7c0efd5">Conclusion and Future Scope</h2>
 <ul>
 <li>As it stands, our application operates with an acceptable level of accuracy, flexibility and extensibility, and computational performance.</li>
 <li>But there are many extraneous goals left to finish, such as:
@@ -816,11 +773,11 @@ Put speaker notes here
 </section>
 </div>
 </div>
-<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/dist/reveal.js"></script>
-<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/plugin/markdown/markdown.js"></script>
-<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/plugin/notes/notes.js"></script>
-<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/plugin/search/search.js"></script>
-<script src="/home/bh/.config/emacs/.local/straight/build-29.0.92/revealjs/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/search/search.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
