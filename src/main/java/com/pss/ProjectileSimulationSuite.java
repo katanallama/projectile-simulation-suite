@@ -34,9 +34,9 @@ public class ProjectileSimulationSuite {
      */
     public static void main(String[] args) {
         initSimulation();
-        runSimulation();
-        storeResults();
-        outputResults();
+        //runSimulation();
+        //storeResults();
+        //outputResults();
     }
 
     /**
