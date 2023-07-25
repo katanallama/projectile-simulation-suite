@@ -1,17 +1,13 @@
 #+Title: Testing A Howitzer Simulator in Java
 #+Subtitle: ENSE 375, University of Regina
 #+Author: Ben Hajdukiewicz, Daniil Aleshechkin, Jacob Meyer
-#+OPTIONS: num:nil toc:1
-#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+OPTIONS: num:nil
 #+REVEAL_THEME: moon
+#+REVEAL_TRANS: slide
 #+REVEAL_TITLE_SLIDE: <h2 class="title">%t</h2><em>%s</em><br><br>%a<br>%d
-
+#+OPTIONS: toc:1
 
 * Introduction
-#+BEGIN_COMMENT 
-- Provide a summary of the relevant background information about the topic of the project.
-- Give a rationale what is needed and why.
-#+END_COMMENT
 
 - This project involves the development of a simulator to teach soldiers about kinematics and dynamics in relation to a Howitzer shooting a projectile across an empty field.
 - The goal is to accurately simulate the physics of a fired projectile in Java.
@@ -26,9 +22,6 @@
 
 
 * Problem Definition
-#+BEGIN_COMMENT 
-    - What is the problem you're trying to solve?
-#+END_COMMENT
 
 - We are trying to build a solution that accurately captures the physics of a projectile in an easy to use and understand software package, including a high quality of:
     - speed of computation
@@ -41,12 +34,6 @@ Psssst, don't say "it's because we have to for a school project"
 
 
 * Design Requirements
-#+BEGIN_COMMENT 
-    Describe:
-    - Functions
-    - Objectives
-    - Constraints (if any)
-#+END_COMMENT
 
 The simulator should be designed with the following requirements:
 
@@ -234,15 +221,37 @@ The simple form of our decision table:
 |------------------------+-----------+-------+-------+-----------------|
 
 
-
-
 ** Unit Testing - Equivalence Value Testing
 
-
-
++-------------------------+------------+
+|    Equivalence Class    |    Unit    |
++-------------------------+------------+
+| Area                    | mm²        |   
+|   - Small               | 105        |
+|   - Med                 | 155        |
+|   - Large               | 240        |
++-------------------------+------------+
+| Density                 | kg/m²      |
+|   - Cold                | 1.300      |
+|   - Normal              | 1.200      |
+|   - Hot                 | 1.100      |
++-------------------------+------------+
+| Drag Coefficient (Cd)   |      -     |
+|   - Average             | 0.2        |
+|   - OK                  | 0.4        |
+|   - Bad                 | 0.6        |
++-------------------------+------------+
+| Muzzle Velocity         |   m/s      |
+|   - Stationary          |  0         |
+|   - Slow                | 200        |
+|   - Fast                | 400        |
+|   - Very Fast           | 700        |
++-------------------------+------------+
 
 
 * Integration Testing
+
+- Integration testing was done on 
 
 
 #+BEGIN_NOTES
@@ -251,7 +260,9 @@ The simple form of our decision table:
 
 * System Testing
 
-
+- System testing was done on the simulator as a whole, running start to finish
+- Testing was operated on simulator states to make sure it ran in the proper, expected order
+- Major refactor involved in rewriting simulator to run as a Finite State Machine
 
 
 #+BEGIN_NOTES
@@ -260,15 +271,6 @@ The simple form of our decision table:
 
 
 * Solutions
-#+BEGIN_COMMENT 
-    For each solution, describe:
-    - Application design and implementation
-    - Test cases and results
-    - Analysis of the solution
-    Compare all solutions to answer:
-    - how is a solution better than previous solutions? (if applicable)
-        - use a table to compare the solutions
-#+END_COMMENT
 
 - We built our solutions using the AGILE and MVP paradigms
 - Everything we added was an "extension" onto the basic shell of the simulator
@@ -303,6 +305,7 @@ Put speaker notes here
 - Refactored the drag force to use accurate physical calculations
 
 
+#+BEGIN_COMMENT
 ** Comparing Solutions:
 
 - As expected with our development plan, each solution incrementally improved the product
@@ -320,13 +323,10 @@ Put speaker notes here
 |-------------------+-------------------+-------------------+-------------------|
 | Educational       |                   |                   |                   |
 +-------------------+-------------------+-------------------+-------------------+
-
+#+END_COMMENT
 
 
 * Project Management
-#+BEGIN_COMMENT 
-    - Describe a gantt chart representing the progress of your work
-#+END_COMMENT
 
 [[./res/gantt-chart.html][Gantt Chart]]
 
@@ -336,9 +336,6 @@ Put speaker notes here
 
 
 * Conclusion and Future Scope
-#+BEGIN_COMMENT 
-    - Write whatever the hell you want
-#+END_COMMENT
 
 As it stands, our application 
 
