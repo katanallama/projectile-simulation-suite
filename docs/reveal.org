@@ -173,6 +173,12 @@ For effective testing of the simulator, ensuring the robustness and reliability 
     - In our case, we ran the system start to finish and used a State Observer to verify that all the expected machine states were reached
 #+END_NOTES
 
+* Testing Methodology
+
+/Unit Testing/
+
+all tests ara parameterized
+
 * Unit Testing
 
 - Path and Data Flow analysis concluded to the same test cases 
@@ -216,6 +222,23 @@ The simple form of our decision table:
 | A1: | Return (0,0,0)       | X | X | X | - |
 | A2: | Return Drag          | - | - | - | X |
 +-----+----------------------+---+---+---+---+
+
+
+** Unit Testing - Decision Table Testing
+#+REVEAL_HTML: <div style="font-size: 60%;">
+
+The extended form of our decision table:
+
+|     |                      | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
+|-----+----------------------+---+---+---+---+---+---+---+---+---+----+----+----+----+----+----+----|
+| C1: | ~velocity~ = 0?      | T | T | T | T | T | T | T | T | F | F  | F  | F  | F  | F  | F  | F  |
+| C2: | ~velocity.x, y~ < 0? | - | - | - | - | - | - | - | - | T | T  | T  | T  | F  | F  | F  | F  |
+| C3: | rho or A or Cd <= 0? | - | - | - | - | - | - | - | - | - | -  | -  | -  | T  | T  | F  | F  |
+| C4: | dragMagnitude > 0?   | - | - | - | - | - | - | - | - | - | -  | -  | -  | -  | F  | T  | F  |
+|-----+----------------------+---+---+---+---+---+---+---+---+---+----+----+----+----+----+----+----|
+| A1: | Return (0,0,0)       | X | X | X | X | X | X | X | X | X | X  | X  | X  | X  | X  | X  | -  |
+| A2: | Return Drag          | - | - | - | - | - | - | - | - | - | -  | -  | -  | -  | -  | -  | X  |
+
 
 
 ** Unit Testing - Boundary Value Testing
@@ -340,6 +363,7 @@ Put speaker notes here
 
 * Project Management
 
+[[./res/gantt.png]]
 [[./res/gantt-chart.html]]
 
 #+BEGIN_NOTES
