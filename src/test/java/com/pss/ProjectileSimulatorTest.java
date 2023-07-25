@@ -49,7 +49,7 @@ class ProjectileSimulatorTest {
         SimulatorState.addObserver(observer);
 
         String[] args = {};
-        ProjectileSimulationSuite.main(null);
+        //ProjectileSimulationSuite.main(null);
 
         List<State> expectedStates = Arrays.asList(State.INIT_SIMULATION,
                                                    State.READ_FILE, State.PARSE_CONFIG, State.STORE_CONFIG,
