@@ -22,7 +22,7 @@ public class ProjectileSimulationSuite {
     private static int MAX_SIMSTEPS = 100;
     private static int steps;
     private static IOutputResults[] _resultsOutputers;
-    private ProjectileSimulator _simulator;
+    private static ProjectileSimulator _simulator;
     private static List<Vector3d> _results;
     private static Vector3d[] _sim_steps;
 
@@ -33,16 +33,10 @@ public class ProjectileSimulationSuite {
      * @param args Command line arguments
      */
     public static void main(String[] args) {
-        ProjectileSimulationSuite hack = new ProjectileSimulationSuite();
-
-        initSimulation(hack);
-        runSimulation(hack);
+        initSimulation();
+        runSimulation();
         //storeResults();
         //outputResults();
-    }
-
-    public void setSimulator(ProjectileSimulator sim) {
-        _simulator = sim;
     }
 
     /**
@@ -60,11 +54,11 @@ public class ProjectileSimulationSuite {
     /**
      * Runs the simulation for the set number of steps.
      */
-    private static void runSimulation(ProjectileSimulationSuite hack) {
+    private static void runSimulation() {
         SimulatorState.setCurrentState(State.START_SIMULATION);
         for (int t = 0; t < MAX_SIMSTEPS; t++) {
             _sim_steps[t] = new Vector3d(0, 0, 0);
-            _sim_steps[t].add(hack._simulator.updatePosition());
+            _sim_steps[t].add(_simulator.updatePosition());
             SimulatorState.setCurrentState(State.UPDATE_POSITION);
 
             if (_sim_steps[t].z >= 0) {
@@ -83,10 +77,10 @@ public class ProjectileSimulationSuite {
      * The default setting is 100 steps at 0.001 precision which results in 100,000
      * simulation steps total.
      */
-    private static void initSimulation(ProjectileSimulationSuite hack) {
+    private static void initSimulation() {
         SimulatorState.setCurrentState(State.INIT_SIMULATION);
-        hack.setSimulator(new MakeProjectileSimulator().createProjectileSimulator(new FileGetConfiguration()));
-        MAX_SIMSTEPS = (int) (hack._simulator.getMaxStep() / hack._simulator.getTimeStep());
+        _simulator = new MakeProjectileSimulator().createProjectileSimulator(new FileGetConfiguration());
+        MAX_SIMSTEPS = (int) (_simulator.getMaxStep() / _simulator.getTimeStep());
         _sim_steps = new Vector3d[MAX_SIMSTEPS];
 
         _resultsOutputers = getOutputers();
@@ -115,7 +109,7 @@ public class ProjectileSimulationSuite {
     private static void outputResults() {
         // For each outputer, output the results
         for (IOutputResults outputer : _resultsOutputers) {
-         //   outputer.outputResults(_results.toArray(new Vector3d[0]), _simulator.getTimeStep());
+            outputer.outputResults(_results.toArray(new Vector3d[0]), _simulator.getTimeStep());
         }
         SimulatorState.setCurrentState(State.OUTPUT_RESULT);
     }
