@@ -1,0 +1,100 @@
+This is a quick scrape of all the speaker notes from our revealjs presentation
+
+* Introduction
+
+the goal includes: 
+    - considering variables that could affect its trajectory, 
+    - providing a realistic and educational simulator that helps soldiers understand and predict the effects of different variables on the trajectory and 
+    - final position of a howitzer-fired projectile.
+
+* Problem Definition
+
+Psssst, don't say "it's because we have to for a school project"
+
+
+* Design Requirements
+
+We haven't reached all of our design requirements yet, but are well on our way for some of them.
+
+1. UI: The simulator should have an intuitive user interface that allows users to easily input variables and understand the output.
+
+2. Realism: The simulator should realistically model the physics of a fired projectile, including the effects of gravity and drag.
+
+3. Performance: The simulator should be able to run the simulation smoothly and handle calculations quickly, even for complex trajectories.
+
+4. Flexibility: : The simulator should allow for the adjustment of a wide range of variables, allowing for a variety of simulations.
+
+5. Educational: The simulator should have educational value, helping soldiers understand the factors that affect the trajectory and final position of a projectile. 
+
+
+** Functions
+
+Remember when he sent us an email saying to ignore the "function" part of the design doc? Me neither.
+
+
+** Objectives
+
+N/a
+
+** Constraints
+
+
+1. Ethics: The purpose of the simulator is to educate soldiers for combat, which includes the potential destruction of lives and infrastructure, while the team does not condone this, our hope as a development team is that the education from our simulator is used to strengthen a strategy of combat deterrence and de-escalation, but we recognize the likelihood of said education to be used towards actual combat.
+
+2. Accuracy: This simulator is a simplified model of a non-deterministic environment, we cannot guarantee that it precisely replicates the real-world-equivalent actions.
+
+3. Reproducible Results: This is an important factor in not only simulation, but development as well. The team strives to produce a project and results that are highly reproducible. From the use of [[https://nixos.org/guides/nix-pills/][Nix]] as a build tool, to the development of the project. By ensuring that the project build is reproducible across multiple systems, this helps to ensure that the simulation results are also reproducible as the back-end will be consistent from machine to machine.
+
+4. Reliability: The results of the simulator will be deterministic of the given configuration, resulting in expected outputs for a given input.
+
+5. User Control and Display: The simulation will run without a GUI; inputs and outputs are to be managed through external files according to the Information Management constraint. At most, the user input will be a one-time prompt at the program startup. At most, the simulation output either displayed through the console and/or recorded separately. The results should be able to be imported into other visualization tools easily.
+
+6. Information Management: The simulation is initialized and run according to a configuration ~.json~ file with the relevant information which can be overriden with supplied commands. Simulation results saved to the user specified ~outdir/~  that includes but is not limited to:
+ - simulator configuration
+ -- mass : the mass of the projectile (kg) -> IMPLEMENTED
+ -- drag_coeffient : how aerodynamic the projectile is (number) ->IMPLEMENTED
+ -- initial_force : the force vector applied by the cannon (N) -> IMPLEMENTED
+ -- gravity_strength : the strengh of gravity (m/s^2) -> IMPLEMENTED
+ -- wind_vector : the constant wind vector (N) -> NOT IMPLEMENTED
+ -- object_area : the surface area of the projectile (m^2) -> IMPLEMENTED
+ -- object_force_mode : the type of external force exerted by the projectile (enum) -> NOT IMPLEMENTED
+ -- wind_vector_field_mode : the type of vector field that the project will travel through (enum) -> NOT IMPLEMENTED
+ - simulator results
+ -- csv file with two columns: Time and position -> NOT IMPLEMENTED
+ -- run timestamp -> NOT IMPLEMENTED
+
+
+* Design Specifications
+
+This allows for adding new - or removing, variables without affecting the overall structure of the simulation, and without having to change the main simulation code. This separation of concerns makes it easier to write tests for each strategy.
+
+
+** Class Diagram
+
+N/a
+
+* Testing Specifications
+
+N/A
+
+* Integration Testing
+
+N/A
+
+* System Testing
+
+N/A
+
+* Solutions
+
+N/A
+
+* Project Management
+
+N/A
+
+* Conclusion 
+
+N/A
+
+

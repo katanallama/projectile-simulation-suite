@@ -171,7 +171,8 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 
 - Path and Data Flow analysis concluded to the same test cases 
 - We analyzed for Prime Path Testing, which subsumes Data Flow analysis, so this is expected
-- However, we still included the analysis of Data Flow for demonstration purposes
+    - However, we still included the analysis of Data Flow for demonstration purposes
+- Boundary/Equivalence values were collected from online resources about howitzers
 
 #+BEGIN_NOTES
 1. Unit Testing: This is where we test individual functions and components separately. For the purposes of this class, all our unit tests were done on our getProjectileDrag() function, including boundary values, equivalence classes, decision tables, paths, and data flows.
@@ -196,15 +197,17 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 
 The simple form of our decision table:
 
++-----+----------------------+---+---+---+---+
 |     |                      | 1 | 2 | 3 | 4 |
-|-----+----------------------+---+---+---+---|
++-----+----------------------+---+---+---+---+
 | C1: | velocity = 0?        | T | T | F | F |
 | C2: | velocity.x, y < 0?   | - | T | T | F |
 | C3: | rho or A or Cd <= 0? | - | - | T | F |
 | C4: | dragMagnitude > 0?   | - | - | - | F |
-|-----+----------------------+---+---+---+---|
++-----+----------------------+---+---+---+---+
 | A1: | Return (0,0,0)       | X | X | X | - |
 | A2: | Return Drag          | - | - | - | X |
++-----+----------------------+---+---+---+---+
 
 
 ** Unit Testing - Boundary Value Testing
@@ -251,7 +254,8 @@ The simple form of our decision table:
 
 * Integration Testing
 
-- Integration testing was done on 
+- Integration testing was done using the factory MakeProjectileSimuator, which creates the main simulator
+- This requires the integration of all our configuration handlers, ensuring that each part is contributing to the simulation appropriately
 
 
 #+BEGIN_NOTES
@@ -263,6 +267,23 @@ The simple form of our decision table:
 - System testing was done on the simulator as a whole, running start to finish
 - Testing was operated on simulator states to make sure it ran in the proper, expected order
 - Major refactor involved in rewriting simulator to run as a Finite State Machine
+
+
+** System Testing - Finite State Machine
+
+[[./res/fsm.png]]
+
+** System Testing - Finite State Machine
+
+- 3 States:
+    1. Configuration and Initialization
+    2. Run Simulation
+    3. Output Results
+
+- 3 Transitions:
+    1. Simulation Initialized
+    2. Simulation Step Executed
+    3. Process Results
 
 
 #+BEGIN_NOTES
@@ -291,7 +312,7 @@ Put speaker notes here
 - 
 #+END_NOTES
 
-** Solution 2: 
+** Solution 2: Configuration Handler and Drag Physics
 
 - Introduced initial "firing" force, a simple drag force
 - Implemented the configuration handler to retrieve dynamic settings from a readable/writable json file
@@ -337,9 +358,8 @@ Put speaker notes here
 
 * Conclusion and Future Scope
 
-As it stands, our application 
-
-- Many extraneous goals left to finish, such as:
+- As it stands, our application operates with an acceptable level of accuracy, flexibility and extensibility, and computational performance.
+- But there are many extraneous goals left to finish, such as:
     - User interaction
     - Different forms of output (e.g. csv files)
     - More complex forces (e.g. wind vector field)
