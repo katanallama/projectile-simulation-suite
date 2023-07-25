@@ -22,25 +22,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-orgd2c0878">Introduction</a></li>
-<li><a href="#/slide-org4cc10aa">Problem Definition</a></li>
-<li><a href="#/slide-orgbdfee9f">Design Requirements</a></li>
-<li><a href="#/slide-org2aef637">Design Specifications</a></li>
-<li><a href="#/slide-org32ca022">Testing Specifications</a></li>
-<li><a href="#/slide-org013ca11">Unit Testing</a></li>
-<li><a href="#/slide-orgf22c669">Integration Testing</a></li>
-<li><a href="#/slide-orgae1d583">System Testing</a></li>
-<li><a href="#/slide-org34519cb">Solutions</a></li>
-<li><a href="#/slide-org3414a89">Project Management</a></li>
-<li><a href="#/slide-org6f9ce5a">Conclusion and Future Scope</a></li>
+<li><a href="#/slide-org3bd7b9f">Introduction</a></li>
+<li><a href="#/slide-orgd5142c5">Problem Definition</a></li>
+<li><a href="#/slide-orgd805dc3">Design Requirements</a></li>
+<li><a href="#/slide-org6ab401b">Design Specifications</a></li>
+<li><a href="#/slide-orga438073">Testing Specifications</a></li>
+<li><a href="#/slide-orgc14d96f">Unit Testing</a></li>
+<li><a href="#/slide-orgfff0071">Integration Testing</a></li>
+<li><a href="#/slide-org271071a">System Testing</a></li>
+<li><a href="#/slide-org411b5c4">Solutions</a></li>
+<li><a href="#/slide-org8cb20d1">Project Management</a></li>
+<li><a href="#/slide-orgd677380">Conclusion and Future Scope</a></li>
 </ul>
 </div>
 </div>
 </section>
 
 <section>
-<section id="slide-orgd2c0878">
-<h2 id="orgd2c0878">Introduction</h2>
+<section id="slide-org3bd7b9f">
+<h2 id="org3bd7b9f">Introduction</h2>
 <ul>
 <li>This project involves the development of a simulator to teach soldiers about kinematics and dynamics in relation to a Howitzer shooting a projectile across an empty field.</li>
 <li>The goal is to accurately simulate the physics of a fired projectile in Java.</li>
@@ -67,8 +67,8 @@
 </section>
 </section>
 <section>
-<section id="slide-org4cc10aa">
-<h2 id="org4cc10aa">Problem Definition</h2>
+<section id="slide-orgd5142c5">
+<h2 id="orgd5142c5">Problem Definition</h2>
 <ul>
 <li>We are trying to build a solution that accurately captures the physics of a projectile in an easy to use and understand software package, including a high quality of:
 <ul>
@@ -91,8 +91,8 @@ Psssst, don&rsquo;t say &ldquo;it&rsquo;s because we have to for a school projec
 </section>
 </section>
 <section>
-<section id="slide-orgbdfee9f">
-<h2 id="orgbdfee9f">Design Requirements</h2>
+<section id="slide-orgd805dc3">
+<h2 id="orgd805dc3">Design Requirements</h2>
 <p>
 The simulator should be designed with the following requirements:
 </p>
@@ -134,8 +134,8 @@ We haven&rsquo;t reached all of our design requirements yet, but are well on our
 
 
 </section>
-<section id="slide-orgaeaafdb">
-<h3 id="orgaeaafdb">Functions</h3>
+<section id="slide-orgcebb9f6">
+<h3 id="orgcebb9f6">Functions</h3>
 <ul>
 <li>representation of 3D projectile trajectory</li>
 
@@ -156,8 +156,8 @@ Remember when he sent us an email saying to ignore the &ldquo;function&rdquo; pa
 
 
 </section>
-<section id="slide-org5c483d9">
-<h3 id="org5c483d9">Objectives</h3>
+<section id="slide-orged696db">
+<h3 id="orged696db">Objectives</h3>
 <ul>
 <li>Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile and display the results of each simulation &ldquo;run&rdquo; in a way anybody can understand.</li>
 
@@ -174,8 +174,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-org9db499f">
-<h3 id="org9db499f">Constraints</h3>
+<section id="slide-org0e5bedb">
+<h3 id="org0e5bedb">Constraints</h3>
 <ul>
 <li>Ethics</li>
 
@@ -237,8 +237,8 @@ Information Management: The simulation is initialized and run according to a con
 </section>
 </section>
 <section>
-<section id="slide-org2aef637">
-<h2 id="org2aef637">Design Specifications</h2>
+<section id="slide-org6ab401b">
+<h2 id="org6ab401b">Design Specifications</h2>
 <ul>
 <li>Taking into account the modularity, extensibility, and testability required for this simulation program, the <b>strategy design pattern</b> is best suited.</li>
 
@@ -267,18 +267,20 @@ Information Management: The simulation is initialized and run according to a con
 </aside>
 
 </section>
-<section id="slide-org134830c">
-<h3 id="org134830c">Class Diagram</h3>
-<p>
-<a href="./res/suite.png">Class Diagram</a>
+<section id="slide-org60f5db2">
+<h3 id="org60f5db2">Class Diagram</h3>
+
+<div id="orgb5ca4be" class="figure">
+<p><img src="./res/suite.png" alt="suite.png" />
 </p>
+</div>
 
 
 </section>
 </section>
 <section>
-<section id="slide-org32ca022">
-<h2 id="org32ca022">Testing Specifications</h2>
+<section id="slide-orga438073">
+<h2 id="orga438073">Testing Specifications</h2>
 <p>
 For effective testing of the simulator, ensuring the robustness and reliability of the simulator the following test methods are used:
 </p>
@@ -307,12 +309,16 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 </section>
 </section>
 <section>
-<section id="slide-org013ca11">
-<h2 id="org013ca11">Unit Testing</h2>
+<section id="slide-orgc14d96f">
+<h2 id="orgc14d96f">Unit Testing</h2>
 <ul>
 <li>Path and Data Flow analysis concluded to the same test cases</li>
-<li>We analyzed for Prime Path Testing, which subsumes Data Flow analysis, so this is expected</li>
+<li>We analyzed for Prime Path Testing, which subsumes Data Flow analysis, so this is expected
+<ul>
 <li>However, we still included the analysis of Data Flow for demonstration purposes</li>
+
+</ul></li>
+<li>Boundary/Equivalence values were collected from online resources about howitzers</li>
 
 </ul>
 
@@ -333,116 +339,124 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 
 
 </section>
-<section id="slide-orge8759c5">
-<h3 id="orge8759c5">Unit Testing - Path Testing</h3>
-<p>
-<a href="./res/graph-structural.jpg">Structural Path Analysis</a>
+<section id="slide-orgb9fc088">
+<h3 id="orgb9fc088">Unit Testing - Path Testing</h3>
+
+<div id="org5057d9a" class="figure">
+<p><img src="./res/graph-structural.jpg" alt="graph-structural.jpg" />
 </p>
+</div>
 
 
 </section>
-<section id="slide-orgff9c280">
-<h3 id="orgff9c280">Unit Testing - Data Flow Testing</h3>
-<p>
-<a href="./res/graph-data-flow.jpg">Data Flow Analysis</a>
+<section id="slide-org619349e">
+<h3 id="org619349e">Unit Testing - Data Flow Testing</h3>
+
+<div id="orgd33f8d3" class="figure">
+<p><img src="./res/graph-data-flow.jpg" alt="graph-data-flow.jpg" />
 </p>
+</div>
 
 
 </section>
-<section id="slide-org03bffde">
-<h3 id="org03bffde">Unit Testing - Decision Table Testing</h3>
+<section id="slide-org55927e8">
+<h3 id="org55927e8">Unit Testing - Decision Table Testing</h3>
 <p>
 The simple form of our decision table:
 </p>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">1</th>
-<th scope="col" class="org-left">2</th>
-<th scope="col" class="org-left">3</th>
-<th scope="col" class="org-left">4</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">C1:</td>
-<td class="org-left">velocity = 0?</td>
-<td class="org-left">T</td>
-<td class="org-left">T</td>
-<td class="org-left">F</td>
-<td class="org-left">F</td>
-</tr>
-
-<tr>
-<td class="org-left">C2:</td>
-<td class="org-left">velocity.x, y &lt; 0?</td>
-<td class="org-left">-</td>
-<td class="org-left">T</td>
-<td class="org-left">T</td>
-<td class="org-left">F</td>
-</tr>
-
-<tr>
-<td class="org-left">C3:</td>
-<td class="org-left">rho or A or Cd &lt;= 0?</td>
-<td class="org-left">-</td>
-<td class="org-left">-</td>
-<td class="org-left">T</td>
-<td class="org-left">F</td>
-</tr>
-
-<tr>
-<td class="org-left">C4:</td>
-<td class="org-left">dragMagnitude &gt; 0?</td>
-<td class="org-left">-</td>
-<td class="org-left">-</td>
-<td class="org-left">-</td>
-<td class="org-left">F</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">A1:</td>
-<td class="org-left">Return (0,0,0)</td>
-<td class="org-left">X</td>
-<td class="org-left">X</td>
-<td class="org-left">X</td>
-<td class="org-left">-</td>
-</tr>
-
-<tr>
-<td class="org-left">A2:</td>
-<td class="org-left">Return Drag</td>
-<td class="org-left">-</td>
-<td class="org-left">-</td>
-<td class="org-left">-</td>
-<td class="org-left">X</td>
-</tr>
-</tbody>
+<!-- This HTML table template is generated by emacs 29.0.92 -->
+<table border="1">
+  <tr>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;1&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;2&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;3&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;4&nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+      &nbsp;C1:&nbsp;<br />
+      &nbsp;C2:&nbsp;<br />
+      &nbsp;C3:&nbsp;<br />
+      &nbsp;C4:&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;velocity&nbsp;=&nbsp;0?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+      &nbsp;velocity.x,&nbsp;y&nbsp;<&nbsp;0?&nbsp;&nbsp;&nbsp;<br />
+      &nbsp;rho&nbsp;or&nbsp;A&nbsp;or&nbsp;Cd&nbsp;<=&nbsp;0?&nbsp;<br />
+      &nbsp;dragMagnitude&nbsp;>&nbsp;0?&nbsp;&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;T&nbsp;<br />
+      &nbsp;-&nbsp;<br />
+      &nbsp;-&nbsp;<br />
+      &nbsp;-&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;T&nbsp;<br />
+      &nbsp;T&nbsp;<br />
+      &nbsp;-&nbsp;<br />
+      &nbsp;-&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;F&nbsp;<br />
+      &nbsp;T&nbsp;<br />
+      &nbsp;T&nbsp;<br />
+      &nbsp;-&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;F&nbsp;<br />
+      &nbsp;F&nbsp;<br />
+      &nbsp;F&nbsp;<br />
+      &nbsp;F&nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+      &nbsp;A1:&nbsp;<br />
+      &nbsp;A2:&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;Return&nbsp;(0,0,0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+      &nbsp;Return&nbsp;Drag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;X&nbsp;<br />
+      &nbsp;-&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;X&nbsp;<br />
+      &nbsp;-&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;X&nbsp;<br />
+      &nbsp;-&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;-&nbsp;<br />
+      &nbsp;X&nbsp;
+    </td>
+  </tr>
 </table>
 
 
 </section>
-<section id="slide-org27ae707">
-<h3 id="org27ae707">Unit Testing - Boundary Value Testing</h3>
+<section id="slide-org29ae1a9">
+<h3 id="org29ae1a9">Unit Testing - Boundary Value Testing</h3>
 <ul>
 <li>Max boundary values taken from &ldquo;Big Bertha,&rdquo; the largest cannon ever produced</li>
 
@@ -508,8 +522,8 @@ The simple form of our decision table:
 
 
 </section>
-<section id="slide-orgaef9f1e">
-<h3 id="orgaef9f1e">Unit Testing - Equivalence Value Testing</h3>
+<section id="slide-org4898cb6">
+<h3 id="org4898cb6">Unit Testing - Equivalence Value Testing</h3>
 <!-- This HTML table template is generated by emacs 29.0.92 -->
 <table border="1">
   <tr>
@@ -584,10 +598,11 @@ The simple form of our decision table:
 </section>
 </section>
 <section>
-<section id="slide-orgf22c669">
-<h2 id="orgf22c669">Integration Testing</h2>
+<section id="slide-orgfff0071">
+<h2 id="orgfff0071">Integration Testing</h2>
 <ul>
-<li>Integration testing was done on</li>
+<li>Integration testing was done using the factory MakeProjectileSimuator, which creates the main simulator</li>
+<li>This requires the integration of all our configuration handlers, ensuring that each part is contributing to the simulation appropriately</li>
 
 </ul>
 
@@ -603,12 +618,44 @@ The simple form of our decision table:
 </section>
 </section>
 <section>
-<section id="slide-orgae1d583">
-<h2 id="orgae1d583">System Testing</h2>
+<section id="slide-org271071a">
+<h2 id="org271071a">System Testing</h2>
 <ul>
 <li>System testing was done on the simulator as a whole, running start to finish</li>
 <li>Testing was operated on simulator states to make sure it ran in the proper, expected order</li>
 <li>Major refactor involved in rewriting simulator to run as a Finite State Machine</li>
+
+</ul>
+
+
+</section>
+<section id="slide-org9d38d32">
+<h3 id="org9d38d32">System Testing - Finite State Machine</h3>
+
+<div id="org82eb5cd" class="figure">
+<p><img src="./res/fsm.png" alt="fsm.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-org6aa8082">
+<h3 id="org6aa8082">System Testing - Finite State Machine</h3>
+<ul>
+<li>3 States:
+<ol>
+<li>Configuration and Initialization</li>
+<li>Run Simulation</li>
+<li>Output Results</li>
+
+</ol></li>
+
+<li>3 Transitions:
+<ol>
+<li>Simulation Initialized</li>
+<li>Simulation Step Executed</li>
+<li>Process Results</li>
+
+</ol></li>
 
 </ul>
 
@@ -624,8 +671,8 @@ The simple form of our decision table:
 </section>
 </section>
 <section>
-<section id="slide-org34519cb">
-<h2 id="org34519cb">Solutions</h2>
+<section id="slide-org411b5c4">
+<h2 id="org411b5c4">Solutions</h2>
 <ul>
 <li>We built our solutions using the AGILE and MVP paradigms</li>
 <li>Everything we added was an &ldquo;extension&rdquo; onto the basic shell of the simulator</li>
@@ -641,8 +688,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-org27fc1a0">
-<h3 id="org27fc1a0">Solution 1: Basic Structure, Gravity, and Output</h3>
+<section id="slide-orgd682c64">
+<h3 id="orgd682c64">Solution 1: Basic Structure, Gravity, and Output</h3>
 <ul>
 <li>Our first solution was made to get the bare minimum of a &ldquo;working&rdquo; simulation to run and interact with.</li>
 <li>Many components were left as stubs to allow for the project to build before all feature were complete</li>
@@ -660,8 +707,8 @@ Put speaker notes here
 </aside>
 
 </section>
-<section id="slide-org9ca9477">
-<h3 id="org9ca9477">Solution 2:</h3>
+<section id="slide-org47b02a1">
+<h3 id="org47b02a1">Solution 2: Configuration Handler and Drag Physics</h3>
 <ul>
 <li>Introduced initial &ldquo;firing&rdquo; force, a simple drag force</li>
 <li>Implemented the configuration handler to retrieve dynamic settings from a readable/writable json file</li>
@@ -671,8 +718,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-orgb16342a">
-<h3 id="orgb16342a">Solution 3: Finite State Machine and Precision Increases</h3>
+<section id="slide-orge0ea242">
+<h3 id="orge0ea242">Solution 3: Finite State Machine and Precision Increases</h3>
 <ul>
 <li>Introduced a much smaller time step to increase the simulator&rsquo;s precision</li>
 <li>Refactored the simulator to be represented as a Finite State Machine</li>
@@ -685,8 +732,8 @@ Put speaker notes here
 #+BEGIN<sub>COMMENT</sub>
 </p>
 </section>
-<section id="slide-orgf5522a0">
-<h3 id="orgf5522a0">Comparing Solutions:</h3>
+<section id="slide-org55a313f">
+<h3 id="org55a313f">Comparing Solutions:</h3>
 <ul>
 <li>As expected with our development plan, each solution incrementally improved the product</li>
 
@@ -727,10 +774,10 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-org3414a89">
-<h2 id="org3414a89">Project Management</h2>
+<section id="slide-org8cb20d1">
+<h2 id="org8cb20d1">Project Management</h2>
 <p>
-<a href="./res/gantt-chart.html">Gantt Chart</a>
+<a href="./res/gantt-chart.html">./res/gantt-chart.html</a>
 </p>
 
 <aside class="notes">
@@ -744,14 +791,11 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-org6f9ce5a">
-<h2 id="org6f9ce5a">Conclusion and Future Scope</h2>
-<p>
-As it stands, our application 
-</p>
-
+<section id="slide-orgd677380">
+<h2 id="orgd677380">Conclusion and Future Scope</h2>
 <ul>
-<li>Many extraneous goals left to finish, such as:
+<li>As it stands, our application operates with an acceptable level of accuracy, flexibility and extensibility, and computational performance.</li>
+<li>But there are many extraneous goals left to finish, such as:
 <ul>
 <li>User interaction</li>
 <li>Different forms of output (e.g. csv files)</li>
