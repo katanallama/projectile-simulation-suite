@@ -149,7 +149,7 @@ Put speaker notes here
 
 ** Class Diagram
 
-[[./res/suite.png][Class Diagram]]
+[[./res/suite.png]]
 
 
 * Testing Specifications
@@ -184,12 +184,12 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 
 ** Unit Testing - Path Testing
 
-[[./res/graph-structural.jpg][Structural Path Analysis]]
+[[./res/graph-structural.jpg]]
 
 
 ** Unit Testing - Data Flow Testing
 
-[[./res/graph-data-flow.jpg][Data Flow Analysis]]
+[[./res/graph-data-flow.jpg]]
 
 
 ** Unit Testing - Decision Table Testing
@@ -328,7 +328,7 @@ Put speaker notes here
 
 * Project Management
 
-[[./res/gantt-chart.html][Gantt Chart]]
+[[./res/gantt-chart.html]]
 
 #+BEGIN_NOTES
 Put speaker notes here
