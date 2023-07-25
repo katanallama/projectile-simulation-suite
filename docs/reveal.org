@@ -149,7 +149,7 @@ Put speaker notes here
 
 ** Class Diagram
 
-[[suite.png]]
+[[./res/suite.png]]
 
 
 * Testing Specifications
@@ -185,12 +185,12 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 
 ** Unit Testing - Path Testing
 
-[[graph-structural.jpg]]
+[[./res/graph-structural.jpg]]
 
 
 ** Unit Testing - Data Flow Testing
 
-[[graph-data-flow.jpg]]
+[[./res/graph-data-flow.jpg]]
 
 
 ** Unit Testing - Decision Table Testing
@@ -271,7 +271,7 @@ The simple form of our decision table:
 
 ** System Testing - Finite State Machine
 
-[[fsm.png]]
+[[./res/fsm.png]]
 
 ** System Testing - Finite State Machine
 
@@ -328,7 +328,7 @@ Put speaker notes here
 
 * Project Management
 
-[[gantt-chart.html]]
+[[./res/gantt-chart.html]]
 
 #+BEGIN_NOTES
 Put speaker notes here
