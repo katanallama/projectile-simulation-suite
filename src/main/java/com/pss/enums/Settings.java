@@ -6,7 +6,7 @@ import javax.vecmath.Vector3d;
 public enum Settings {
     Gravity("gravity", DataTypes.Double, 9.81d),
     Weight("weight", DataTypes.Double, 14.0d),
-    InitialForce("initialForce", DataTypes.Double, 100.d),
+    MuzzleVelocity("muzzleVelocity", DataTypes.Double, 100.d),
     ContinualForce("continualForce", DataTypes.Double, 20.0d),
     InitialDirection("initialDirection", DataTypes.Vector, new Vector3d(10, 10, 10)),
     FluidRho("fluidRho", DataTypes.Double, 1.204d),
