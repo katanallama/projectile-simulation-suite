@@ -3,5 +3,5 @@ package com.pss.interfaces;
 import com.pss.enums.State;
 
 public interface IStateObserver {
-    void stateChanged(State newState);
+    public void stateChanged(State newState);
 }

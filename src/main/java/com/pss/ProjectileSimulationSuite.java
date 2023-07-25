@@ -30,6 +30,7 @@ public class ProjectileSimulationSuite {
      */
     public static void main(String[] args) {
         ProjectileSimulationSuite suite = new ProjectileSimulationSuite();
+
         if (args.length > 0) {
             suite.context.setConfigurationPath(args[0]);
         }
@@ -43,7 +44,7 @@ public class ProjectileSimulationSuite {
     /**
      * The SimulatorContext class manages the state of the simulation.
      */
-    public static class SimulatorContext {
+    public class SimulatorContext extends SimulatorState {
 
         private int MAX_SIMSTEPS;
         private int steps;
@@ -51,28 +52,31 @@ public class ProjectileSimulationSuite {
         private ProjectileSimulator _simulator;
         private List<Vector3d> _results;
         private Vector3d[] _sim_steps;
+        private FileGetConfiguration fileGetConfiguration;
+        // private State currentState;
 
         void setConfigurationPath(String path) {
-            FileGetConfiguration.setFilePath(path);
+            fileGetConfiguration = new FileGetConfiguration(path);
         }
 
         void initSimulation() {
-            SimulatorState.setCurrentState(State.INIT_SIMULATION);
+            setCurrentState(State.INIT_SIMULATION);
 
-            _simulator = new MakeProjectileSimulator().createProjectileSimulator(new FileGetConfiguration());
+            _simulator = new MakeProjectileSimulator().createProjectileSimulator(fileGetConfiguration);
 
             MAX_SIMSTEPS = (int) (_simulator.getMaxStep() / _simulator.getTimeStep());
+            // assert(MAX_SIMSTEPS > 1);
             _sim_steps = new Vector3d[MAX_SIMSTEPS];
 
             _resultsOutputers = getOutputers();
-            SimulatorState.setCurrentState(State.SIMULATION_INITIALIZED);
+            setCurrentState(State.SIMULATION_INITIALIZED);
         }
 
         private IOutputResults[] getOutputers() {
             IOutputResults[] availableOutputers = {
                     new ConsoleOutputer(),
                     new ChartOutputer(),
-                    new ChartOutputer3dNonACC(),
+                    // new ChartOutputer3dNonACC(),
                     // new ChartOutputer3d(),
             };
 
@@ -80,19 +84,19 @@ public class ProjectileSimulationSuite {
         }
 
         void runSimulation() {
-            SimulatorState.setCurrentState(State.START_SIMULATION);
-            steps = 0;
+            setCurrentState(State.START_SIMULATION);
+
             for (int t = 0; t < MAX_SIMSTEPS; t++) {
                 _sim_steps[t] = new Vector3d(0, 0, 0);
                 _sim_steps[t].add(_simulator.updatePosition());
-                SimulatorState.setCurrentState(State.UPDATE_POSITION);
 
                 if (_sim_steps[t].z >= 0) {
+                    setCurrentState(State.UPDATE_POSITION);
                     steps++;
-                    SimulatorState.setCurrentState(State.INCREMENT_STEP_COUNTER);
+                    setCurrentState(State.INCREMENT_STEP_COUNTER);
                 }
             }
-            SimulatorState.setCurrentState(State.SIMULATION_COMPLETED);
+            setCurrentState(State.SIMULATION_COMPLETED);
         }
 
         void storeResults() {
@@ -100,14 +104,16 @@ public class ProjectileSimulationSuite {
             for (int i = 0; i < steps; i++) {
                 _results.add(_sim_steps[i]);
             }
-            SimulatorState.setCurrentState(State.STORE_RESULTS);
+            setCurrentState(State.STORE_RESULTS);
         }
 
         void outputResults() {
             for (IOutputResults outputer : _resultsOutputers) {
+                System.out.println(outputer);
+                System.out.println(_resultsOutputers);
                 outputer.outputResults(_results.toArray(new Vector3d[0]), _simulator.getTimeStep());
             }
-            SimulatorState.setCurrentState(State.OUTPUT_RESULT);
+            setCurrentState(State.OUTPUT_RESULT);
         }
     }
 }

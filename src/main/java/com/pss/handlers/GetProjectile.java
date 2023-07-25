@@ -29,7 +29,7 @@ public class GetProjectile implements IGetProjectile {
         projectile.setWeight(_configurationHandler.getSetting(Settings.Weight));
         Vector3d initialVelocity = new Vector3d(_configurationHandler.<Vector3d>getSetting(Settings.InitialDirection));
         initialVelocity.normalize();
-        initialVelocity.scale(_configurationHandler.getSetting(Settings.InitialForce));
+        initialVelocity.scale(_configurationHandler.getSetting(Settings.MuzzleVelocity));
         projectile.setVelocity(initialVelocity);
 
         return projectile;

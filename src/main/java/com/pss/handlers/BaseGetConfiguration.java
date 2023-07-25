@@ -35,10 +35,10 @@ public class BaseGetConfiguration implements IGetConfiguration {
 
     protected void overrideSetting(String key, Object value) {
         if (value instanceof String || value instanceof Vector3d) {
-            System.out.printf("  %-20s%-30s\n", key, value);
+            System.out.printf("   %-20s   %-40s\n", key, value);
         }
         if (!(value instanceof String || value instanceof Vector3d)) {
-            System.out.printf("  %-20s%-30.4f\n", key, value);
+            System.out.printf("   %-20s   %-40.3f\n", key, value);
         }
 
         if (value == null) {

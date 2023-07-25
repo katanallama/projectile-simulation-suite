@@ -1,7 +1,7 @@
 {
     "gravity" : 9.81,
     "weight" :  20.0,
-    "initialForce" :  10,
+    "muzzleVelocity" :  10,
     "continualForce" :  0,
     "initialDirection" : "(20, 1, 30)",
     "fuildRho" :  1.204,

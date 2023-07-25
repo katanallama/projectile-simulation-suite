@@ -20,9 +20,11 @@ public class ConsoleOutputer implements IOutputResults {
             }
         }
 
-        Vector3d last = results[results.length-1];
-        System.out.printf("%10.2f %10.1f %10.1f %10.1f\n", results.length*timeStep, last.x, last.y, last.z);
+        if (results.length > 0){
+            Vector3d last = results[results.length-1];
+            System.out.printf("%10.2f %10.1f %10.1f %10.1f\n", results.length*timeStep, last.x, last.y, last.z);
+        }
         System.out.println("\nSIMULATION COMPLETE, use ctrl+c to quit");
-        SimulatorState.setCurrentState(State.PRINT_RESULTS_TO_CONSOLE);
+        // SimulatorState.setCurrentState(State.PRINT_RESULTS_TO_CONSOLE);
     }
 }

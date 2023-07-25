@@ -7,23 +7,23 @@ import com.pss.enums.State;
 import com.pss.interfaces.IStateObserver;
 
 public class SimulatorState {
-    private static State currentState;
-    private static List<IStateObserver> observers = new ArrayList<>();
+    private State currentState;
+    private List<IStateObserver> observers = new ArrayList<>();
 
-    public static void setCurrentState(State state) {
+    public void setCurrentState(State state) {
         currentState = state;
         notifyObservers();
     }
 
-    public static State getCurrentState() {
+    public State getCurrentState() {
         return currentState;
     }
 
-    public static void addObserver(IStateObserver observer) {
+    public void addObserver(IStateObserver observer) {
         observers.add(observer);
     }
 
-    private static void notifyObservers() {
+    private void notifyObservers() {
         for (IStateObserver observer : observers) {
             observer.stateChanged(currentState);
         }

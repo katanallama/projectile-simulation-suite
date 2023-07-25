@@ -14,7 +14,7 @@ public enum State {
     PREPARE_PLOT_DATA,
     SAVE_PLOT_AS_PNG,
     NOT_SAVE_PLOT_AS_PNG,
-    DISPLAY_PLOT_IN_GUI, // how test this?
+    DISPLAY_PLOT_IN_GUI,
     PRINT_RESULTS_TO_CONSOLE,
     OUTPUT_RESULT
 }

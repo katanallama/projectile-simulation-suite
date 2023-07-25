@@ -16,13 +16,10 @@ import com.pss.enums.State;
 
 public class FileGetConfiguration extends BaseGetConfiguration {
 
-    private static String filePath;
+    // private static String filePath;
+    private String filePath;
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_ORANGE = "\u001B[38;5;214m";
-
-    public static void setFilePath(String file) {
-        FileGetConfiguration.filePath = "config/" + file + ".json";
-    }
 
     public static HashMap<String, Object> parseJsonFile(String filePath) {
         Gson gson = new Gson();
@@ -52,11 +49,13 @@ public class FileGetConfiguration extends BaseGetConfiguration {
         HashMap<String, Object> jsonFileSettings = new HashMap<String, Object>();
 
         try (FileReader reader = new FileReader(filePath)) {
-            SimulatorState.setCurrentState(State.READ_FILE);
+            // SimulatorState.setCurrentState(State.READ_FILE);
+            // setCurrentState(State.READ_FILE);
             Type type = new TypeToken<HashMap<String, String>>() {
             }.getType();
             HashMap<String, String> rawData = gson.fromJson(reader, type);
-            SimulatorState.setCurrentState(State.PARSE_CONFIG);
+            // SimulatorState.setCurrentState(State.PARSE_CONFIG);
+            // setCurrentState(State.PARSE_CONFIG);
             for (Settings setting : Settings.values()) {
                 if (rawData.containsKey(setting.getName())) {
                     Object value = null;
@@ -78,12 +77,13 @@ public class FileGetConfiguration extends BaseGetConfiguration {
                     jsonFileSettings.put(setting.getName(), value);
                 }
             }
-            SimulatorState.setCurrentState(State.STORE_CONFIG);
+            // SimulatorState.setCurrentState(State.STORE_CONFIG);
         }
         return jsonFileSettings;
     }
 
-    public FileGetConfiguration() {
+    public FileGetConfiguration(String file) {
+        this.filePath = "config/" + file + ".json";
         initializeSettings();
     }
 
