@@ -149,7 +149,7 @@ Put speaker notes here
 
 ** Class Diagram
 
-[[./res/suite.png]]
+[[suite.png]]
 
 
 * Testing Specifications
@@ -185,12 +185,12 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 
 ** Unit Testing - Path Testing
 
-[[./res/graph-structural.jpg]]
+[[graph-structural.jpg]]
 
 
 ** Unit Testing - Data Flow Testing
 
-[[./res/graph-data-flow.jpg]]
+[[graph-data-flow.jpg]]
 
 
 ** Unit Testing - Decision Table Testing
@@ -271,7 +271,7 @@ The simple form of our decision table:
 
 ** System Testing - Finite State Machine
 
-[[./res/fsm.png]]
+[[fsm.png]]
 
 ** System Testing - Finite State Machine
 
@@ -326,30 +326,9 @@ Put speaker notes here
 - Refactored the drag force to use accurate physical calculations
 
 
-#+BEGIN_COMMENT
-** Comparing Solutions:
-
-- As expected with our development plan, each solution incrementally improved the product
-
-+-------------------+-------------------+-------------------+-------------------+
-|   Specifications  |     Solution 1    |     Solution 2    |     Solution 3    |
-|-------------------+-------------------+-------------------+-------------------|
-| Intuitive UI      |                   |                   |                   |
-|-------------------+-------------------+-------------------+-------------------|
-| Realism           |                   |                   |                   |
-|-------------------+-------------------+-------------------+-------------------|
-| Performance       |                   |                   |                   |
-|-------------------+-------------------+-------------------+-------------------|
-| Flexibility       |                   |                   |                   |
-|-------------------+-------------------+-------------------+-------------------|
-| Educational       |                   |                   |                   |
-+-------------------+-------------------+-------------------+-------------------+
-#+END_COMMENT
-
-
 * Project Management
 
-[[./res/gantt-chart.html]]
+[[gantt-chart.html]]
 
 #+BEGIN_NOTES
 Put speaker notes here
