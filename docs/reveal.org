@@ -9,6 +9,7 @@
 #+OPTIONS: toc:1
 
 * Introduction
+#+REVEAL_HTML: <div style="font-size: 80%;">
 
 - This project involves the development of a simulator to teach soldiers about kinematics and dynamics in relation to a Howitzer shooting a projectile across an empty field.
 - The goal is to accurately simulate the physics of a fired projectile in Java.
@@ -23,6 +24,7 @@
 
 
 * Problem Definition
+#+REVEAL_HTML: <div style="font-size: 80%;">
 
 - We are trying to build a solution that accurately captures the physics of a projectile in an easy to use and understand software package, including a high quality of:
     - speed of computation
@@ -35,6 +37,7 @@ Psssst, don't say "it's because we have to for a school project"
 
 
 * Design Requirements
+#+REVEAL_HTML: <div style="font-size: 80%;">
 
 The simulator should be designed with the following requirements:
 
@@ -134,6 +137,7 @@ Put speaker notes here
 
 * Design Specifications
 
+#+REVEAL_HTML: <div style="font-size: 80%;">
 - Taking into account the modularity, extensibility, and testability required for this simulation program, the *strategy design pattern* is best suited.
 
 - Concerns were separated into:
@@ -147,6 +151,7 @@ Put speaker notes here
 #+BEGIN_NOTES
 1. This allows for adding new - or removing, variables without affecting the overall structure of the simulation, and without having to change the main simulation code. This separation of concerns makes it easier to write tests for each strategy.
 #+END_NOTES
+
 
 ** Class Diagram
 
@@ -186,11 +191,13 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 
 ** Unit Testing - Path Testing
 
+#+ATTR_HTML: :width 50% :align center
 [[./res/graph-structural.jpg]]
 
 
 ** Unit Testing - Data Flow Testing
 
+#+ATTR_HTML: :width 50% :align center
 [[./res/graph-data-flow.jpg]]
 
 
@@ -212,6 +219,8 @@ The simple form of our decision table:
 
 
 ** Unit Testing - Boundary Value Testing
+#+REVEAL_HTML: <div style="font-size: 80%;">
+
 
 - Max boundary values taken from "Big Bertha," the largest cannon ever produced
 
@@ -227,6 +236,7 @@ The simple form of our decision table:
 
 ** Unit Testing - Equivalence Value Testing
 
+#+REVEAL_HTML: <div style="font-size: 60%;">
 +-------------------------+------------+
 |    Equivalence Class    |    Unit    |
 +-------------------------+------------+
@@ -272,19 +282,20 @@ The simple form of our decision table:
 
 ** System Testing - Finite State Machine
 
+#+ATTR_HTML: :width 40% :align center
 [[./res/fsm.png]]
 
 ** System Testing - Finite State Machine
 
 - 3 States:
-    1. Configuration and Initialization
-    2. Run Simulation
-    3. Output Results
+  1. Configuration and Initialization
+  2. Run Simulation
+  3. Output Results
 
 - 3 Transitions:
-    1. Simulation Initialized
-    2. Simulation Step Executed
-    3. Process Results
+  1. Simulation Initialized
+  2. All Simulation Steps Completed
+  3. Process Results
 
 
 #+BEGIN_NOTES

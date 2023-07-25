@@ -22,25 +22,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-org251f476">Introduction</a></li>
-<li><a href="#/slide-org5d13b65">Problem Definition</a></li>
-<li><a href="#/slide-org1acd54d">Design Requirements</a></li>
-<li><a href="#/slide-orge4d6242">Design Specifications</a></li>
-<li><a href="#/slide-orgda4d768">Testing Specifications</a></li>
-<li><a href="#/slide-org6e795fc">Unit Testing</a></li>
-<li><a href="#/slide-org0a71f1e">Integration Testing</a></li>
-<li><a href="#/slide-org3f77878">System Testing</a></li>
-<li><a href="#/slide-orgd8e7250">Solutions</a></li>
-<li><a href="#/slide-org9436af9">Project Management</a></li>
-<li><a href="#/slide-org7c0efd5">Conclusion and Future Scope</a></li>
+<li><a href="#/slide-org06b4cf6">Introduction</a></li>
+<li><a href="#/slide-orgdff8954">Problem Definition</a></li>
+<li><a href="#/slide-org6b1f0ee">Design Requirements</a></li>
+<li><a href="#/slide-org24d78d7">Design Specifications</a></li>
+<li><a href="#/slide-org4be9c15">Testing Specifications</a></li>
+<li><a href="#/slide-org0f69db6">Unit Testing</a></li>
+<li><a href="#/slide-orgfacec44">Integration Testing</a></li>
+<li><a href="#/slide-org7d179cc">System Testing</a></li>
+<li><a href="#/slide-org9391257">Solutions</a></li>
+<li><a href="#/slide-org54723d9">Project Management</a></li>
+<li><a href="#/slide-orgbd47f29">Conclusion and Future Scope</a></li>
 </ul>
 </div>
 </div>
 </section>
 
 <section>
-<section id="slide-org251f476">
-<h2 id="org251f476">Introduction</h2>
+<section id="slide-org06b4cf6">
+<h2 id="org06b4cf6">Introduction</h2>
+<div style="font-size: 80%;">
+
 <ul>
 <li>This project involves the development of a simulator to teach soldiers about kinematics and dynamics in relation to a Howitzer shooting a projectile across an empty field.</li>
 <li>The goal is to accurately simulate the physics of a fired projectile in Java.</li>
@@ -67,8 +69,10 @@
 </section>
 </section>
 <section>
-<section id="slide-org5d13b65">
-<h2 id="org5d13b65">Problem Definition</h2>
+<section id="slide-orgdff8954">
+<h2 id="orgdff8954">Problem Definition</h2>
+<div style="font-size: 80%;">
+
 <ul>
 <li>We are trying to build a solution that accurately captures the physics of a projectile in an easy to use and understand software package, including a high quality of:
 <ul>
@@ -91,8 +95,10 @@ Psssst, don&rsquo;t say &ldquo;it&rsquo;s because we have to for a school projec
 </section>
 </section>
 <section>
-<section id="slide-org1acd54d">
-<h2 id="org1acd54d">Design Requirements</h2>
+<section id="slide-org6b1f0ee">
+<h2 id="org6b1f0ee">Design Requirements</h2>
+<div style="font-size: 80%;">
+
 <p>
 The simulator should be designed with the following requirements:
 </p>
@@ -134,8 +140,8 @@ We haven&rsquo;t reached all of our design requirements yet, but are well on our
 
 
 </section>
-<section id="slide-org0038ab9">
-<h3 id="org0038ab9">Functions</h3>
+<section id="slide-org8818120">
+<h3 id="org8818120">Functions</h3>
 <ul>
 <li>representation of 3D projectile trajectory</li>
 
@@ -156,8 +162,8 @@ Remember when he sent us an email saying to ignore the &ldquo;function&rdquo; pa
 
 
 </section>
-<section id="slide-orgb39262f">
-<h3 id="orgb39262f">Objectives</h3>
+<section id="slide-org00759df">
+<h3 id="org00759df">Objectives</h3>
 <ul>
 <li>Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile and display the results of each simulation &ldquo;run&rdquo; in a way anybody can understand.</li>
 
@@ -174,8 +180,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-org33bf2f0">
-<h3 id="org33bf2f0">Constraints</h3>
+<section id="slide-org085bb3b">
+<h3 id="org085bb3b">Constraints</h3>
 <ul>
 <li>Ethics</li>
 
@@ -237,8 +243,9 @@ Information Management: The simulation is initialized and run according to a con
 </section>
 </section>
 <section>
-<section id="slide-orge4d6242">
-<h2 id="orge4d6242">Design Specifications</h2>
+<section id="slide-org24d78d7">
+<h2 id="org24d78d7">Design Specifications</h2>
+<div style="font-size: 80%;">
 <ul>
 <li>Taking into account the modularity, extensibility, and testability required for this simulation program, the <b>strategy design pattern</b> is best suited.</li>
 
@@ -266,11 +273,12 @@ Information Management: The simulation is initialized and run according to a con
 
 </aside>
 
-</section>
-<section id="slide-org728edee">
-<h3 id="org728edee">Class Diagram</h3>
 
-<div id="orgfb923cb" class="figure">
+</section>
+<section id="slide-orgf7ed7c1">
+<h3 id="orgf7ed7c1">Class Diagram</h3>
+
+<div id="org19b5e3e" class="figure">
 <p><img src="./res/suite.png" alt="suite.png" />
 </p>
 </div>
@@ -279,8 +287,8 @@ Information Management: The simulation is initialized and run according to a con
 </section>
 </section>
 <section>
-<section id="slide-orgda4d768">
-<h2 id="orgda4d768">Testing Specifications</h2>
+<section id="slide-org4be9c15">
+<h2 id="org4be9c15">Testing Specifications</h2>
 <p>
 For effective testing of the simulator, ensuring the robustness and reliability of the simulator the following test methods are used:
 </p>
@@ -309,8 +317,8 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 </section>
 </section>
 <section>
-<section id="slide-org6e795fc">
-<h2 id="org6e795fc">Unit Testing</h2>
+<section id="slide-org0f69db6">
+<h2 id="org0f69db6">Unit Testing</h2>
 <ul>
 <li>Path and Data Flow analysis concluded to the same test cases</li>
 <li>We analyzed for Prime Path Testing, which subsumes Data Flow analysis, so this is expected
@@ -339,28 +347,28 @@ For effective testing of the simulator, ensuring the robustness and reliability 
 
 
 </section>
-<section id="slide-org42f1275">
-<h3 id="org42f1275">Unit Testing - Path Testing</h3>
+<section id="slide-org235d52c">
+<h3 id="org235d52c">Unit Testing - Path Testing</h3>
 
-<div id="orgee4ae7e" class="figure">
-<p><img src="./res/graph-structural.jpg" alt="graph-structural.jpg" />
+<div id="org21016be" class="figure">
+<p><img src="./res/graph-structural.jpg" alt="graph-structural.jpg" width="50%" align="center" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org3d6ebf7">
-<h3 id="org3d6ebf7">Unit Testing - Data Flow Testing</h3>
+<section id="slide-org1aee595">
+<h3 id="org1aee595">Unit Testing - Data Flow Testing</h3>
 
-<div id="orgf823f53" class="figure">
-<p><img src="./res/graph-data-flow.jpg" alt="graph-data-flow.jpg" />
+<div id="org6988957" class="figure">
+<p><img src="./res/graph-data-flow.jpg" alt="graph-data-flow.jpg" width="50%" align="center" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org1d215f5">
-<h3 id="org1d215f5">Unit Testing - Decision Table Testing</h3>
+<section id="slide-org4ba9c84">
+<h3 id="org4ba9c84">Unit Testing - Decision Table Testing</h3>
 <p>
 The simple form of our decision table:
 </p>
@@ -455,8 +463,11 @@ The simple form of our decision table:
 
 
 </section>
-<section id="slide-orgdb539db">
-<h3 id="orgdb539db">Unit Testing - Boundary Value Testing</h3>
+<section id="slide-org3057f31">
+<h3 id="org3057f31">Unit Testing - Boundary Value Testing</h3>
+<div style="font-size: 80%;">
+
+
 <ul>
 <li>Max boundary values taken from &ldquo;Big Bertha,&rdquo; the largest cannon ever produced</li>
 
@@ -522,8 +533,9 @@ The simple form of our decision table:
 
 
 </section>
-<section id="slide-orgbca6ffa">
-<h3 id="orgbca6ffa">Unit Testing - Equivalence Value Testing</h3>
+<section id="slide-org1056980">
+<h3 id="org1056980">Unit Testing - Equivalence Value Testing</h3>
+<div style="font-size: 60%;">
 <!-- This HTML table template is generated by emacs 29.0.92 -->
 <table border="1">
   <tr>
@@ -598,8 +610,8 @@ The simple form of our decision table:
 </section>
 </section>
 <section>
-<section id="slide-org0a71f1e">
-<h2 id="org0a71f1e">Integration Testing</h2>
+<section id="slide-orgfacec44">
+<h2 id="orgfacec44">Integration Testing</h2>
 <ul>
 <li>Integration testing was done using the factory MakeProjectileSimuator, which creates the main simulator</li>
 <li>This requires the integration of all our configuration handlers, ensuring that each part is contributing to the simulation appropriately</li>
@@ -618,8 +630,8 @@ The simple form of our decision table:
 </section>
 </section>
 <section>
-<section id="slide-org3f77878">
-<h2 id="org3f77878">System Testing</h2>
+<section id="slide-org7d179cc">
+<h2 id="org7d179cc">System Testing</h2>
 <ul>
 <li>System testing was done on the simulator as a whole, running start to finish</li>
 <li>Testing was operated on simulator states to make sure it ran in the proper, expected order</li>
@@ -629,17 +641,17 @@ The simple form of our decision table:
 
 
 </section>
-<section id="slide-org9cae5fc">
-<h3 id="org9cae5fc">System Testing - Finite State Machine</h3>
+<section id="slide-org4650f30">
+<h3 id="org4650f30">System Testing - Finite State Machine</h3>
 
-<div id="org6856bb6" class="figure">
-<p><img src="./res/fsm.png" alt="fsm.png" />
+<div id="org8ba8818" class="figure">
+<p><img src="./res/fsm.png" alt="fsm.png" width="40%" align="center" />
 </p>
 </div>
 
 </section>
-<section id="slide-org711de1f">
-<h3 id="org711de1f">System Testing - Finite State Machine</h3>
+<section id="slide-orgca917db">
+<h3 id="orgca917db">System Testing - Finite State Machine</h3>
 <ul>
 <li>3 States:
 <ol>
@@ -671,8 +683,8 @@ The simple form of our decision table:
 </section>
 </section>
 <section>
-<section id="slide-orgd8e7250">
-<h2 id="orgd8e7250">Solutions</h2>
+<section id="slide-org9391257">
+<h2 id="org9391257">Solutions</h2>
 <ul>
 <li>We built our solutions using the AGILE and MVP paradigms</li>
 <li>Everything we added was an &ldquo;extension&rdquo; onto the basic shell of the simulator</li>
@@ -688,8 +700,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-orgcb97b3d">
-<h3 id="orgcb97b3d">Solution 1: Basic Structure, Gravity, and Output</h3>
+<section id="slide-org3d6c6e8">
+<h3 id="org3d6c6e8">Solution 1: Basic Structure, Gravity, and Output</h3>
 <ul>
 <li>Our first solution was made to get the bare minimum of a &ldquo;working&rdquo; simulation to run and interact with.</li>
 <li>Many components were left as stubs to allow for the project to build before all feature were complete</li>
@@ -707,8 +719,8 @@ Put speaker notes here
 </aside>
 
 </section>
-<section id="slide-org183ae06">
-<h3 id="org183ae06">Solution 2: Configuration Handler and Drag Physics</h3>
+<section id="slide-org64f787f">
+<h3 id="org64f787f">Solution 2: Configuration Handler and Drag Physics</h3>
 <ul>
 <li>Introduced initial &ldquo;firing&rdquo; force, a simple drag force</li>
 <li>Implemented the configuration handler to retrieve dynamic settings from a readable/writable json file</li>
@@ -718,8 +730,8 @@ Put speaker notes here
 
 
 </section>
-<section id="slide-org994a0fd">
-<h3 id="org994a0fd">Solution 3: Finite State Machine and Precision Increases</h3>
+<section id="slide-org7cdccfd">
+<h3 id="org7cdccfd">Solution 3: Finite State Machine and Precision Increases</h3>
 <ul>
 <li>Introduced a much smaller time step to increase the simulator&rsquo;s precision</li>
 <li>Refactored the simulator to be represented as a Finite State Machine</li>
@@ -731,8 +743,8 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-org9436af9">
-<h2 id="org9436af9">Project Management</h2>
+<section id="slide-org54723d9">
+<h2 id="org54723d9">Project Management</h2>
 <p>
 <a href="./res/gantt-chart.html">./res/gantt-chart.html</a>
 </p>
@@ -748,8 +760,8 @@ Put speaker notes here
 </section>
 </section>
 <section>
-<section id="slide-org7c0efd5">
-<h2 id="org7c0efd5">Conclusion and Future Scope</h2>
+<section id="slide-orgbd47f29">
+<h2 id="orgbd47f29">Conclusion and Future Scope</h2>
 <ul>
 <li>As it stands, our application operates with an acceptable level of accuracy, flexibility and extensibility, and computational performance.</li>
 <li>But there are many extraneous goals left to finish, such as:
