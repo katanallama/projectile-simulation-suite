@@ -5,15 +5,15 @@ import javax.vecmath.Vector3d;
 
 public enum Settings {
     Gravity("gravity", DataTypes.Double, 9.81d),
-    Weight("weight", DataTypes.Double, 14.0d),
-    MuzzleVelocity("muzzleVelocity", DataTypes.Double, 100.d),
-    ContinualForce("continualForce", DataTypes.Double, 20.0d),
-    InitialDirection("initialDirection", DataTypes.Vector, new Vector3d(10, 10, 10)),
-    FluidRho("fluidRho", DataTypes.Double, 1.204d),
-    ProjectileArea("projectileArea", DataTypes.Double, 0.1d),
-    DragCoefficent("dragCoefficent", DataTypes.Double, 0.04d),
-    MaxStep("simStep", DataTypes.Double, 100d),
-    TimeStep("timeStep", DataTypes.Double, 0.001d);
+    Weight("weight", DataTypes.Double, 45d),
+    MuzzleVelocity("muzzleVelocity", DataTypes.Double, 400d),
+    ContinualForce("continualForce", DataTypes.Double, 10d),
+    InitialDirection("initialDirection", DataTypes.Vector, new Vector3d(1, 1, 1)),
+    FluidRho("fluidRho", DataTypes.Double, 1.2d),
+    ProjectileArea("projectileArea", DataTypes.Double, 0.018d),
+    DragCoefficent("dragCoefficent", DataTypes.Double, 0.2d),
+    MaxStep("simStep", DataTypes.Double, 5d),
+    TimeStep("timeStep", DataTypes.Double, 1d);
 
     private String name;
     private DataTypes type;
