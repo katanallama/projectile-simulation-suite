@@ -282,3 +282,138 @@ If we define the "happy path" as avoiding both if statements (edges (2,3) and (3
 *** Test Cases
 
 We can see these Test Requirements are the same set of prime paths from the Path Coverage described above, as is expected with Prime Path and Complete Path Coverage. As such, we have proven we do not need to write any additional test cases, as the test requirements are already fulfilled by other tests.
+
+* Functional Testing 
+
+This is the functional testing of the drag handler using values obtained from research. The sources for obtaining the values were taken from the following:
+https://www.engineersedge.com/physics/properties_of_air_at_1_atm_pressure_13828.htm
+https://asc.army.mil/web/portfolio-item/peo-ammo-lw155/
+https://www.military.com/equipment/m198-howitzer
+https://www.militaryfactory.com/armor/detail.php?armor_id=112
+https://link.springer.com/content/pdf/10.1007/978-3-540-69471-7_2.pdf
+https://core.ac.uk/download/pdf/333722658.pdf
+https://www.atlantis-press.com/article/22285.pdf
+
+** Boundary Value Testing
+
+The realistic limits of maximums and minimums for each input of the drag handler were determined based on the following specifications:
+
+1. Velocity:
+   - Minimum value: 0 m/s
+   - Nominal value: 230 m/s (assuming all components are equal, and 400m/s average speed)
+   - Maximum value: 900 m/s (Big Bertha's muzzle velocity)
+
+2. Drag coefficient:
+   - Minimum value: 0.1 (best projectiles)
+   - Nominal value: 0.3 (average value for projectiles)
+   - Maximum value: 0.6 (poor-performing projectiles)
+
+3. Density:
+   - Minimum value: 1.5 kg/m^3 (at -50°C)
+   - Nominal value: 1.2 kg/m^3 (at 10-20°C)
+   - Maximum value: 1 kg/m^3 (at +50°C)
+
+4. Area:
+   - Minimum value: 0.0086 m^2 (105mm caliber)
+   - Nominal value: 0.018 m^2 (155mm caliber)
+   - Maximum value: 0.14 m^2 (Big Bertha's 420mm projectile)
+
+Using generalized boundary value analysis, we obtain the following test cases:
+
+| X Velocity | Y Velocity | Z Velocity | Rho | Area    | Cd   | Expected Result                       |
+|------------|------------|------------|-----|---------|------|---------------------------------------|
+| 230        | 230        | 900        | 1.2 | 0.018   | 0.3  | (-713.13732, -713.13732, -2790.53734) |
+| 900        | 230        | 230        | 1.2 | 0.018   | 0.3  | (-2790.5373, -713.13732, -713.13732)  |
+| 230        | 900        | 230        | 1.2 | 0.018   | 0.3  | (-713.13732, -2790.53734, -713.13732) |
+| 230        | 0          | 230        | 1.2 | 0.018   | 0.3  | (-242.39054, 0, -242.39054)           |
+| 230        | 230        | 0          | 1.2 | 0.018   | 0.3  | (-242.39054, -242.39054, 0)           |
+| 0          | 230        | 230        | 1.2 | 0.018   | 0.3  | (0, -242.39054, -242.39054)           |
+| 230        | 230        | 230        | 1.2 | 0.018   | 0.3  | (-371.08322, -371.08322, -371.08322)  |
+| 230        | 230        | 230        | 1.5 | 0.018   | 0.3  | (-247.38881, -247.38881, -247.38881)  |
+| 230        | 230        | 230        | 1   | 0.14    | 0.3  | (-2308.96229, -2308.96229, -2308.96229) |
+| 230        | 230        | 230        | 1.2 | 0.0086  | 0.3  | (-141.83625, -141.83625, -141.83625)  |
+| 230        | 230        | 230        | 1.2 | 0.018   | 0.6  | (-593.73316, -593.73316, -593.73316)  |
+| 230        | 230        | 230        | 1.2 | 0.018   | 0.1  | (-98.95552, -98.95552, -98.95552)     |
+| 230        | 230        | 230        | 1.2 | 0.018   | 0.3  | (-593.73316, -593.73316, -593.73316)  |
+
+** Equivalence Class Testing 
+
+Based on the types of howitzer cannons in use, the following equivalence classes were defined:
+
+1. Velocity
+   - Very fast (700m/s) 
+   - Fast (400m/s)
+   - Slow (200m/s)
+   - Stationairy (0m/s)
+
+2. Density
+   - Cold (1.3kg/m^3)
+   - Normal (1.2kg/m^3)
+   - Hot (1.1kg/m^3)
+
+3. Drag coefficient:
+   - Average (0.2)
+   - Ok (0.4)
+   - Bad (0.6)
+
+4. Area:
+   - Small (0.0086m^2, 105mm calliber)
+   - Medium (0.0196m^2, 155mm calliber)
+   - Large (0.045m^2, 240mm calliber) 
+
+Using Weak Normal Equivalence Class testing we get these test cases:
+
+| X Velocity | Y Velocity | Z Velocity | Rho | Area   | Cd   | Expected Result                     |
+|------------|------------|------------|-----|--------|------|-------------------------------------|
+| 700        | 200        | 200        | 1.2 | 0.019  | 0.2  | (-1204.95357, -344.27245, -344.27245) |
+| 400        | 200        | 200        | 1.2 | 0.019  | 0.2  | (-446.78692, -223.39346, -223.39346)  |
+| 200        | 200        | 200        | 1.2 | 0.019  | 0.2  | (-157.96303, -157.96303, -157.96303)  |
+| 0          | 200        | 200        | 1.2 | 0.019  | 0.2  | (0, -128.97627, -128.97627)           |
+| 200        | 700        | 200        | 1.2 | 0.019  | 0.2  | (-344.27245, -1204.95357, -344.27245) |
+| 200        | 400        | 200        | 1.2 | 0.019  | 0.2  | (-223.39346, -446.78692, -223.39346)  |
+| 200        | 200        | 200        | 1.2 | 0.019  | 0.2  | (-157.96303, -157.96303, -157.96303)  |
+| 200        | 0          | 200        | 1.2 | 0.019  | 0.2  | (-128.97627, 0, -128.97627)           |
+| 200        | 200        | 700        | 1.2 | 0.019  | 0.2  | (-344.27245, -344.27245, -1204.95357) |
+| 200        | 200        | 400        | 1.2 | 0.019  | 0.2  | (-223.39346, -223.39346, -446.78692)  |
+| 200        | 200        | 200        | 1.2 | 0.019  | 0.2  | (-157.96303, -157.96303, -157.96303)  |
+| 200        | 200        | 0          | 1.2 | 0.019  | 0.2  | (-128.97627, -128.97627, 0)           |
+| 200        | 200        | 200        | 1.3 | 0.019  | 0.2  | (-171.12661, -171.12661, -171.12661)  |
+| 200        | 200        | 200        | 1.2 | 0.019  | 0.2  | (-157.96303, -157.96303, -157.96303)  |
+| 200        | 200        | 200        | 1.1 | 0.019  | 0.2  | (-144.79944, -144.79944, -144.79944)  |
+| 200        | 200        | 200        | 1.2 | 0.019  | 0.2  | (-208.90611, -208.90611, -208.90611)  |
+| 200        | 200        | 200        | 1.2 | 0.019  | 0.4  | (-315.92606, -315.92606, -315.92606)  |
+| 200        | 200        | 200        | 1.2 | 0.019  | 0.6  | (-473.88910, -473.88910, -473.88910)  |
+| 200        | 200        | 200        | 1.2 | 0.0086 | 0.2  | (-71.49905, -71.49905, -71.49905)    |
+| 200        | 200        | 200        | 1.2 | 0.019  | 0.2  | (-157.96303, -157.96303, -157.96303)  |
+| 200        | 200        | 200        | 1.2 | 0.045  | 0.2  | (-374.12297, -374.12297, -374.12297)  |
+
+*** Integration Testing
+
+Integration testing was performed using the factory MakeProjectileSimulator, which creates a main simulator.
+
+Then the following configurations were loaded, and the simulator was run for 5 iterations, ensuring each iteration was correct.
+
+| Setting Name       | Value   |
+|--------------------|---------|
+| ContinualForce     | 10      |
+| DragCoefficient    | 0.2     |
+| Gravity            | 9.81    |
+| Weight             | 45      |
+| InitialDirection   | (1,1,1) |
+| MuzzleVelocity     | 400     |
+| TimeStep           | 1       |
+| MaxStep            | 5       |
+| FluidRho           | 1.2     |
+| ProjectileArea     | 0.018   |
+
+Expected Values:
+
+| Iteration | Expected Value                   |
+|-----------|----------------------------------|
+| 1         | (226.63435, 226.63435, 216.82435) |
+| 2         | (449.18932, 449.18932, 419.93590) |
+| 3         | (667.87474, 667.87474, 609.70596) |
+| 4         | (882.88530, 882.88530, 786.47706) |
+| 5         | (1094.40177, 1094.40177, 950.56550)|
+
+
