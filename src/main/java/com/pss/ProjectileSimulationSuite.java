@@ -75,7 +75,7 @@ public class ProjectileSimulationSuite {
         private IOutputResults[] getOutputers() {
             IOutputResults[] availableOutputers = {
                     new ConsoleOutputer(),
-                    new ChartOutputer(),
+                    // new ChartOutputer(),
                     // new ChartOutputer3dNonACC(),
                     // new ChartOutputer3d(),
             };

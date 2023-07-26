@@ -225,6 +225,8 @@
                     </dependency>
                 </dependencies>
                 <configuration>
+                    <forkCount>30</forkCount>
+                    <reuseForks>false</reuseForks>
                     <reportFormat>plain</reportFormat>
                     <consoleOutputReporter>
                         <disable>true</disable>
