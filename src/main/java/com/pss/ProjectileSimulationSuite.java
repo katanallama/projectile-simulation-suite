@@ -13,6 +13,9 @@ import com.pss.handlers.ChartOutputer3dNonACC;
 import com.pss.handlers.ConsoleOutputer;
 import com.pss.handlers.FileGetConfiguration;
 import com.pss.interfaces.IOutputResults;
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
 
 /**
  * The main class of the projectile simulation suite which coordinates the
@@ -20,6 +23,7 @@ import com.pss.interfaces.IOutputResults;
  * and initiates the simulation. It relies on nested classes and external
  * handlers to manage the actual simulation and data output.
  */
+@Command(name = "ProjectileSimulationSuite", mixinStandardHelpOptions = true, description = "Simulates the path of a projectile.")
 public class ProjectileSimulationSuite {
 
     public SimulatorContext context = new SimulatorContext();
@@ -32,7 +36,9 @@ public class ProjectileSimulationSuite {
      * @param args An array of command-line arguments
      */
     public static void main(String[] args) {
-        new ProjectileSimulationSuite().context.startSimulation(args);
+        ProjectileSimulationSuite pss = new ProjectileSimulationSuite();
+        SimulatorContext context = pss.new SimulatorContext();
+        new CommandLine(context).execute(args);
     }
 
     /**
@@ -42,12 +48,17 @@ public class ProjectileSimulationSuite {
      * according to set parameters, and directing the output of the simulation
      * results.
      */
-    public class SimulatorContext extends SimulatorState {
+    @Command(name = "simulate", description = "Start the simulation.")
+    public class SimulatorContext extends SimulatorState implements Runnable {
 
-        private static final String FLAG_CHART = "-p";
-        private static final String FLAG_CHART_3D = "-p3";
-        private static final String FLAG_BOTH = "-pb";
-        private static final String FLAG_CHART_3D_ACC = "-pacc";
+        @Option(names = { "-p", "--plot" }, description = "Plotting options")
+        private String plotOption;
+
+        @Option(names = { "-q", "--quiet" }, description = "Do not output all steps to console")
+        private boolean quiet;
+
+        @Option(names = { "-c", "--config" }, description = "Use configuration <configName>.json in ./config")
+        private String configName;
 
         private int MAX_SIMSTEPS;
         private MakeProjectileSimulator maker = new MakeProjectileSimulator();
@@ -56,28 +67,9 @@ public class ProjectileSimulationSuite {
         private List<Vector3d> _result;
         private FileGetConfiguration fileGetConfiguration;
 
-        /**
-         * Depending on the number of arguments provided, this method will call
-         * initializeAndRunSimulation with appropriate parameters to begin the
-         * simulation.
-         *
-         * @param args An array of command-line arguments
-         */
-        void startSimulation(String[] args) {
-            switch (args.length) {
-                case 2:
-                    // initialize provided config and outputer
-                    initializeAndRunSimulation(args[0], args[1]);
-                    break;
-                case 1:
-                    // initialize provided config and default outputer
-                    initializeAndRunSimulation(args[0], null);
-                    break;
-                default:
-                    // initialize default config and outputer
-                    initializeAndRunSimulation(null, null);
-                    break;
-            }
+        @Override
+        public void run() {
+            initializeAndRunSimulation();
         }
 
         /**
@@ -88,9 +80,9 @@ public class ProjectileSimulationSuite {
          * @param configName The path to the configuration file
          * @param arg        Command line argument that dictates the type of output
          */
-        private void initializeAndRunSimulation(String configName, String option) {
-            setConfigurationPath(configName);
-            initSimulation(option);
+        private void initializeAndRunSimulation() {
+            setConfigurationPath();
+            initSimulation();
             runSimulation();
             outputResults();
         }
@@ -101,9 +93,9 @@ public class ProjectileSimulationSuite {
          *
          * @param name Configuration file name
          */
-        void setConfigurationPath(String name) {
+        void setConfigurationPath() {
             setCurrentState(State.T_SIM_INIT); // transisition from start
-            fileGetConfiguration = new FileGetConfiguration(name);
+            fileGetConfiguration = new FileGetConfiguration(configName);
         }
 
         /**
@@ -117,9 +109,9 @@ public class ProjectileSimulationSuite {
          * @param option Output option: 2D plotting, 3D plotting, 3D GPU accelerated
          *               plotting with OpenGL
          */
-        void initSimulation(String option) {
+        void initSimulation() {
             _simulator = maker.createProjectileSimulator(fileGetConfiguration);
-            _resultsOutputers = getOutputers(option);
+            _resultsOutputers = getOutputers();
             MAX_SIMSTEPS = (int) (_simulator.getMaxStep() / _simulator.getTimeStep());
             _result = new ArrayList<>(MAX_SIMSTEPS);
 
@@ -135,22 +127,23 @@ public class ProjectileSimulationSuite {
          * @param option Command line option that dictates the type of output
          * @return List of IOutputResults objects
          */
-        private List<IOutputResults> getOutputers(String option) {
+        private List<IOutputResults> getOutputers() {
             List<IOutputResults> availableOutputers = new ArrayList<>();
-            availableOutputers.add(new ConsoleOutputer());
+            if (!quiet)
+                availableOutputers.add(new ConsoleOutputer());
 
-            if (option != null) {
-                switch (option) {
-                    case FLAG_CHART:
+            if (plotOption != null) { // Avoid NullPointerException if no plotOption is provided
+                switch (plotOption) {
+                    case "2d":
                         availableOutputers.add(new ChartOutputer());
                         break;
-                    case FLAG_CHART_3D:
+                    case "3d":
                         availableOutputers.add(new ChartOutputer3dNonACC());
                         break;
-                    case FLAG_CHART_3D_ACC:
+                    case "acc3d":
                         availableOutputers.add(new ChartOutputer3d());
                         break;
-                    case FLAG_BOTH:
+                    case "both":
                         availableOutputers.add(new ChartOutputer());
                         availableOutputers.add(new ChartOutputer3dNonACC());
                         break;
@@ -183,7 +176,6 @@ public class ProjectileSimulationSuite {
                     MAX_SIMSTEPS = MAX_SIMSTEPS + scaledSteps;
                 }
             }
-            System.out.println("SIMULATION COMPLETE, use ctrl+c to quit\n");
             setCurrentState(State.SIM_COMPLETE);
         }
 
@@ -197,6 +189,7 @@ public class ProjectileSimulationSuite {
                 outputer.outputResults(_result.toArray(new Vector3d[0]), _simulator.getTimeStep());
             }
             setCurrentState(State.SIM_OUTPUT_RESULT);
+            System.out.println("\nSIMULATION COMPLETE, use ctrl+c to quit\n");
         }
     }
 }
