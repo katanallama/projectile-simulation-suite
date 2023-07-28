@@ -2,13 +2,13 @@ package com.pss;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.pss.enums.State;
+import com.pss.utils.TestUtilities;
 import com.pss.handlers.StateObserver;
-import com.pss.interfaces.IStateObserver;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -36,7 +36,6 @@ class ProjectileSimulatorUseCase0Test {
         suite.context = suite.new SimulatorContext();
 
         StateObserver observer = new StateObserver();
-        // SimulatorState.addObserver(observer);
         suite.context.addObserver(observer);
 
         String EXPECTED_CONFIG_STRING = "Config file not found at config/testUseCase0.json, using default settings";
@@ -44,27 +43,20 @@ class ProjectileSimulatorUseCase0Test {
         String filePath = "testUseCase0";
         String[] args = { filePath };
 
-        if (args.length > 0) {
-            suite.context.setConfigurationPath(args[0]);
-        }
+        suite.context.startSimulation(args);
 
-        suite.context.initSimulation();
-        suite.context.runSimulation();
-        suite.context.storeResults();
-        suite.context.outputResults();
+        List<State> expectedStates = TestUtilities.getStatesList(58066);
 
-        List<State> expectedStates = new ArrayList<>(Arrays.asList(
-                State.INIT_SIMULATION,
-                State.SIMULATION_INITIALIZED));
-        // List<State> expectedStates = new ArrayList<>(Arrays.asList(
-        // State.INIT_SIMULATION,
-        // State.SIMULATION_INITIALIZED,
-        // State.STORE_RESULTS,
-        // State.OUTPUT_RESULT));
+        Assertions.assertEquals(expectedStates, observer.getObservedStates(),
+                "The simulation did not go through the expected states");
 
-        // Assertions.assertEquals(expectedStates, observer.getObservedStates(), "Failed in testUseCase0: The simulation did not go through the expected states");
+        // Check that the expected configuration was printed to the console
+        Assertions.assertTrue(outContent.toString().contains(EXPECTED_CONFIG_STRING),
+                "Configuration is not as expected");
+
 
         Assertions.assertTrue(outContent.toString().contains(EXPECTED_CONFIG_STRING), "Failed in testUseCase0: Configuration is not as expected");
     }
+
 
 }

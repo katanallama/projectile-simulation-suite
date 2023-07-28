@@ -2,20 +2,18 @@ package com.pss;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import com.pss.utils.TestUtilities;
 
 import com.pss.enums.State;
 import com.pss.handlers.StateObserver;
+import com.pss.utils.TestUtilities;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ProjectileSimulatorUseCase2Test {
+class ProjectileSimulatorUseCase3Test {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -31,18 +29,18 @@ class ProjectileSimulatorUseCase2Test {
     }
 
     @Test
-    void testUseCase2() {
+    void testUseCase3() {
         ProjectileSimulationSuite suite = new ProjectileSimulationSuite();
         suite.context = suite.new SimulatorContext();
 
         StateObserver observer = new StateObserver();
         suite.context.addObserver(observer);
 
-        String EXPECTED_FINAL_POSITION = "58.07        0.0    23533.2        0.0";
-        // String EXPECTED_FINAL_POSITION = "0.19        9.4        0.5        0.0";
-        String EXPECTED_CONFIG_STRING = "config/testUseCase2.json";
+        String EXPECTED_OUTPUT = "Warning: Simulation was still progressing after " + 1000
+                + " steps. Increasing MAX_SIMSTEPS.";
 
-        String filePath = "testUseCase2";
+        String filePath = "testUseCase3";
+        String EXPECTED_CONFIG_STRING = "config/" + filePath + ".json";
         String[] args = { filePath };
 
         suite.context.startSimulation(args);
@@ -57,8 +55,8 @@ class ProjectileSimulatorUseCase2Test {
                 "Configuration is not as expected");
 
         // Check that the expected position was printed to the console
-        Assertions.assertTrue(outContent.toString().contains(EXPECTED_FINAL_POSITION),
-                "Console output is not correct, expected : " + EXPECTED_FINAL_POSITION
+        Assertions.assertTrue(outContent.toString().contains(EXPECTED_OUTPUT),
+                "Console output is not correct, expected : " + EXPECTED_OUTPUT
                         + " but was : " + outContent.toString());
     }
 
