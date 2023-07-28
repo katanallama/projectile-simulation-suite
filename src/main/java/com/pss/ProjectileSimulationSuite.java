@@ -8,7 +8,7 @@ import javax.vecmath.Vector3d;
 import com.pss.enums.State;
 import com.pss.factories.MakeProjectileSimulator;
 import com.pss.handlers.ChartOutputer;
-// import com.pss.handlers.ChartOutputer3d;
+import com.pss.handlers.ChartOutputer3d;
 import com.pss.handlers.ChartOutputer3dNonACC;
 import com.pss.handlers.ConsoleOutputer;
 import com.pss.handlers.FileGetConfiguration;
@@ -22,98 +22,111 @@ public class ProjectileSimulationSuite {
 
     public SimulatorContext context = new SimulatorContext();
 
-    /**
-     * The main method of the suite. It initializes the simulation, runs it,
-     * and then stores and outputs the results.
-     *
-     * @param args Command line arguments
-     */
     public static void main(String[] args) {
-        ProjectileSimulationSuite suite = new ProjectileSimulationSuite();
-
-        if (args.length > 0) {
-            suite.context.setConfigurationPath(args[0]);
-        }
-
-        suite.context.initSimulation();
-        suite.context.runSimulation();
-        suite.context.storeResults();
-        suite.context.outputResults();
+        new ProjectileSimulationSuite().context.startSimulation(args);
     }
 
-    /**
-     * The SimulatorContext class manages the state of the simulation.
-     */
     public class SimulatorContext extends SimulatorState {
 
+        private static final String FLAG_CHART = "-p";
+        private static final String FLAG_CHART_3D = "-p3";
+        private static final String FLAG_BOTH = "-pb";
+        private static final String FLAG_CHART_3D_ACC = "-pacc";
+
         private int MAX_SIMSTEPS;
-        private int steps;
-        private IOutputResults[] _resultsOutputers;
+        private MakeProjectileSimulator maker = new MakeProjectileSimulator();
         private ProjectileSimulator _simulator;
-        private List<Vector3d> _results;
-        private Vector3d[] _sim_steps;
+        private List<IOutputResults> _resultsOutputers;
+        private List<Vector3d> _sim_steps;
         private FileGetConfiguration fileGetConfiguration;
-        // private State currentState;
+
+        void startSimulation(String[] args) {
+            switch (args.length) {
+                case 2:
+                    initializeAndRunSimulation(args[0], args[1]);
+                    break;
+                case 1:
+                    initializeAndRunSimulation(args[0], null);
+                    break;
+                default:
+                    initializeAndRunSimulation(null, null);
+                    break;
+            }
+        }
+
+        private void initializeAndRunSimulation(String configPath, String arg) {
+            setConfigurationPath(configPath);
+            initSimulation(arg);
+            runSimulation();
+            outputResults();
+        }
 
         void setConfigurationPath(String path) {
             fileGetConfiguration = new FileGetConfiguration(path);
         }
 
-        void initSimulation() {
-            setCurrentState(State.INIT_SIMULATION);
+        void initSimulation(String arg) {
+            setCurrentState(State.T_SIM_INIT);
 
-            _simulator = new MakeProjectileSimulator().createProjectileSimulator(fileGetConfiguration);
+            _simulator = maker.createProjectileSimulator(fileGetConfiguration);
 
             MAX_SIMSTEPS = (int) (_simulator.getMaxStep() / _simulator.getTimeStep());
-            // assert(MAX_SIMSTEPS > 1);
-            _sim_steps = new Vector3d[MAX_SIMSTEPS];
+            _sim_steps = new ArrayList<>(MAX_SIMSTEPS);
 
-            _resultsOutputers = getOutputers();
-            setCurrentState(State.SIMULATION_INITIALIZED);
+            _resultsOutputers = getOutputers(arg);
+            setCurrentState(State.SIM_INITIALIZED);
         }
 
-        private IOutputResults[] getOutputers() {
-            IOutputResults[] availableOutputers = {
-                    new ConsoleOutputer(),
-                    // new ChartOutputer(),
-                    // new ChartOutputer3dNonACC(),
-                    // new ChartOutputer3d(),
-            };
+        private List<IOutputResults> getOutputers(String arg) {
+            List<IOutputResults> availableOutputers = new ArrayList<>();
+            availableOutputers.add(new ConsoleOutputer());
 
+            if (arg != null) {
+                switch (arg) {
+                    case FLAG_CHART:
+                        availableOutputers.add(new ChartOutputer());
+                        break;
+                    case FLAG_CHART_3D:
+                        availableOutputers.add(new ChartOutputer3dNonACC());
+                        break;
+                    case FLAG_CHART_3D_ACC:
+                        availableOutputers.add(new ChartOutputer3d());
+                        break;
+                    case FLAG_BOTH:
+                        availableOutputers.add(new ChartOutputer());
+                        availableOutputers.add(new ChartOutputer3dNonACC());
+                        break;
+                }
+            }
             return availableOutputers;
         }
 
         void runSimulation() {
-            setCurrentState(State.START_SIMULATION);
+            setCurrentState(State.T_START_SIM);
+            Vector3d currentStep = new Vector3d(0, 0, 0);
+            int t = 0;
 
-            for (int t = 0; t < MAX_SIMSTEPS; t++) {
-                _sim_steps[t] = new Vector3d(0, 0, 0);
-                _sim_steps[t].add(_simulator.updatePosition());
-
-                if (_sim_steps[t].z >= 0) {
-                    setCurrentState(State.UPDATE_POSITION);
-                    steps++;
-                    setCurrentState(State.INCREMENT_STEP_COUNTER);
+            System.out.println("\nRUNNING SIMULATION...\n");
+            while (t < MAX_SIMSTEPS && currentStep.z >= 0) {
+                _sim_steps.add(currentStep);
+                currentStep = _simulator.updatePosition();
+                setCurrentState(State.T_UPDATE_POSITION);
+                t++;
+                if (t == MAX_SIMSTEPS && currentStep.z >= 0) {
+                    System.out.println("Warning: Simulation was still progressing after " +
+                            MAX_SIMSTEPS + " steps. Increasing MAX_SIMSTEPS.\n");
+                    MAX_SIMSTEPS = MAX_SIMSTEPS + 1000;
                 }
             }
-            setCurrentState(State.SIMULATION_COMPLETED);
-        }
-
-        void storeResults() {
-            _results = new ArrayList<>(steps);
-            for (int i = 0; i < steps; i++) {
-                _results.add(_sim_steps[i]);
-            }
-            setCurrentState(State.STORE_RESULTS);
+            System.out.println("SIMULATION COMPLETE, use ctrl+c to quit\n");
+            setCurrentState(State.SIM_COMPLETE);
         }
 
         void outputResults() {
             for (IOutputResults outputer : _resultsOutputers) {
-                System.out.println(outputer);
-                System.out.println(_resultsOutputers);
-                outputer.outputResults(_results.toArray(new Vector3d[0]), _simulator.getTimeStep());
+                outputer.outputResults(_sim_steps.toArray(new Vector3d[0]), _simulator.getTimeStep());
             }
-            setCurrentState(State.OUTPUT_RESULT);
+            setCurrentState(State.SIM_OUTPUT_RESULT);
         }
     }
 }
