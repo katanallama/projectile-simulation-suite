@@ -15,17 +15,33 @@ import com.pss.handlers.FileGetConfiguration;
 import com.pss.interfaces.IOutputResults;
 
 /**
- * This class provides a suite for running projectile simulations.
- * The simulations steps are computed, stored, and output to various formats.
+ * The main class of the projectile simulation suite which coordinates the
+ * simulation process. This class primarily sets up the simulation context
+ * and initiates the simulation. It relies on nested classes and external
+ * handlers to manage the actual simulation and data output.
  */
 public class ProjectileSimulationSuite {
 
     public SimulatorContext context = new SimulatorContext();
 
+    /**
+     * The main method to start the simulation. This method creates an instance of
+     * the ProjectileSimulationSuite class and triggers the simulation by calling
+     * the startSimulation method on the context with the provided arguments.
+     *
+     * @param args An array of command-line arguments
+     */
     public static void main(String[] args) {
         new ProjectileSimulationSuite().context.startSimulation(args);
     }
 
+    /**
+     * Nested class extending the SimulatorState class. This class is responsible
+     * for controlling the simulation state and process. Handles the initialization
+     * of the simulation based on configuration files, execution of the simulation
+     * according to set parameters, and directing the output of the simulation
+     * results.
+     */
     public class SimulatorContext extends SimulatorState {
 
         private static final String FLAG_CHART = "-p";
@@ -37,52 +53,94 @@ public class ProjectileSimulationSuite {
         private MakeProjectileSimulator maker = new MakeProjectileSimulator();
         private ProjectileSimulator _simulator;
         private List<IOutputResults> _resultsOutputers;
-        private List<Vector3d> _sim_steps;
+        private List<Vector3d> _result;
         private FileGetConfiguration fileGetConfiguration;
 
+        /**
+         * Depending on the number of arguments provided, this method will call
+         * initializeAndRunSimulation with appropriate parameters to begin the
+         * simulation.
+         *
+         * @param args An array of command-line arguments
+         */
         void startSimulation(String[] args) {
             switch (args.length) {
                 case 2:
+                    // initialize provided config and outputer
                     initializeAndRunSimulation(args[0], args[1]);
                     break;
                 case 1:
+                    // initialize provided config and default outputer
                     initializeAndRunSimulation(args[0], null);
                     break;
                 default:
+                    // initialize default config and outputer
                     initializeAndRunSimulation(null, null);
                     break;
             }
         }
 
-        private void initializeAndRunSimulation(String configPath, String arg) {
-            setConfigurationPath(configPath);
-            initSimulation(arg);
+        /**
+         * Main handler for running a simulation. This method controls the process of
+         * setting the configuration path, initializing the simulation, running the
+         * simulation, and outputting results.
+         *
+         * @param configName The path to the configuration file
+         * @param arg        Command line argument that dictates the type of output
+         */
+        private void initializeAndRunSimulation(String configName, String option) {
+            setConfigurationPath(configName);
+            initSimulation(option);
             runSimulation();
             outputResults();
         }
 
-        void setConfigurationPath(String path) {
-            fileGetConfiguration = new FileGetConfiguration(path);
+        /**
+         * Sets the path to the configuration file to be used. Assumes that the .json
+         * file is in ./config/
+         *
+         * @param name Configuration file name
+         */
+        void setConfigurationPath(String name) {
+            setCurrentState(State.T_SIM_INIT); // transisition from start
+            fileGetConfiguration = new FileGetConfiguration(name);
         }
 
-        void initSimulation(String arg) {
-            setCurrentState(State.T_SIM_INIT);
-
+        /**
+         * Initializes the simulation environment according to the provided argument and
+         * configuration file. This includes creating the projectile simulator,
+         * determining the maximum number of simulation steps, creating the list of
+         * simulation results, and establishing the results outputers. The maximum
+         * number of simulation steps is scaled on the precision of the simulation set
+         * by the time step.
+         *
+         * @param option Output option: 2D plotting, 3D plotting, 3D GPU accelerated
+         *               plotting with OpenGL
+         */
+        void initSimulation(String option) {
             _simulator = maker.createProjectileSimulator(fileGetConfiguration);
-
+            _resultsOutputers = getOutputers(option);
             MAX_SIMSTEPS = (int) (_simulator.getMaxStep() / _simulator.getTimeStep());
-            _sim_steps = new ArrayList<>(MAX_SIMSTEPS);
+            _result = new ArrayList<>(MAX_SIMSTEPS);
 
-            _resultsOutputers = getOutputers(arg);
             setCurrentState(State.SIM_INITIALIZED);
+            setCurrentState(State.T_START_SIM); // transition to running state
         }
 
-        private List<IOutputResults> getOutputers(String arg) {
+        /**
+         * Returns a list of IOutputResults objects based on the provided argument. This
+         * method will always return a list with at least a ConsoleOutputer. If an
+         * argument is provided, additional outputers are added to the list.
+         *
+         * @param option Command line option that dictates the type of output
+         * @return List of IOutputResults objects
+         */
+        private List<IOutputResults> getOutputers(String option) {
             List<IOutputResults> availableOutputers = new ArrayList<>();
             availableOutputers.add(new ConsoleOutputer());
 
-            if (arg != null) {
-                switch (arg) {
+            if (option != null) {
+                switch (option) {
                     case FLAG_CHART:
                         availableOutputers.add(new ChartOutputer());
                         break;
@@ -101,30 +159,42 @@ public class ProjectileSimulationSuite {
             return availableOutputers;
         }
 
+        /**
+         * Executes the simulation according to the parameters set in the
+         * initialization. During execution, the simulation results are stored in a
+         * list. If the configured maximum number of simulation steps is reached while
+         * the projectile is still in motion, the number of steps is increased and a
+         * warning is issued.
+         */
         void runSimulation() {
-            setCurrentState(State.T_START_SIM);
             Vector3d currentStep = new Vector3d(0, 0, 0);
             int t = 0;
 
             System.out.println("\nRUNNING SIMULATION...\n");
             while (t < MAX_SIMSTEPS && currentStep.z >= 0) {
-                _sim_steps.add(currentStep);
+                _result.add(currentStep);
                 currentStep = _simulator.updatePosition();
                 setCurrentState(State.T_UPDATE_POSITION);
                 t++;
                 if (t == MAX_SIMSTEPS && currentStep.z >= 0) {
+                    int scaledSteps = (int) (10 / _simulator.getTimeStep());
                     System.out.println("Warning: Simulation was still progressing after " +
-                            MAX_SIMSTEPS + " steps. Increasing MAX_SIMSTEPS.\n");
-                    MAX_SIMSTEPS = MAX_SIMSTEPS + 1000;
+                            MAX_SIMSTEPS + " steps. Increasing by " + scaledSteps + " steps\n");
+                    MAX_SIMSTEPS = MAX_SIMSTEPS + scaledSteps;
                 }
             }
             System.out.println("SIMULATION COMPLETE, use ctrl+c to quit\n");
             setCurrentState(State.SIM_COMPLETE);
         }
 
+        /**
+         * Handles the output of simulation results. This includes passing the
+         * simulation results and time step to each IOutputResults object in the list of
+         * results outputers.
+         */
         void outputResults() {
             for (IOutputResults outputer : _resultsOutputers) {
-                outputer.outputResults(_sim_steps.toArray(new Vector3d[0]), _simulator.getTimeStep());
+                outputer.outputResults(_result.toArray(new Vector3d[0]), _simulator.getTimeStep());
             }
             setCurrentState(State.SIM_OUTPUT_RESULT);
         }

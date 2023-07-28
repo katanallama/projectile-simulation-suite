@@ -36,8 +36,7 @@ class ProjectileSimulatorUseCase3Test {
         StateObserver observer = new StateObserver();
         suite.context.addObserver(observer);
 
-        String EXPECTED_OUTPUT = "Warning: Simulation was still progressing after " + 1000
-                + " steps. Increasing MAX_SIMSTEPS.";
+        String EXPECTED_OUTPUT = "Warning: Simulation was still progressing after 1000 steps";
 
         String filePath = "testUseCase3";
         String EXPECTED_CONFIG_STRING = "config/" + filePath + ".json";
@@ -59,6 +58,5 @@ class ProjectileSimulatorUseCase3Test {
                 "Console output is not correct, expected : " + EXPECTED_OUTPUT
                         + " but was : " + outContent.toString());
     }
-
 
 }
