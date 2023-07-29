@@ -1,16 +1,13 @@
 #+title: Test Suite
 #+OPTIONS: p:t
 
-* Testing Summary
+* Testing Methodology
 
 ** Variables Involved
 
 - ~velocity~ : The velocity of the projectile.
-
 - ~rho~ : The density of the fluid in which the projectile is moving.
-
 - ~A~ : The cross-sectional area of the projectile.
-
 - ~Cd~ : The drag coefficient.
 
 
@@ -23,9 +20,9 @@ To conduct Decision Table-Based testing on the ~getProjectileDrag()~ method, we 
 These decisions encapsulate the business logic of the function, providing a well-defined set of rules for how the function should behave under various conditions. The goal of decision table testing is to ensure that these rules are being applied correctly and consistently across a broad range of potential scenarios.
 
 
-** First Iteration
+*** First Iteration
 
-*** Decisions Summary
+**** Decisions Summary
 
 - If the projectile's velocity is ~(0, 0, 0)~, then the function immediately returns ~(0, 0, 0)~.
 
@@ -34,7 +31,7 @@ These decisions encapsulate the business logic of the function, providing a well
 Based on these decisions and variables, we construct a decision table. However, as these variables are continuous and not discrete, creating a full decision table isn't feasible. Instead, we focus on testing key scenarios or boundaries which could be representative of the whole range of possible scenarios.
 
 
-*** Decision Table
+**** Decision Table
 
 |     |                      | 1 | 2 |
 |-----+----------------------+---+---|
@@ -51,11 +48,11 @@ And the outputs:
 | 2 | (1, 1, 1)     | -              | X           |
 
 
-** Second Iteration
+*** Second Iteration
 
 Based on the second iteration of the function, we can see that some changes have been implemented, which require the decision table to be updated.
 
-*** Updated Decisions Summary
+**** Updated Decisions Summary
 
 The second iteration of ~getProjectileDrag()~ incorporates additional decisions based on the findings from the first iteration of testing.
 
@@ -70,7 +67,7 @@ The second iteration of ~getProjectileDrag()~ incorporates additional decisions 
 If any of the above conditions are not met, the function calculates the drag force as per the equation and returns the resultant drag vector.
 
 
-*** Updated Decision Table
+**** Updated Decision Table
 
 The full decision table for the 4 conditions and \(2^{4} = 16\) rules:
 
@@ -119,86 +116,6 @@ The simplified table shows the dependency between some of the rules, but for rob
 
 As seen from the revised decision table, we now have additional test cases where the velocity components are negative, testing the updated conditions in the function. This will provide a more thorough test of the function's logic and help identify any potential issues with these new conditions.
 
-* System Testing
-** Finite State Machine
-
-** States
-- Configuration and initialization
-- Run simulation
-- Output results
-
-** Transitions
-- Simulation initialized
-- Simulation step executed
-- Output complete
-
-** Basic Diagram
-
-#+begin_src plantuml :file fsm.png
-@startuml
-|Initialization|
-start
-:Initializing Simulation;
-#lightblue:**Load Config**;
-#lightblue:**Create Simulator**;
-:Simulation Initialized;
-
-|Simulation|
-#lightgreen:**Start Simulation**;
-while (Step < MAX_SIMSTEPS) is (yes)
-  :Update Position;
-endwhile (no)
-:All Steps Completed;
-
-|Output|
-#palegreen:**Process Results**;
-:Results Outputted;
-stop
-@enduml
-#+end_src
-
-#+RESULTS:
-[[file:fsm.png]]
-
-
-** Detailed Diagram
-
-#+begin_src plantuml :file detailed-fsm.png
-@startuml
-|Initialize|
-start
-:**Initialize Simulation**;
-#lightblue:Read File;
-#lightblue:Parse Config;
-#lightgreen:**Store Config**;
-#orange:**Simulation Initialized**;
-
-|Simulate|
-:**Start Simulation**;
-while (Step < MAX_SIMSTEPS) is (yes)
-  #lightblue:Update Position;
-  if (z-coordinate >= 0) then (yes)
-    #lightblue:Increment Step Counter;
-  endif
-endwhile (no)
-#lightgreen:**Simulation Completed**;
-#orange:**Store Results**;
-
-|Output|
-:**Prepare Plot Data**;
-if (Environment is Headless) then (no)
-  #lightgreen:**Save Plot as PNG**;
-else (yes)
-  #lightgreen:**Display Plot in GUI**;
-endif
-#lightgreen:**Print Results to Console**;
-#orange:**Output Result**;
-stop
-@enduml
-#+end_src
-
-#+RESULTS:
-[[file:detailed-fsm.png]]
 
 * Structural Analysis
 
@@ -208,14 +125,14 @@ This is a straightforward technique of analyzing a software artifact - in this c
 [[./graph-structural.jpg]]
 
 
-** Path Coverage
+*** Path Coverage
 
 One type of static analysis is path testing, where we analyze the "paths" a software could take under certain conditions. 
 
 Normally, we would aim to analyze following *Prime Path Coverage*, but  due to the simplicity of ```getProjectileDrag()```, the Prime Path Coverage in our case also happens to be the best (and most expensive) kind of graph coverage: *Complete Graph Coverage*. 
 
 
-*** Test Requirements
+**** Test Requirements
 
 The Prime/Complete path set is as follows:
 1. [1, 2, 4, 5, 6, 7]
@@ -223,7 +140,7 @@ The Prime/Complete path set is as follows:
 3. [1, 2, 4, 3]
 
 
-*** Test Cases
+**** Test Cases
 
 1. Happy Path
 - velocity = (1, 1, 1)
@@ -246,7 +163,7 @@ The Prime/Complete path set is as follows:
 *NOTE* this condition may be impossible to reach! For drag magnitude to be > 0, one or all 3 of the initial settings must be incorrectly set to a negative number, an un-intentional (and physically impossible) use case. However, we will also test this case for robustness since it is the only one (as compared to a set of illogical conditions in a more complex function).
 
 
-** Data Flow Coverage
+*** Data Flow Coverage
 
 Another type of structural analysis is data flow, which focuses on the definition and use of variables. This allows us to verify that all variables are used correctly (e.g. not redefined before their intended use, or never used at all).
 
@@ -259,7 +176,7 @@ The coverage criteria we are analyzing for is *All DU-Path Coverage*, as it is t
 ![[./graph-data-flow.jpg "Data Flow Graph"]]
 
 
-*** Test Requirements
+**** Test Requirements
 
 The DU pairs of the graph are as follows:
 1. du(1, 2, velocity)
@@ -279,9 +196,10 @@ If we define the "happy path" as avoiding both if statements (edges (2,3) and (3
 3. [1, 2, 4, 3]
 
 
-*** Test Cases
+**** Test Cases
 
 We can see these Test Requirements are the same set of prime paths from the Path Coverage described above, as is expected with Prime Path and Complete Path Coverage. As such, we have proven we do not need to write any additional test cases, as the test requirements are already fulfilled by other tests.
+
 
 * Functional Testing 
 
@@ -294,7 +212,8 @@ https://link.springer.com/content/pdf/10.1007/978-3-540-69471-7_2.pdf
 https://core.ac.uk/download/pdf/333722658.pdf
 https://www.atlantis-press.com/article/22285.pdf
 
-** Boundary Value Testing
+
+*** Boundary Value Testing
 
 The realistic limits of maximums and minimums for each input of the drag handler were determined based on the following specifications:
 
@@ -336,7 +255,8 @@ Using generalized boundary value analysis, we obtain the following test cases:
 | 230        | 230        | 230        | 1.2 | 0.018   | 0.1  | (-98.95552, -98.95552, -98.95552)     |
 | 230        | 230        | 230        | 1.2 | 0.018   | 0.3  | (-593.73316, -593.73316, -593.73316)  |
 
-** Equivalence Class Testing 
+
+*** Equivalence Class Testing
 
 Based on the types of howitzer cannons in use, the following equivalence classes were defined:
 
@@ -387,7 +307,8 @@ Using Weak Normal Equivalence Class testing we get these test cases:
 | 200        | 200        | 200        | 1.2 | 0.019  | 0.2  | (-157.96303, -157.96303, -157.96303)  |
 | 200        | 200        | 200        | 1.2 | 0.045  | 0.2  | (-374.12297, -374.12297, -374.12297)  |
 
-*** Integration Testing
+
+* Integration Testing
 
 Integration testing was performed using the factory MakeProjectileSimulator, which creates a main simulator.
 
@@ -417,3 +338,104 @@ Expected Values:
 | 5         | (1094.40177, 1094.40177, 950.56550)|
 
 
+* System Testing
+
+To test the system end-to-end we verify the following:
+
+- Correct file is being read
+- File is parsed correctly
+- Parsed settings are stored correctly and can be retrieved as expected
+- Settings are correctly used to initialize or override the system configuration
+- Simulation runs and produces the expected outputs
+
+
+*** Finite State Machine (FSM)
+
+A FSM is an abstract machine that can be in exactly one of a finite number of states at any given time. It can change from one state to another in response to some inputs; the change from one state to another is called a transition.
+
+#+begin_src plantuml :file basic-fsm.png
+@startuml
+|Initialize|
+start
+#yellow:T_SIM_INIT;
+#orange:**SIM_INITIALIZED**;
+#yellow:T_START_SIM;
+
+|Simulate|
+#orange:**SIM_RUNNING**;
+#yellow:T_SIM_COMPLETE;
+
+|Output|
+#orange:**SIM_OUTPUT_RESULT**;
+stop
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:basic-fsm.png]]
+
+
+[[./basic-fsm.png]]
+
+*** States
+
+- ~SIM_INITIALIZED~: all initialization steps are completed, ready to run simulation
+- ~SIM_RUNNING~: the simulation is running, iterating over time steps
+- ~SIM_OUTPUT_RESULT~: the results have been outputted
+
+
+*** Transitions
+
+- ~T_SIM_INIT~, transition from idle to configuration and initialization steps
+- ~T_START_SIM~, transition to ~SIM_RUNNING~
+- ~T_SIM_COMPLETE~: the simulation has completed running, transition to ~SIM_OUTPUT_RESULTS~
+
+
+**** Pseudo-transition
+
+- ~T_UPDATE_POSITION~: we consider this a transition because it allows us to keep track of the number of expected iterations to compute the trajectory given a specific configuration
+
+
+** FSM Diagram
+
+The detailed FSM diagram captures the tested functionality within an between states.
+
+#+begin_src plantuml :file detailed-fsm.png
+@startuml
+|Initialize|
+start
+#yellow:T_SIM_INIT;
+:**Set Configuration fileName**;
+#lightblue:Initialize and Run Simulation;
+if (Plotting or Quiet or Configuration options present) then (yes)
+  :**Initialize Simulation with Options**;
+else (no)
+  :**Initialize Simulation without Options**;
+endif
+#lightblue:Create Projectile Simulator;
+#lightblue:Create Outputers from passed options;
+#lightgreen:Scale Max Simulation Steps;
+#orange:**SIM_INITIALIZED**;
+#yellow:T_START_SIM;
+
+|Simulate|
+#orange:**SIM_RUNNING**;
+while (Current step Z is greater than 0 and current steps is less than Max Steps) is (yes)
+  #yellow:Update Position;
+  if (Current steps equal Max Steps and Current step Z is greater than 0) then (yes)
+    #lightblue:**Increase Max Steps according to scaledSteps**;
+  endif
+endwhile (no)
+#yellow:T_SIM_COMPLETE;
+
+|Output|
+#orange:**SIM_OUTPUT_RESULT**;
+:**Output Results to Available Outputers**;
+stop
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:detailed-fsm.png]]
+
+[[./detailed-fsm.png]]
