@@ -17,3 +17,29 @@ All are living documents and are expected to change, feel free to contribute to 
 ** Contribution Notes
 - ~.org~ are working files and exported to ~.md~ as GitHub does not parse org-mode files well
 - If using VSCode or another editor that does not respect ~.editorconfig~ files, please install a [[https://editorconfig.org/][plugin]]
+
+** Adding new dependencies
+
+To update the dependencies, update ~pom.xml~ run ~nix build~ and set the ~mvnHash~ in ~./default.nix~ :
+
+~outputHash = "";~ remove the old hash
+
+~direnv reload~, so long as you have ~direnv~ installed or,
+
+~nix build`
+
+#+begin_src sh
+warning: found empty hash, assuming 'sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='
+[1/0/3 built, 0.0 MiB DL] building maven-repository (buildPhase): Downloading from central: https://redirenv:
+error: hash mismatch in fixed-output derivation '/nix/store/p635baxv930v2bb4k527j6rk54a3nfpl-maven-repository.drv':
+         specified: sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+            got:    sha256-CrXCiJgU5kKywK7D01YrSk+teXkAMvrYmbNCh7lWX0I=
+#+end_src
+
+Update the hash in `./default.nix`:
+
+~outputHash = "sha256-CrXCiJgU5kKywK7D01YrSk+teXkAMvrYmbNCh7lWX0I=";~
+
+~direnv reload~
+
+The environment should reload on the next command as `direnv` is set to watch `*.nix` and `pom.xml`
