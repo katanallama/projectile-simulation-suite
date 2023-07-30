@@ -45,7 +45,7 @@ public class ChartOutputer implements IOutputResults {
                 "Position (m)",
                 dataset);
 
-        SimulatorState.setCurrentState(State.PREPARE_PLOT_DATA);
+        // SimulatorState.setCurrentState(State.PREPARE_PLOT_DATA);
 
         if (isHeadless || print) {
             String currentDir = System.getProperty("user.dir");
@@ -53,16 +53,16 @@ public class ChartOutputer implements IOutputResults {
 
             try {
                 ChartUtils.saveChartAsPNG(new File(dir), chart, 1600, 1000);
-                SimulatorState.setCurrentState(State.SAVE_PLOT_AS_PNG);
+                // SimulatorState.setCurrentState(State.SAVE_PLOT_AS_PNG);
             } catch (IOException e) {
                 e.printStackTrace();
-                SimulatorState.setCurrentState(State.NOT_SAVE_PLOT_AS_PNG);
+                // SimulatorState.setCurrentState(State.NOT_SAVE_PLOT_AS_PNG);
             }
         } else {
             ChartFrame frame = new ChartFrame("Chart", chart);
             frame.pack();
             frame.setVisible(true);
-            SimulatorState.setCurrentState(State.DISPLAY_PLOT_IN_GUI);
+            // SimulatorState.setCurrentState(State.DISPLAY_PLOT_IN_GUI);
         }
     }
 }

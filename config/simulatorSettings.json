@@ -1,0 +1,6 @@
+{
+    "initialDirection" : "(10, 20, 30)",
+    "muzzleVelocity" :  10.0,
+    "timeStep" :  0.1,
+    "maxStep" :  100.0
+}

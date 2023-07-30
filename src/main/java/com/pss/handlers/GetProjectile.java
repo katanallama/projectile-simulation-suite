@@ -24,13 +24,12 @@ public class GetProjectile implements IGetProjectile {
     }
 
     private Projectile createProjectile() {
-        // Todo make this set initial settings via configs
         Projectile projectile = new Projectile();
         
-        projectile.setWeight(_configurationHandler.getSetting(Settings.Gravity));
+        projectile.setWeight(_configurationHandler.getSetting(Settings.Weight));
         Vector3d initialVelocity = new Vector3d(_configurationHandler.<Vector3d>getSetting(Settings.InitialDirection));
         initialVelocity.normalize();
-        initialVelocity.scale(_configurationHandler.getSetting(Settings.InitialForce));
+        initialVelocity.scale(_configurationHandler.getSetting(Settings.MuzzleVelocity));
         projectile.setVelocity(initialVelocity);
 
         return projectile;

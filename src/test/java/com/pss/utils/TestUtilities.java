@@ -1,8 +1,14 @@
 package com.pss.utils;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.vecmath.Vector3d;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.pss.enums.State;
 
 public class TestUtilities {
 
@@ -25,4 +31,22 @@ public class TestUtilities {
         assertEquals(expected.y, actual.y, epsilon);
         assertEquals(expected.z, actual.z, epsilon);
     }
+
+    public static List<State> getStatesList(int repeatCount) {
+        List<State> expectedStates = new ArrayList<>(Arrays.asList(
+                State.T_SIM_INIT,
+                State.SIM_INITIALIZED,
+                State.T_START_SIM));
+
+        for (int i = 0; i < repeatCount; i++) {
+            expectedStates.add(State.T_UPDATE_POSITION);
+        }
+
+        expectedStates.addAll(Arrays.asList(
+                State.SIM_COMPLETE,
+                State.SIM_OUTPUT_RESULT));
+
+        return expectedStates;
+    }
+
 }

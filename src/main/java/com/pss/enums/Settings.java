@@ -5,14 +5,14 @@ import javax.vecmath.Vector3d;
 
 public enum Settings {
     Gravity("gravity", DataTypes.Double, 9.81d),
-    Weight("weight", DataTypes.Double, 14.0d),
-    InitialForce("initialForce", DataTypes.Double, 100.d),
+    Weight("weight", DataTypes.Double, 20.0d),
+    MuzzleVelocity("muzzleVelocity", DataTypes.Double, 900.d),
     ContinualForce("continualForce", DataTypes.Double, 20.0d),
-    InitialDirection("initialDirection", DataTypes.Vector, new Vector3d(10, 10, 10)),
-    FluidRho("fluidRho", DataTypes.Double, 1.204d),
-    ProjectileArea("projectileArea", DataTypes.Double, 0.1d),
-    DragCoefficent("dragCoefficent", DataTypes.Double, 0.04d),
-    MaxStep("simStep", DataTypes.Double, 100d),
+    InitialDirection("initialDirection", DataTypes.Vector, new Vector3d(0, 10, 5)),
+    FluidRho("fluidRho", DataTypes.Double, 1.200d),
+    ProjectileArea("projectileArea", DataTypes.Double, 0.018d),
+    DragCoefficent("dragCoefficent", DataTypes.Double, 0.1d),
+    MaxStep("simStep", DataTypes.Double, 60d),
     TimeStep("timeStep", DataTypes.Double, 0.001d);
 
     private String name;
@@ -32,7 +32,7 @@ public enum Settings {
     }
 
     public String getName() {
-        return name; 
+        return name;
     }
 
     public DataTypes getType() {
@@ -58,19 +58,20 @@ public enum Settings {
         Vector3d parsedVector;
 
         if (parts.length != 3) {
-            throw new InvalidAttributesException(vector + " is not formatted correctly. Please use (x,y,z) as a format");
+            throw new InvalidAttributesException(
+                    vector + " is not formatted correctly. Please use (x,y,z) as a format");
         }
         try {
-            parsedVector = new Vector3d(parseDouble(parts[0]),parseDouble(parts[1]), parseDouble(parts[2]));
+            parsedVector = new Vector3d(parseDouble(parts[0]), parseDouble(parts[1]), parseDouble(parts[2]));
         } catch (InvalidAttributesException ex) {
-            throw new InvalidAttributesException(vector + " is not formatted correctly. Please use (x,y,z) as a format");
+            throw new InvalidAttributesException(
+                    vector + " is not formatted correctly. Please use (x,y,z) as a format");
         }
 
         return parsedVector;
     }
 
     public static <T> boolean validateValue(T value, Settings setting) {
-        // We could simplify this with the Java record pattern feature, but since we'll only have a handful of these I think it's good enough
         switch (setting.getType()) {
             case Double:
                 return (value instanceof Double);
