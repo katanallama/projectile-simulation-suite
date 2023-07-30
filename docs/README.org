@@ -36,7 +36,7 @@ error: hash mismatch in fixed-output derivation '/nix/store/p635baxv930v2bb4k527
             got:    sha256-CrXCiJgU5kKywK7D01YrSk+teXkAMvrYmbNCh7lWX0I=
 #+end_src
 
-Update the hash in `./default.nix`:
+Update the hash in ~./default.nix~:
 
 ~outputHash = "sha256-CrXCiJgU5kKywK7D01YrSk+teXkAMvrYmbNCh7lWX0I=";~
 
