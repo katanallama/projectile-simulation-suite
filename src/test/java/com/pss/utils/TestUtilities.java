@@ -36,14 +36,15 @@ public class TestUtilities {
         List<State> expectedStates = new ArrayList<>(Arrays.asList(
                 State.T_SIM_INIT,
                 State.SIM_INITIALIZED,
-                State.T_START_SIM));
+                State.T_START_SIM,
+                State.SIM_RUNNING));
 
         for (int i = 0; i < repeatCount; i++) {
             expectedStates.add(State.T_UPDATE_POSITION);
         }
 
         expectedStates.addAll(Arrays.asList(
-                State.SIM_COMPLETE,
+                State.T_SIM_COMPLETE,
                 State.SIM_OUTPUT_RESULT));
 
         return expectedStates;
