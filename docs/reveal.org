@@ -1,0 +1,385 @@
+#+Title: Testing A Howitzer Simulator in Java
+#+Subtitle: ENSE 375, University of Regina
+#+Author: Ben Hajdukiewicz, Daniil Aleshechkin, Jacob Meyer
+#+OPTIONS: num:nil
+#+REVEAL_THEME: moon
+#+REVEAL_TRANS: slide
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_TITLE_SLIDE: <h2 class="title">%t</h2><em>%s</em><br><br>%a<br>%d
+#+OPTIONS: toc:1
+
+* Introduction
+#+REVEAL_HTML: <div style="font-size: 80%;">
+
+- This project involves the development of a simulator to teach soldiers about kinematics and dynamics in relation to a Howitzer shooting a projectile across an empty field.
+- The goal is to accurately simulate the physics of a fired projectile in Java.
+
+#+BEGIN_NOTES
+1. 
+2. the goal includes: 
+    - considering variables that could affect its trajectory, 
+    - providing a realistic and educational simulator that helps soldiers understand and predict the effects of different variables on the trajectory and 
+    - final position of a howitzer-fired projectile.
+#+END_NOTES
+
+
+* Problem Definition
+#+REVEAL_HTML: <div style="font-size: 80%;">
+
+- We are trying to build a solution that accurately captures the physics of a projectile in an easy to use and understand software package, including a high quality of:
+    - speed of computation
+    - variability of potential inputs
+    - extendability for future development
+
+#+BEGIN_NOTES
+Psssst, don't say "it's because we have to for a school project"
+#+END_NOTES
+
+
+* Design Requirements
+#+REVEAL_HTML: <div style="font-size: 80%;">
+
+The simulator should be designed with the following requirements:
+
+- /Intuitive User Interface/
+
+- /Realism/
+
+- /Performance/
+
+- /Flexibility/
+
+- /Educational/
+
+- Results should be logged in ~csv~ format that is easily interpreted by common analysis and visualization tools such as ~matplotlib~ and ~seaborn~.
+
+#+BEGIN_NOTES
+We haven't reached all of our design requirements yet, but are well on our way for some of them.
+
+1. UI: The simulator should have an intuitive user interface that allows users to easily input variables and understand the output.
+
+2. Realism: The simulator should realistically model the physics of a fired projectile, including the effects of gravity and drag.
+
+3. Performance: The simulator should be able to run the simulation smoothly and handle calculations quickly, even for complex trajectories.
+
+4. Flexibility: : The simulator should allow for the adjustment of a wide range of variables, allowing for a variety of simulations.
+
+5. Educational: The simulator should have educational value, helping soldiers understand the factors that affect the trajectory and final position of a projectile. 
+#+END_NOTES
+
+
+** Functions
+
+- representation of 3D projectile trajectory
+
+- representation of the forces acting on the projectile during its flight
+
+- final impact position of the projectile
+
+- real-time kinematic and dynamic statistics (position, velocity, acceleration, forces) for deeper understanding and analysis
+
+#+BEGIN_NOTES
+Remember when he sent us an email saying to ignore the "function" part of the design doc? Me neither.
+#+END_NOTES
+
+
+** Objectives
+
+- Demonstrate how different variables, such as the howitzer position and orientation, affect the trajectory and final impact location of a projectile and display the results of each simulation "run" in a way anybody can understand.
+
+- Create a robust test suite for parts of the simulator to demonstrate complete knowledge of standard test procedures.
+
+#+BEGIN_NOTES
+Put speaker notes here
+#+END_NOTES
+
+
+** Constraints
+
+- Ethics
+
+- Accuracy
+
+- Reproducible Results
+
+- Reliability
+
+- User Control and Display
+
+- Information Management
+
+#+BEGIN_NOTES
+1. Ethics: The purpose of the simulator is to educate soldiers for combat, which includes the potential destruction of lives and infrastructure, while the team does not condone this, our hope as a development team is that the education from our simulator is used to strengthen a strategy of combat deterrence and de-escalation, but we recognize the likelihood of said education to be used towards actual combat.
+
+2. Accuracy: This simulator is a simplified model of a non-deterministic environment, we cannot guarantee that it precisely replicates the real-world-equivalent actions.
+
+3. Reproducible Results: This is an important factor in not only simulation, but development as well. The team strives to produce a project and results that are highly reproducible. From the use of [[https://nixos.org/guides/nix-pills/][Nix]] as a build tool, to the development of the project. By ensuring that the project build is reproducible across multiple systems, this helps to ensure that the simulation results are also reproducible as the back-end will be consistent from machine to machine.
+
+4. Reliability: The results of the simulator will be deterministic of the given configuration, resulting in expected outputs for a given input.
+
+5. User Control and Display: The simulation will run without a GUI; inputs and outputs are to be managed through external files according to the Information Management constraint. At most, the user input will be a one-time prompt at the program startup. At most, the simulation output either displayed through the console and/or recorded separately. The results should be able to be imported into other visualization tools easily.
+
+6. Information Management: The simulation is initialized and run according to a configuration ~.json~ file with the relevant information which can be overriden with supplied commands. Simulation results saved to the user specified ~outdir/~  that includes but is not limited to:
+ - simulator configuration
+ -- mass : the mass of the projectile (kg) -> IMPLEMENTED
+ -- drag_coeffient : how aerodynamic the projectile is (number) ->IMPLEMENTED
+ -- initial_force : the force vector applied by the cannon (N) -> IMPLEMENTED
+ -- gravity_strength : the strengh of gravity (m/s^2) -> IMPLEMENTED
+ -- wind_vector : the constant wind vector (N) -> NOT IMPLEMENTED
+ -- object_area : the surface area of the projectile (m^2) -> IMPLEMENTED
+ -- object_force_mode : the type of external force exerted by the projectile (enum) -> NOT IMPLEMENTED
+ -- wind_vector_field_mode : the type of vector field that the project will travel through (enum) -> NOT IMPLEMENTED
+ - simulator results
+ -- csv file with two columns: Time and position -> NOT IMPLEMENTED
+ -- run timestamp -> NOT IMPLEMENTED
+#+END_NOTES
+
+
+* Design Specifications
+
+#+REVEAL_HTML: <div style="font-size: 80%;">
+- Taking into account the modularity, extensibility, and testability required for this simulation program, the *strategy design pattern* is best suited.
+
+- Concerns were separated into:
+    1. *Handlers* to allow for universal, uncoupled access to the projectile status and any forces acting on it
+    2. *Factories* to create all the objects
+    3. *Configurable input and output* options 
+        - e.g. command line, config file, 2D chart, 3D chart, etc
+    4. A suite to build and manage the simulator and handle its inputs and outputs
+
+
+#+BEGIN_NOTES
+1. This allows for adding new - or removing, variables without affecting the overall structure of the simulation, and without having to change the main simulation code. This separation of concerns makes it easier to write tests for each strategy.
+#+END_NOTES
+
+
+** Class Diagram
+
+[[./res/suite.png]]
+
+
+* Testing Specifications
+
+For effective testing of the simulator, ensuring the robustness and reliability of the simulator the following test methods are used:
+
+- /Unit Testing/
+
+- /Integration Testing/ 
+
+- /System Testing/
+
+#+BEGIN_NOTES
+3. System Testing: Select a subset of use cases for system testing, to evaluate the system's overall functionality in scenarios that resemble real-world usage.
+    - In our case, we ran the system start to finish and used a State Observer to verify that all the expected machine states were reached
+#+END_NOTES
+
+* Testing Methodology
+
+/Unit Testing/
+
+all tests ara parameterized
+
+* Unit Testing
+
+- Path and Data Flow analysis concluded to the same test cases 
+- We analyzed for Prime Path Testing, which subsumes Data Flow analysis, so this is expected
+    - However, we still included the analysis of Data Flow for demonstration purposes
+- Boundary/Equivalence values were collected from online resources about howitzers
+
+#+BEGIN_NOTES
+1. Unit Testing: This is where we test individual functions and components separately. For the purposes of this class, all our unit tests were done on our getProjectileDrag() function, including boundary values, equivalence classes, decision tables, paths, and data flows.
+    - Boundaries were tested with values [XXXX]
+    - Equivalence classes used ranges of [XXXX]
+    - Decision tables were [XXXX]
+    - Path and Data flow analysis concluded to the same test cases, although the analyses for both were still fully completed (even though we could expect Data Flow to be subsumed by Prime/Complete path testing, which it was)
+#+END_NOTES
+
+
+** Unit Testing - Path Testing
+
+#+ATTR_HTML: :width 50% :align center
+[[./res/graph-structural.jpg]]
+
+
+** Unit Testing - Data Flow Testing
+
+#+ATTR_HTML: :width 50% :align center
+[[./res/graph-data-flow.jpg]]
+
+
+** Unit Testing - Decision Table Testing
+
+The simple form of our decision table:
+
++-----+----------------------+---+---+---+---+
+|     |                      | 1 | 2 | 3 | 4 |
++-----+----------------------+---+---+---+---+
+| C1: | velocity = 0?        | T | T | F | F |
+| C2: | velocity.x, y < 0?   | - | T | T | F |
+| C3: | rho or A or Cd <= 0? | - | - | T | F |
+| C4: | dragMagnitude > 0?   | - | - | - | F |
++-----+----------------------+---+---+---+---+
+| A1: | Return (0,0,0)       | X | X | X | - |
+| A2: | Return Drag          | - | - | - | X |
++-----+----------------------+---+---+---+---+
+
+
+** Unit Testing - Decision Table Testing
+#+REVEAL_HTML: <div style="font-size: 60%;">
+
+The extended form of our decision table:
+
+|     |                      | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
+|-----+----------------------+---+---+---+---+---+---+---+---+---+----+----+----+----+----+----+----|
+| C1: | ~velocity~ = 0?      | T | T | T | T | T | T | T | T | F | F  | F  | F  | F  | F  | F  | F  |
+| C2: | ~velocity.x, y~ < 0? | - | - | - | - | - | - | - | - | T | T  | T  | T  | F  | F  | F  | F  |
+| C3: | rho or A or Cd <= 0? | - | - | - | - | - | - | - | - | - | -  | -  | -  | T  | T  | F  | F  |
+| C4: | dragMagnitude > 0?   | - | - | - | - | - | - | - | - | - | -  | -  | -  | -  | F  | T  | F  |
+|-----+----------------------+---+---+---+---+---+---+---+---+---+----+----+----+----+----+----+----|
+| A1: | Return (0,0,0)       | X | X | X | X | X | X | X | X | X | X  | X  | X  | X  | X  | X  | -  |
+| A2: | Return Drag          | - | - | - | - | - | - | - | - | - | -  | -  | -  | -  | -  | -  | X  |
+
+
+
+** Unit Testing - Boundary Value Testing
+#+REVEAL_HTML: <div style="font-size: 80%;">
+
+
+- Max boundary values taken from "Big Bertha," the largest cannon ever produced
+
+|------------------------+-----------+---------+-------+---------------|
+|        Parameter       |    MAX    |   NOM   |  MIN  |     Unit      |
+|------------------------+-----------+---------+-------+---------------|
+| Area                   |   500mm   | 150mm   | 100mm |       -       |
+| Density (temp)         |  1.582    | 1.200   | 1.092 |     kg/m³     |
+| Drag Coefficient (Cd)  |   0.1     | 0.2     | 0.6   |       -       |
+| Muzzle Velocity        |   900 m/s | 400 m/s | 0 m/s |      m/s      |
+|------------------------+-----------+-------+-------+-----------------|
+
+
+** Unit Testing - Equivalence Value Testing
+
+#+REVEAL_HTML: <div style="font-size: 60%;">
++-------------------------+------------+
+|    Equivalence Class    |    Unit    |
++-------------------------+------------+
+| Area                    | mm²        |   
+|   - Small               | 105        |
+|   - Med                 | 155        |
+|   - Large               | 240        |
++-------------------------+------------+
+| Density                 | kg/m²      |
+|   - Cold                | 1.300      |
+|   - Normal              | 1.200      |
+|   - Hot                 | 1.100      |
++-------------------------+------------+
+| Drag Coefficient (Cd)   |      -     |
+|   - Average             | 0.2        |
+|   - OK                  | 0.4        |
+|   - Bad                 | 0.6        |
++-------------------------+------------+
+| Muzzle Velocity         |   m/s      |
+|   - Stationary          |  0         |
+|   - Slow                | 200        |
+|   - Fast                | 400        |
+|   - Very Fast           | 700        |
++-------------------------+------------+
+
+
+* Integration Testing
+
+- Integration testing was done using the factory MakeProjectileSimuator, which creates the main simulator
+- This requires the integration of all our configuration handlers, ensuring that each part is contributing to the simulation appropriately
+
+
+#+BEGIN_NOTES
+2. Integration Testing: This is where we select a subset to combine and test together. For instance, testing the function for trajectory calculation together with the drag calculation function and gravity effects to ensure they work correctly in tandem.
+#+END_NOTES
+
+* System Testing
+
+- System testing was done on the simulator as a whole, running start to finish
+- Testing was operated on simulator states to make sure it ran in the proper, expected order
+- Major refactor involved in rewriting simulator to run as a Finite State Machine
+
+
+** System Testing - Finite State Machine
+
+#+ATTR_HTML: :width 40% :align center
+[[./res/fsm.png]]
+
+** System Testing - Finite State Machine
+
+- 3 States:
+  1. Configuration and Initialization
+  2. Run Simulation
+  3. Output Results
+
+- 3 Transitions:
+  1. Simulation Initialized
+  2. All Simulation Steps Completed
+  3. Process Results
+
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+* Solutions
+
+- We built our solutions using the AGILE and MVP paradigms
+- Everything we added was an "extension" onto the basic shell of the simulator
+
+#+BEGIN_NOTES
+Put speaker notes here
+#+END_NOTES
+
+
+** Solution 1: Basic Structure, Gravity, and Output
+
+- Our first solution was made to get the bare minimum of a "working" simulation to run and interact with.
+- Many components were left as stubs to allow for the project to build before all feature were complete
+- The simulator would properly track the projectile movement, but with only gravity affecting it, no way to detect the ground, and no initial force
+
+#+BEGIN_NOTES
+- This was the "shell" of everything being built
+- 
+#+END_NOTES
+
+** Solution 2: Configuration Handler and Drag Physics
+
+- Introduced initial "firing" force, a simple drag force
+- Implemented the configuration handler to retrieve dynamic settings from a readable/writable json file
+- The simulation could now fire in a user-specified direction
+
+
+** Solution 3: Finite State Machine and Precision Increases
+
+- Introduced a much smaller time step to increase the simulator's precision
+- Refactored the simulator to be represented as a Finite State Machine
+- Refactored the drag force to use accurate physical calculations
+
+
+* Project Management
+
+[[./res/gantt.png]]
+[[./res/gantt-chart.html]]
+
+#+BEGIN_NOTES
+Put speaker notes here
+#+END_NOTES
+
+
+* Conclusion and Future Scope
+
+- As it stands, our application operates with an acceptable level of accuracy, flexibility and extensibility, and computational performance.
+- But there are many extraneous goals left to finish, such as:
+    - User interaction
+    - Different forms of output (e.g. csv files)
+    - More complex forces (e.g. wind vector field)
+    - Chart colorization to represent changes over time (e.g. velocity, or drag force)
+
+#+BEGIN_NOTES
+Put speaker notes here
+#+END_NOTES
